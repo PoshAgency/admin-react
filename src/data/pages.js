@@ -1,6 +1,7 @@
 export const pages = [
   {
     title: "Title 1",
+    text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque facere accusantium, perferendis aspernatur ipsa animi totam sed, esse, quam nisi possimus explicabo deleniti placeat temporibus corporis blanditiis quas delectus amet.",
     author: "Author 1",
     date: "03.02.2023.",
     category: "news",
@@ -8,6 +9,7 @@ export const pages = [
   },
   {
     title: "Title 2",
+    text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque facere accusantium, perferendis aspernatur ipsa animi totam sed, esse, quam nisi possimus explicabo deleniti placeat temporibus corporis blanditiis quas delectus amet.",
     author: "Author 2",
     date: "01.02.2023.",
     category: "insights",
@@ -15,6 +17,7 @@ export const pages = [
   },
   {
     title: "Title 3",
+    text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque facere accusantium, perferendis aspernatur ipsa animi totam sed, esse, quam nisi possimus explicabo deleniti placeat temporibus corporis blanditiis quas delectus amet.",
     author: "Author 1",
     date: "13.01.2023.",
     category: "news",
@@ -22,6 +25,7 @@ export const pages = [
   },
   {
     title: "Title 4",
+    text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque facere accusantium, perferendis aspernatur ipsa animi totam sed, esse, quam nisi possimus explicabo deleniti placeat temporibus corporis blanditiis quas delectus amet.",
     author: "Author 1",
     date: "21.01.2023.",
     category: "news",
@@ -29,6 +33,7 @@ export const pages = [
   },
   {
     title: "Title 5",
+    text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque facere accusantium, perferendis aspernatur ipsa animi totam sed, esse, quam nisi possimus explicabo deleniti placeat temporibus corporis blanditiis quas delectus amet.",
     author: "Author 2",
     date: "02.01.2023.",
     category: "insights",
@@ -36,6 +41,7 @@ export const pages = [
   },
   {
     title: "Title 5",
+    text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque facere accusantium, perferendis aspernatur ipsa animi totam sed, esse, quam nisi possimus explicabo deleniti placeat temporibus corporis blanditiis quas delectus amet.",
     author: "Author 3",
     date: "18.02.2023.",
     category: "reports",

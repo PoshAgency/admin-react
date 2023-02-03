@@ -1,8 +1,22 @@
 import React from "react";
+import { useState } from "react";
 import { Button } from "react-bootstrap";
 import { pages } from "../../data/pages";
 
 const Pages = () => {
+  const [filteredPages, setFilteredPages] = useState([]);
+
+  function handlePagesSearch(e) {
+    setFilteredPages(
+      pages.filter(
+        (page) =>
+          page.title.toLowerCase().includes(e.target.value.toLowerCase()) ||
+          page.author.toLowerCase().includes(e.target.value.toLowerCase()) ||
+          page.category.toLowerCase().includes(e.target.value.toLowerCase())
+      )
+    );
+  }
+
   return (
     <div className="container w-100">
       <div className="row d-flex justify-content-end">
@@ -20,6 +34,7 @@ const Pages = () => {
               type="text"
               className="form-control"
               placeholder="Search pages"
+              onChange={handlePagesSearch}
             />
             <div className="input-group-append">
               <span className="input-group-text">
@@ -40,7 +55,27 @@ const Pages = () => {
           </div>
         </div>
       </div>
-      <div className="row">3</div>
+      <div className="row d-flex flex-wrap">
+        {filteredPages.length
+          ? filteredPages.map((page, index) => (
+              <div className="card w-25 mr-2" key={index}>
+                <div className="card-title">{page.title}</div>
+                <div className="card-body">
+                  <p>{page.author}</p>
+                  <p>{page.text}</p>
+                </div>
+              </div>
+            ))
+          : pages.map((page, index) => (
+              <div className="card w-25 mr-2" key={index}>
+                <div className="card-title">{page.title}</div>
+                <div className="card-body">
+                  <p>{page.author}</p>
+                  <p>{page.text}</p>
+                </div>
+              </div>
+            ))}
+      </div>
     </div>
   );
 };
