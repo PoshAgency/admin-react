@@ -3,7 +3,6 @@ import { Button } from "react-bootstrap";
 import { pages } from "../../data/pages";
 
 const Pages = () => {
-  console.log(pages);
   return (
     <div className="container w-100">
       <div className="row d-flex justify-content-end">
@@ -13,7 +12,7 @@ const Pages = () => {
       </div>
       <div className="row mt-5">
         <div className="col d-flex align-items-center">
-          <p className="mb-0">{`${pages.length}`} pages</p>
+          <h4 className="mb-0">{`${pages.length}`} pages</h4>
         </div>
         <div className="col d-flex justify-content-end px-0">
           <div className="input-group search-area w-75">
