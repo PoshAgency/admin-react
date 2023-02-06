@@ -27,7 +27,9 @@ const Pages = () => {
       </div>
       <div className="row mt-5">
         <div className="col d-flex align-items-center">
-          <h4 className="mb-0">{`${pages.length}`} pages</h4>
+          <h4 className="mb-0">{`${pages.length} ${
+            pages.length === 1 ? "page" : "pages"
+          }`}</h4>
         </div>
         <div className="col d-flex justify-content-end px-0">
           <div className="input-group search-area w-75">

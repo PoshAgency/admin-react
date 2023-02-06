@@ -11,7 +11,7 @@ export const pages = [
   {
     title: "Title 2",
     text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque facere accusantium, perferendis aspernatur ipsa animi totam sed, esse, quam nisi possimus explicabo deleniti placeat temporibus corporis blanditiis quas delectus amet.",
-    author: "Author 2",
+    author: "Author 4",
     date: "01.02.2023.",
     category: "insights",
     active: false,
