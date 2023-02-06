@@ -4,9 +4,6 @@ import { Table, Pagination, Badge, Dropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import data from "./tableData.js";
 
-import avatar1 from "../../../images/avatar/1.jpg";
-import avatar2 from "../../../images/avatar/2.jpg";
-import avatar3 from "../../../images/avatar/3.jpg";
 import { pages } from "../../../data/pages.js";
 
 const PagesTable = () => {
@@ -38,8 +35,6 @@ const PagesTable = () => {
       ); */
   };
 
-  console.log(pages);
-
   return (
     <Table responsive>
       <thead>
@@ -58,7 +53,6 @@ const PagesTable = () => {
               ></label>
             </div>
           </th>
-
           <th>
             <strong>Title</strong>
           </th>
@@ -74,6 +68,9 @@ const PagesTable = () => {
           <th>
             <strong>Status</strong>
           </th>
+          <th>
+            <strong>Actions</strong>
+          </th>
         </tr>
       </thead>
       <tbody>
@@ -84,12 +81,15 @@ const PagesTable = () => {
                 <input
                   type="checkbox"
                   className="custom-control-input"
-                  id="customCheckBox2"
+                  id={`checkbox-${page.id}`}
                   required=""
+                  onChange={(e) => {
+                    console.log(e.target);
+                  }}
                 />
                 <label
                   className="custom-control-label"
-                  htmlFor="customCheckBox2"
+                  htmlFor={`checkbox-${page.id}`}
                 ></label>
               </div>
             </td>
