@@ -6,6 +6,7 @@ export const pages = [
     date: "03.02.2023.",
     category: "news",
     active: true,
+    id: "0",
   },
   {
     title: "Title 2",
@@ -14,6 +15,7 @@ export const pages = [
     date: "01.02.2023.",
     category: "insights",
     active: false,
+    id: "1",
   },
   {
     title: "Title 3",
@@ -22,6 +24,7 @@ export const pages = [
     date: "13.01.2023.",
     category: "news",
     active: true,
+    id: "2",
   },
   {
     title: "Title 4",
@@ -30,6 +33,7 @@ export const pages = [
     date: "21.01.2023.",
     category: "news",
     active: false,
+    id: "3",
   },
   {
     title: "Title 5",
@@ -38,6 +42,7 @@ export const pages = [
     date: "02.01.2023.",
     category: "insights",
     active: true,
+    id: "4",
   },
   {
     title: "Title 5",
@@ -46,5 +51,6 @@ export const pages = [
     date: "18.02.2023.",
     category: "reports",
     active: true,
+    id: "5",
   },
 ];

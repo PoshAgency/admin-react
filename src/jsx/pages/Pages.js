@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { Button } from "react-bootstrap";
 import { pages } from "../../data/pages";
+import PagesTable from "../components/table/PagesTable";
 
 const Pages = () => {
   const [filteredPages, setFilteredPages] = useState([]);
@@ -55,26 +56,8 @@ const Pages = () => {
           </div>
         </div>
       </div>
-      <div className="row d-flex flex-wrap">
-        {filteredPages.length
-          ? filteredPages.map((page, index) => (
-              <div className="card w-25 mr-2" key={index}>
-                <div className="card-title">{page.title}</div>
-                <div className="card-body">
-                  <p>{page.author}</p>
-                  <p>{page.text}</p>
-                </div>
-              </div>
-            ))
-          : pages.map((page, index) => (
-              <div className="card w-25 mr-2" key={index}>
-                <div className="card-title">{page.title}</div>
-                <div className="card-body">
-                  <p>{page.author}</p>
-                  <p>{page.text}</p>
-                </div>
-              </div>
-            ))}
+      <div className="row d-flex flex-wrap mt-5">
+        <PagesTable />
       </div>
     </div>
   );
