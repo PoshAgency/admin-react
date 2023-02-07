@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import { Table, Card, Dropdown } from "react-bootstrap";
 import MetarialDate from "../../components/Forms/Pickers/MetarialDate";
 
@@ -48,7 +48,7 @@ const PagesTable = ({ pages }) => {
                 >
                   Title{" "}
                   <span>
-                    <i class="fa fa-arrow-down"></i>
+                    <i className="fa fa-arrow-down"></i>
                   </span>
                 </Dropdown.Item>
                 <Dropdown.Item
@@ -57,7 +57,7 @@ const PagesTable = ({ pages }) => {
                 >
                   Title{" "}
                   <span>
-                    <i class="fa fa-arrow-up"></i>
+                    <i className="fa fa-arrow-up"></i>
                   </span>
                 </Dropdown.Item>
                 <div className="dropdown-divider"></div>
@@ -67,7 +67,7 @@ const PagesTable = ({ pages }) => {
                 >
                   Date{" "}
                   <span>
-                    <i class="fa fa-arrow-down"></i>
+                    <i className="fa fa-arrow-down"></i>
                   </span>
                 </Dropdown.Item>
                 <Dropdown.Item
@@ -76,7 +76,7 @@ const PagesTable = ({ pages }) => {
                 >
                   Date{" "}
                   <span>
-                    <i class="fa fa-arrow-up"></i>
+                    <i className="fa fa-arrow-up"></i>
                   </span>
                 </Dropdown.Item>
               </Dropdown.Menu>
@@ -124,7 +124,7 @@ const PagesTable = ({ pages }) => {
           </thead>
           <tbody>
             {pages.map((page, index) => (
-              <tr>
+              <tr key={index}>
                 <td>
                   <div className="custom-control custom-checkbox checkbox-success check-lg mr-3">
                     <input
@@ -167,18 +167,18 @@ const PagesTable = ({ pages }) => {
                 <td>
                   <div className="d-flex">
                     <Link
-                      href="#"
+                      to="#"
                       className="btn btn-primary shadow btn-xs sharp mr-1"
                     >
                       <i className="fa fa-pencil"></i>
                     </Link>
                     <Link
-                      href="#"
+                      to="#"
                       className="btn btn-danger shadow btn-xs sharp mr-1"
                     >
                       <i className="fa fa-trash"></i>
                     </Link>
-                    <Link href="#" className="btn btn-info shadow btn-xs sharp">
+                    <Link to="#" className="btn btn-info shadow btn-xs sharp">
                       <i className="fa fa-copy"></i>
                     </Link>
                   </div>
