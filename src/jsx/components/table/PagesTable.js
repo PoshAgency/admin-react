@@ -83,9 +83,7 @@ const PagesTable = () => {
                   className="custom-control-input"
                   id={`checkbox-${page.id}`}
                   required=""
-                  onChange={(e) => {
-                    console.log(e.target);
-                  }}
+                  onChange={(e) => {}}
                 />
                 <label
                   className="custom-control-label"
@@ -125,7 +123,13 @@ const PagesTable = () => {
                 >
                   <i className="fa fa-pencil"></i>
                 </Link>
-                <Link href="#" className="btn btn-danger shadow btn-xs sharp">
+                <Link
+                  href="#"
+                  className="btn btn-danger shadow btn-xs sharp mr-1"
+                >
+                  <i className="fa fa-trash"></i>
+                </Link>
+                <Link href="#" className="btn btn-info shadow btn-xs sharp">
                   <i className="fa fa-trash"></i>
                 </Link>
               </div>
