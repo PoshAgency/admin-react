@@ -13,14 +13,14 @@ const Pages = () => {
     if (!e.target.value) {
       setPages(data);
     } else {
-      filteredPages = pages.filter(
+      filteredPages = data.filter(
         (page) =>
           page.title.toLowerCase().includes(e.target.value) ||
           page.author.toLowerCase().includes(e.target.value) ||
           page.category.toLowerCase().includes(e.target.value)
       );
 
-      setPages([...filteredPages]);
+      setPages(filteredPages);
     }
   };
 
