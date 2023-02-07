@@ -1,22 +1,28 @@
 import React from "react";
 import { useState } from "react";
 import { Button } from "react-bootstrap";
-import { pages } from "../../data/pages";
+import data from "../../data/pages";
 import PagesTable from "../components/table/PagesTable";
 
 const Pages = () => {
-  const [filteredPages, setFilteredPages] = useState([]);
+  const [pages, setPages] = useState(data);
 
-  function handlePagesSearch(e) {
-    setFilteredPages(
-      pages.filter(
+  const searchPages = (e) => {
+    let filteredPages = [];
+
+    if (!e.target.value) {
+      setPages(data);
+    } else {
+      filteredPages = pages.filter(
         (page) =>
-          page.title.toLowerCase().includes(e.target.value.toLowerCase()) ||
-          page.author.toLowerCase().includes(e.target.value.toLowerCase()) ||
-          page.category.toLowerCase().includes(e.target.value.toLowerCase())
-      )
-    );
-  }
+          page.title.toLowerCase().includes(e.target.value) ||
+          page.author.toLowerCase().includes(e.target.value) ||
+          page.category.toLowerCase().includes(e.target.value)
+      );
+
+      setPages([...filteredPages]);
+    }
+  };
 
   return (
     <div className="container w-100">
@@ -37,7 +43,7 @@ const Pages = () => {
               type="text"
               className="form-control"
               placeholder="Search pages"
-              onChange={handlePagesSearch}
+              onChange={searchPages}
             />
             <div className="input-group-append">
               <span className="input-group-text">
@@ -59,7 +65,7 @@ const Pages = () => {
         </div>
       </div>
       <div className="row d-flex flex-wrap mt-5">
-        <PagesTable />
+        <PagesTable pages={pages} />
       </div>
     </div>
   );

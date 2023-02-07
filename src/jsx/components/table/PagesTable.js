@@ -1,14 +1,12 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { Table, Card, Dropdown } from "react-bootstrap";
 import MetarialDate from "../../components/Forms/Pickers/MetarialDate";
 
 import { Link } from "react-router-dom";
-import data from "./tableData.js";
 
-import { pages } from "../../../data/pages.js";
-
-const PagesTable = () => {
+const PagesTable = ({ pages }) => {
   const sort = 3;
+
   let pagesPagination = Array(Math.ceil(pages.length / sort))
     .fill()
     .map((_, i) => i + 1);
@@ -38,7 +36,7 @@ const PagesTable = () => {
     <Card className="w-100">
       <Card.Header className="d-flex justify-content-between">
         <Card.Title>Pages</Card.Title>
-        <div className="d-flex">
+        <div className="d-flex  align-items-center">
           <MetarialDate />
           <div className="basic-dropdown ml-3">
             <Dropdown>
