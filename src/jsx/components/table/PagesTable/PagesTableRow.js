@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 
-const PagesTableRow = ({ page, index }) => {
+const PagesTableRow = ({ page }) => {
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({ id: page.id });
 
@@ -14,7 +14,7 @@ const PagesTableRow = ({ page, index }) => {
 
   return (
     <tr
-      key={index}
+      key={page.id}
       ref={setNodeRef}
       style={style}
       {...attributes}
