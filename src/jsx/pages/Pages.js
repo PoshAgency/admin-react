@@ -8,22 +8,22 @@ import PagesTable from "../components/table/PagesTable/PagesTable";
 const Pages = () => {
   const [pages, setPages] = useState(data);
 
-  // const searchPages = (e) => {
-  //   let filteredPages = [];
+  const searchPages = (e) => {
+    let filteredPages = [];
 
-  //   if (!e.target.value) {
-  //     setPages(data);
-  //   } else {
-  //     filteredPages = data.filter(
-  //       (page) =>
-  //         page.title.toLowerCase().includes(e.target.value) ||
-  //         page.author.toLowerCase().includes(e.target.value) ||
-  //         page.category.toLowerCase().includes(e.target.value)
-  //     );
+    if (!e.target.value) {
+      setPages(data);
+    } else {
+      filteredPages = data.filter(
+        (page) =>
+          page.title.toLowerCase().includes(e.target.value.toLowerCase()) ||
+          page.author.toLowerCase().includes(e.target.value.toLowerCase()) ||
+          page.category.toLowerCase().includes(e.target.value.toLowerCase())
+      );
 
-  //     setPages(filteredPages);
-  //   }
-  // };
+      setPages(filteredPages);
+    }
+  };
 
   return (
     <div className="container w-100">
@@ -46,7 +46,7 @@ const Pages = () => {
               type="text"
               className="form-control"
               placeholder="Search pages"
-              // onChange={searchPages}
+              onChange={searchPages}
             />
             <div className="input-group-append">
               <span className="input-group-text">
