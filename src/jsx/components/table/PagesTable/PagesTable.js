@@ -29,12 +29,6 @@ const PagesTable = ({ pages, setPages }) => {
       activePag.current * sort,
       (activePag.current + 1) * sort
     );
-    /* setdemo(
-         data.patientTable.data.slice(
-            activePag.current * sort,
-            (activePag.current + 1) * sort
-         )
-      ); */
   };
 
   const handleDragEnd = (e) => {
