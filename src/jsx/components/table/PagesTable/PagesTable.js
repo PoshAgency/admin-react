@@ -1,11 +1,15 @@
 import React, { useRef } from "react";
 import { Table, Card, Dropdown } from "react-bootstrap";
-import MetarialDate from "../../components/Forms/Pickers/MetarialDate";
-import CustomDatePicker from "../../components/Forms/Pickers/CustomMuiDatePicker";
+import MetarialDate from "../../Forms/Pickers/MetarialDate";
+import { closestCenter, DndContext } from "@dnd-kit/core";
+import {
+  SortableContext,
+  verticalListSortingStrategy,
+  arrayMove,
+} from "@dnd-kit/sortable";
+import PagesTableRow from "./PagesTableRow";
 
-import { Link } from "react-router-dom";
-
-const PagesTable = ({ pages }) => {
+const PagesTable = ({ pages, setPages }) => {
   const sort = 3;
 
   let pagesPagination = Array(Math.ceil(pages.length / sort))
@@ -31,6 +35,19 @@ const PagesTable = ({ pages }) => {
             (activePag.current + 1) * sort
          )
       ); */
+  };
+
+  const handleDragEnd = (e) => {
+    const { active, over } = e;
+
+    if (active.id !== over.id) {
+      setPages((prevState) => {
+        const activeIndex = pages.map((page) => page.id).indexOf(active.id);
+        const overIndex = pages.map((page) => page.id).indexOf(over.id);
+
+        return arrayMove(prevState, activeIndex, overIndex);
+      });
+    }
   };
 
   return (
@@ -115,77 +132,30 @@ const PagesTable = ({ pages }) => {
               <th>
                 <strong>Category</strong>
               </th>
-              <th>
+              {/* <th>
                 <strong>Status</strong>
-              </th>
+              </th> */}
               <th>
                 <strong>Actions</strong>
               </th>
             </tr>
           </thead>
           <tbody>
-            {pages.map((page, index) => (
-              <tr key={index}>
-                <td>
-                  <div className="custom-control custom-checkbox checkbox-success check-lg mr-3">
-                    <input
-                      type="checkbox"
-                      className="custom-control-input"
-                      id={`checkbox-${page.id}`}
-                      required=""
-                      onChange={(e) => {}}
-                    />
-                    <label
-                      className="custom-control-label"
-                      htmlFor={`checkbox-${page.id}`}
-                    ></label>
-                  </div>
-                </td>
-                <td>
-                  <strong>{page.title}</strong>
-                </td>
-                <td>
-                  <div className="d-flex align-items-center">
-                    <span className="w-space-no">{page.author}</span>
-                  </div>
-                </td>
-                <td>{page.date} </td>
-                <td>{page.category}</td>
-                <td>
-                  <div className="d-flex align-items-center">
-                    {
-                      <>
-                        <i
-                          className={`fa fa-circle ${
-                            page.active ? "text-success" : "text-danger"
-                          } mr-1`}
-                        ></i>
-                        {page.active ? "Active" : "Inactive"}
-                      </>
-                    }
-                  </div>
-                </td>
-                <td>
-                  <div className="d-flex">
-                    <Link
-                      to="#"
-                      className="btn btn-primary shadow btn-xs sharp mr-1"
-                    >
-                      <i className="fa fa-pencil"></i>
-                    </Link>
-                    <Link
-                      to="#"
-                      className="btn btn-danger shadow btn-xs sharp mr-1"
-                    >
-                      <i className="fa fa-trash"></i>
-                    </Link>
-                    <Link to="#" className="btn btn-info shadow btn-xs sharp">
-                      <i className="fa fa-copy"></i>
-                    </Link>
-                  </div>
-                </td>
-              </tr>
-            ))}
+            <>
+              <DndContext
+                collisionDetection={closestCenter}
+                onDragEnd={handleDragEnd}
+              >
+                <SortableContext
+                  items={pages}
+                  strategy={verticalListSortingStrategy}
+                >
+                  {pages.map((page, index) => (
+                    <PagesTableRow page={page} index={index} />
+                  ))}
+                </SortableContext>
+              </DndContext>
+            </>
           </tbody>
         </Table>
       </Card.Body>

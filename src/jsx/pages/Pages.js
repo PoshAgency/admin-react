@@ -1,35 +1,38 @@
 import React from "react";
 import { useState } from "react";
 import { Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import data from "../../data/pages";
-import PagesTable from "../components/table/PagesTable";
+import PagesTable from "../components/table/PagesTable/PagesTable";
 
 const Pages = () => {
   const [pages, setPages] = useState(data);
 
-  const searchPages = (e) => {
-    let filteredPages = [];
+  // const searchPages = (e) => {
+  //   let filteredPages = [];
 
-    if (!e.target.value) {
-      setPages(data);
-    } else {
-      filteredPages = data.filter(
-        (page) =>
-          page.title.toLowerCase().includes(e.target.value) ||
-          page.author.toLowerCase().includes(e.target.value) ||
-          page.category.toLowerCase().includes(e.target.value)
-      );
+  //   if (!e.target.value) {
+  //     setPages(data);
+  //   } else {
+  //     filteredPages = data.filter(
+  //       (page) =>
+  //         page.title.toLowerCase().includes(e.target.value) ||
+  //         page.author.toLowerCase().includes(e.target.value) ||
+  //         page.category.toLowerCase().includes(e.target.value)
+  //     );
 
-      setPages(filteredPages);
-    }
-  };
+  //     setPages(filteredPages);
+  //   }
+  // };
 
   return (
     <div className="container w-100">
       <div className="row d-flex justify-content-end">
-        <Button variant="dark" className="btn">
-          New Page
-        </Button>
+        <Link to="/single-page">
+          <Button variant="primary" className="btn">
+            New Page
+          </Button>
+        </Link>
       </div>
       <div className="row mt-5">
         <div className="col d-flex align-items-center">
@@ -43,7 +46,7 @@ const Pages = () => {
               type="text"
               className="form-control"
               placeholder="Search pages"
-              onChange={searchPages}
+              // onChange={searchPages}
             />
             <div className="input-group-append">
               <span className="input-group-text">
@@ -65,7 +68,7 @@ const Pages = () => {
         </div>
       </div>
       <div className="row d-flex flex-wrap mt-5">
-        <PagesTable pages={pages} />
+        <PagesTable pages={pages} setPages={setPages} />
       </div>
     </div>
   );
