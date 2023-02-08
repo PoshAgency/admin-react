@@ -103,6 +103,7 @@ import Todo from "./pages/Todo";
 //Scroll To Top
 import ScrollToTop from "./layouts/ScrollToTop";
 import Pages from "./pages/Pages";
+import SinglePage from "./pages/SinglePage";
 
 const Markup = () => {
   let path = window.location.pathname;
@@ -196,6 +197,7 @@ const Markup = () => {
     //{ url: 'table-sorting', component: SortingTable },
 
     /// pages
+    { url: "single-page", component: SinglePage },
     { url: "pages", component: Pages },
     { url: "page-register", component: Registration },
     { url: "page-lock-screen", component: LockScreen },
