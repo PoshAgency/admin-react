@@ -1,7 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import swal from "sweetalert";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
+import { Button } from "react-bootstrap";
 
 const PagesTableRow = ({ page }) => {
   const { attributes, listeners, setNodeRef, transform, transition } =
@@ -10,6 +12,24 @@ const PagesTableRow = ({ page }) => {
   const style = {
     transform: CSS.Transform.toString(transform),
     transition,
+  };
+
+  const handlePageDelete = () => {
+    swal({
+      title: "Are you sure?",
+      text: "Once deleted, you will not be able to recover this page!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        swal("Selected page has been deleted!", {
+          icon: "success",
+        });
+      } else {
+        swal("Selected page is safe!");
+      }
+    });
   };
 
   return (
@@ -45,7 +65,7 @@ const PagesTableRow = ({ page }) => {
       </td>
       <td>{page.date} </td>
       <td>{page.category}</td>
-      {/* <td>
+      <td>
         <div className="d-flex align-items-center">
           {
             <>
@@ -58,8 +78,8 @@ const PagesTableRow = ({ page }) => {
             </>
           }
         </div>
-      </td> */}
-      <td>
+      </td>
+      <td data-no-dnd="true">
         <div className="d-flex">
           <Link
             to="/single-page"
@@ -67,12 +87,16 @@ const PagesTableRow = ({ page }) => {
           >
             <i className="fa fa-pencil"></i>
           </Link>
-          <Link to="#" className="btn btn-danger shadow btn-xs sharp mr-1">
+          {/*  to add touch-action css */}
+          <Button
+            onClick={handlePageDelete}
+            className="btn btn-danger shadow btn-xs sharp mr-1"
+          >
             <i className="fa fa-trash"></i>
-          </Link>
-          <Link to="#" className="btn btn-info shadow btn-xs sharp">
+          </Button>
+          <Button className="btn btn-info shadow btn-xs sharp">
             <i className="fa fa-copy"></i>
-          </Link>
+          </Button>
         </div>
       </td>
     </tr>

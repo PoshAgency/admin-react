@@ -1,7 +1,13 @@
 import React, { useRef } from "react";
 import { Table, Card, Dropdown } from "react-bootstrap";
 import MetarialDate from "../../Forms/Pickers/MetarialDate";
-import { closestCenter, DndContext } from "@dnd-kit/core";
+import {
+  closestCenter,
+  DndContext,
+  PointerSensor,
+  useSensor,
+  useSensors,
+} from "@dnd-kit/core";
 import {
   SortableContext,
   verticalListSortingStrategy,
@@ -31,6 +37,16 @@ const PagesTable = ({ pages, setPages }) => {
     );
   };
 
+  // prevent firing drag and drop element before moving more than 8px
+  const sensors = useSensors(
+    useSensor(PointerSensor, {
+      activationConstraint: {
+        distance: 8,
+      },
+    })
+  );
+
+  // handle droping dragged element
   const handleDragEnd = (e) => {
     const { active, over } = e;
 
@@ -107,9 +123,9 @@ const PagesTable = ({ pages, setPages }) => {
               <th>
                 <strong>Category</strong>
               </th>
-              {/* <th>
+              <th>
                 <strong>Status</strong>
-              </th> */}
+              </th>
               <th>
                 <strong>Actions</strong>
               </th>
@@ -120,13 +136,14 @@ const PagesTable = ({ pages, setPages }) => {
               <DndContext
                 collisionDetection={closestCenter}
                 onDragEnd={handleDragEnd}
+                sensors={sensors}
               >
                 <SortableContext
                   items={pages}
                   strategy={verticalListSortingStrategy}
                 >
                   {pages.map((page, index) => (
-                    <PagesTableRow page={page} index={index} />
+                    <PagesTableRow page={page} key={index} />
                   ))}
                 </SortableContext>
               </DndContext>
