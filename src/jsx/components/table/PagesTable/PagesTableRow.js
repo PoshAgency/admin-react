@@ -60,7 +60,7 @@ const PagesTableRow = ({ page }) => {
       </td>
       <td>
         <div className="d-flex align-items-center">
-          <span className="w-space-no">by: {page.author}</span>
+          <span className="w-space-no">{page.author}</span>
         </div>
       </td>
       <td>{page.date} </td>
