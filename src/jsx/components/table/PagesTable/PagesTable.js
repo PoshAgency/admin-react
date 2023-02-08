@@ -58,44 +58,25 @@ const PagesTable = ({ pages, setPages }) => {
           <MetarialDate />
           <div className="basic-dropdown ml-3">
             <Dropdown>
-              <Dropdown.Toggle variant="transparent">Sort</Dropdown.Toggle>
+              <Dropdown.Toggle variant="transparent">Sort By</Dropdown.Toggle>
               <Dropdown.Menu>
                 <Dropdown.Item
                   href="#"
                   className="d-flex justify-content-between"
                 >
-                  Title{" "}
-                  <span>
-                    <i className="fa fa-arrow-down"></i>
-                  </span>
+                  Date Added
                 </Dropdown.Item>
                 <Dropdown.Item
                   href="#"
                   className="d-flex justify-content-between"
                 >
-                  Title{" "}
-                  <span>
-                    <i className="fa fa-arrow-up"></i>
-                  </span>
-                </Dropdown.Item>
-                <div className="dropdown-divider"></div>
-                <Dropdown.Item
-                  href="#"
-                  className="d-flex justify-content-between"
-                >
-                  Date{" "}
-                  <span>
-                    <i className="fa fa-arrow-down"></i>
-                  </span>
+                  Ascending
                 </Dropdown.Item>
                 <Dropdown.Item
                   href="#"
                   className="d-flex justify-content-between"
                 >
-                  Date{" "}
-                  <span>
-                    <i className="fa fa-arrow-up"></i>
-                  </span>
+                  Descending
                 </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
