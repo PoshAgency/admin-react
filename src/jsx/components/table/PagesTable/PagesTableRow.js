@@ -4,10 +4,15 @@ import swal from "sweetalert";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { Button } from "react-bootstrap";
-import { useDispatch } from "react-redux";
-import { togglePagePinned } from "../../../../store/actions/PagesActions";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  toggleCheckPage,
+  togglePagePinned,
+} from "../../../../store/actions/PagesActions";
 
 const PagesTableRow = ({ page }) => {
+  const { selectedPages } = useSelector((state) => state.pages);
+
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({ id: !page.pinned && page.id });
   const dispatch = useDispatch();
@@ -35,7 +40,15 @@ const PagesTableRow = ({ page }) => {
     });
   };
 
-  const togglePinned = (e) => {
+  const selectPage = () => {
+    dispatch(toggleCheckPage(page.id));
+  };
+
+  const isChecked = (id) => {
+    return selectedPages.includes(id);
+  };
+
+  const togglePinned = () => {
     dispatch(togglePagePinned(page.id));
   };
 
@@ -53,8 +66,8 @@ const PagesTableRow = ({ page }) => {
             type="checkbox"
             className="custom-control-input"
             id={`checkbox-${page.id}`}
-            required=""
-            onChange={(e) => {}}
+            onClick={selectPage}
+            checked={isChecked(page.id)}
           />
           <label
             className="custom-control-label"

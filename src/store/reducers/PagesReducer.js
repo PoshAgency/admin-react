@@ -1,4 +1,9 @@
-import { TOGGLE_PINNED_PAGE } from "../actions/PagesTypes";
+import {
+  TOGGLE_PINNED_PAGE,
+  TOGGLE_CHECK_PAGE,
+  DESELECT_ALL_PAGES,
+  TOGGLE_SELECT_ALL_PAGES,
+} from "../actions/PagesTypes";
 
 const initialState = {
   pages: [
@@ -115,6 +120,7 @@ const initialState = {
       pinned: true,
     },
   ],
+  selectedPages: [],
 };
 
 export default function PagesReducer(state = initialState, action) {
@@ -125,6 +131,41 @@ export default function PagesReducer(state = initialState, action) {
     pages[pageIndex].pinned = !pages[pageIndex].pinned;
 
     return { ...state, pages };
+  }
+
+  if (action.type === TOGGLE_CHECK_PAGE) {
+    const pageIndex = state.selectedPages.findIndex(
+      (page) => page === action.payload.id
+    );
+
+    let newSelectedPages = [...state.selectedPages];
+
+    if (pageIndex !== -1) {
+      newSelectedPages = state.selectedPages.filter(
+        (id) => id !== action.payload.id
+      );
+    } else {
+      newSelectedPages.push(action.payload.id);
+    }
+
+    return {
+      ...state,
+      selectedPages: newSelectedPages,
+    };
+  }
+
+  if (action.type === TOGGLE_SELECT_ALL_PAGES) {
+    let newSelectedPagesArray = [];
+
+    if (state.pages.length > state.selectedPages.length) {
+      newSelectedPagesArray = state.pages.map((page) => page.id);
+    }
+
+    return { ...state, selectedPages: newSelectedPagesArray };
+  }
+
+  if (action.type === DESELECT_ALL_PAGES) {
+    return { ...state, selectedPages: [] };
   }
 
   return state;

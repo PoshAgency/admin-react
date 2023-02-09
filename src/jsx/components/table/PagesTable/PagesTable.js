@@ -14,8 +14,17 @@ import {
   arrayMove,
 } from "@dnd-kit/sortable";
 import PagesTableRow from "./PagesTableRow";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  deselectAllPages,
+  toggleSelectAllPages,
+} from "../../../../store/actions/PagesActions";
 
 const PagesTable = ({ pages, setPages }) => {
+  const { selectedPages } = useSelector((state) => state.pages);
+
+  const dispatch = useDispatch();
+
   const sort = 3;
 
   let pagesPagination = Array(Math.ceil(pages.length / sort))
@@ -35,6 +44,14 @@ const PagesTable = ({ pages, setPages }) => {
       activePag.current * sort,
       (activePag.current + 1) * sort
     );
+  };
+
+  const handleAllPages = () => {
+    dispatch(toggleSelectAllPages());
+  };
+
+  const handleDeselectAllPages = () => {
+    dispatch(deselectAllPages());
   };
 
   // prevent firing drag and drop element before moving more than 8px
@@ -63,7 +80,34 @@ const PagesTable = ({ pages, setPages }) => {
   return (
     <Card className="w-100">
       <Card.Header className="d-flex justify-content-between">
-        <Card.Title>Pages</Card.Title>
+        <div className="d-flex align-items-center">
+          <Card.Title>Pages</Card.Title>
+          <div
+            className={`${
+              selectedPages.length ? "visible" : "invisible"
+            } d-flex align-items-center`}
+          >
+            <h5
+              className="inline-block mb-0 ml-5  mt-1"
+              onClick={handleDeselectAllPages}
+              role="button"
+            >
+              Deselect ({selectedPages.length})
+            </h5>
+            <h5
+              className="inline-block mb-0 ml-3 mt-1 d-flex align-items-center"
+              role="button"
+            >
+              <span>
+                <i
+                  class="las la-trash"
+                  style={{ fontSize: "1.4rem", color: "red" }}
+                ></i>
+              </span>
+              Delete ({selectedPages.length})
+            </h5>
+          </div>
+        </div>
         <div className="d-flex  align-items-center">
           <MetarialDate />
           <div className="basic-dropdown ml-3">
@@ -104,6 +148,11 @@ const PagesTable = ({ pages, setPages }) => {
                     className="custom-control-input"
                     id="checkAll"
                     required=""
+                    onClick={handleAllPages}
+                    checked={
+                      selectedPages.length === pages.length && pages.length > 0
+                    }
+                    disabled={pages.length === 0}
                   />
                   <label
                     className="custom-control-label"
