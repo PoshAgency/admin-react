@@ -6,7 +6,13 @@ import data from "../../data/pages";
 import PagesTable from "../components/table/PagesTable/PagesTable";
 
 const Pages = () => {
-  const [pages, setPages] = useState(data);
+  const [pages, setPages] = useState(sortPages(data));
+
+  function sortPages(arr) {
+    return arr.sort((a, b) => {
+      return b.pinned - a.pinned;
+    });
+  }
 
   const searchPages = (e) => {
     let filteredPages = [];

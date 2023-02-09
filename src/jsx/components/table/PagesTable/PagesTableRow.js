@@ -7,7 +7,7 @@ import { Button } from "react-bootstrap";
 
 const PagesTableRow = ({ page }) => {
   const { attributes, listeners, setNodeRef, transform, transition } =
-    useSortable({ id: page.id });
+    useSortable({ id: !page.pinned && page.id });
 
   const style = {
     transform: CSS.Transform.toString(transform),
@@ -71,10 +71,10 @@ const PagesTableRow = ({ page }) => {
             <>
               <i
                 className={`fa fa-circle ${
-                  page.active ? "text-success" : "text-danger"
+                  page.pinned ? "text-success" : "text-danger"
                 } mr-1`}
               ></i>
-              {page.active ? "Active" : "Inactive"}
+              {page.pinned ? "Pinned" : "Not Pinned"}
             </>
           }
         </div>
