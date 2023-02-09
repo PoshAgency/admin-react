@@ -66,7 +66,7 @@ const PagesTableRow = ({ page }) => {
             type="checkbox"
             className="custom-control-input"
             id={`checkbox-${page.id}`}
-            onClick={selectPage}
+            onChange={selectPage}
             checked={isChecked(page.id)}
           />
           <label
@@ -102,7 +102,7 @@ const PagesTableRow = ({ page }) => {
       <td data-no-dnd="true">
         <div className="d-flex">
           <Link
-            to="/single-page"
+            to="/pages/single"
             className="btn btn-primary shadow btn-xs sharp mr-1"
           >
             <i className="fa fa-pencil"></i>

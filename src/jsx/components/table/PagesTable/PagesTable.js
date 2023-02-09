@@ -88,7 +88,7 @@ const PagesTable = ({ pages, setPages }) => {
             } d-flex align-items-center`}
           >
             <h5
-              className="inline-block mb-0 ml-5  mt-1"
+              className="inline-block mb-0 ml-5 mt-1"
               onClick={handleDeselectAllPages}
               role="button"
             >
@@ -100,7 +100,7 @@ const PagesTable = ({ pages, setPages }) => {
             >
               <span>
                 <i
-                  class="las la-trash"
+                  className="las la-trash"
                   style={{ fontSize: "1.4rem", color: "red" }}
                 ></i>
               </span>
@@ -148,7 +148,7 @@ const PagesTable = ({ pages, setPages }) => {
                     className="custom-control-input"
                     id="checkAll"
                     required=""
-                    onClick={handleAllPages}
+                    onChange={handleAllPages}
                     checked={
                       selectedPages.length === pages.length && pages.length > 0
                     }

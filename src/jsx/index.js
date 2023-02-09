@@ -197,7 +197,7 @@ const Markup = () => {
     //{ url: 'table-sorting', component: SortingTable },
 
     /// pages
-    { url: "single-page", component: SinglePage },
+    { url: "pages/single", component: SinglePage },
     { url: "pages", component: Pages },
     { url: "page-register", component: Registration },
     { url: "page-lock-screen", component: LockScreen },
