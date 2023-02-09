@@ -4,10 +4,13 @@ import swal from "sweetalert";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { Button } from "react-bootstrap";
+import { useDispatch } from "react-redux";
+import { togglePagePinned } from "../../../../store/actions/PagesActions";
 
 const PagesTableRow = ({ page }) => {
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({ id: !page.pinned && page.id });
+  const dispatch = useDispatch();
 
   const style = {
     transform: CSS.Transform.toString(transform),
@@ -30,6 +33,10 @@ const PagesTableRow = ({ page }) => {
         swal("Selected page is safe!");
       }
     });
+  };
+
+  const togglePinned = (e) => {
+    dispatch(togglePagePinned(page.id));
   };
 
   return (
@@ -65,7 +72,7 @@ const PagesTableRow = ({ page }) => {
       </td>
       <td>{page.date} </td>
       <td>{page.category}</td>
-      <td>
+      <td onClick={togglePinned}>
         <div className="d-flex align-items-center">
           {
             <>
