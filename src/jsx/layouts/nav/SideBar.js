@@ -816,7 +816,8 @@ class SideBar extends Component {
           <div className="drum-box mt-5">
             <img src={drump} alt="" />
             <p className="fs-18 font-w500 mb-4">Start Plan Your Workout</p>
-            <Link className to={"./personal-record"}>
+            {/* <Link className to={"./personal-record"}> */}
+            <Link to={"/personal-record"}>
               Check schedule
               <svg
                 className="ml-3"
