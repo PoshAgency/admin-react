@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useMemo, useRef, forwardRef } from "react";
 import { Table, Card, Dropdown } from "react-bootstrap";
 import MetarialDate from "../../Forms/Pickers/MetarialDate";
 import {
@@ -19,94 +19,38 @@ import {
   deselectAllPages,
   toggleSelectAllPages,
 } from "../../../../store/actions/PagesActions";
+import { useTable, useRowSelect } from "react-table";
 
 const PagesTable = ({ pages, setPages }) => {
-  const { selectedPages } = useSelector((state) => state.pages);
-
-  const dispatch = useDispatch();
-
-  const handleAllPages = () => {
-    dispatch(toggleSelectAllPages());
-  };
-
-  const handleDeselectAllPages = () => {
-    dispatch(deselectAllPages());
-  };
-
-  // prevent firing drag and drop element before moving more than 8px
-  const sensors = useSensors(
-    useSensor(PointerSensor, {
-      activationConstraint: {
-        distance: 8,
-      },
-    })
+  // Memoize pages provided to the table
+  const data = useMemo(() => pages, [pages]);
+  // Define column titles
+  const columns = useMemo(
+    () => [
+      { Header: "Title", accessor: "title" },
+      { Header: "Author", accessor: "author" },
+      { Header: "Date", accessor: "date" },
+      { Header: "Category", accessor: "category" },
+      { Header: "Status", accessor: "status" },
+      { Header: "Actions", accessor: "actions" },
+    ],
+    []
   );
 
-  // handle droping dragged element
-  const handleDragEnd = (e) => {
-    const { active, over } = e;
-
-    if (active.id !== over.id) {
-      setPages((prevState) => {
-        const activeIndex = pages.map((page) => page.id).indexOf(active.id);
-        const overIndex = pages.map((page) => page.id).indexOf(over.id);
-
-        return arrayMove(prevState, activeIndex, overIndex);
-      });
-    }
-  };
-
-  // PAGINATION
-  const sort = 3;
-  let jobPagination = Array(Math.ceil(pages.length / sort))
-    .fill()
-    .map((_, i) => i + 1);
-
-  const activePag = useRef(0);
-  const jobData = useRef(
-    pages.slice(activePag.current * sort, (activePag.current + 1) * sort)
+  const IndeterminateCheckbox = forwardRef(
+    ({ indeterminate, ...rest }, ref) => {}
   );
 
-  const onClick = (i) => {
-    activePag.current = i;
+  // Create table instance
+  const tableInstance = useTable({ columns, data });
 
-    jobData.current = pages.slice(
-      activePag.current * sort,
-      (activePag.current + 1) * sort
-    );
-  };
+  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
+    tableInstance;
 
   return (
     <Card className="w-100">
       <Card.Header className="d-flex justify-content-between">
-        <div className="d-flex align-items-center">
-          <Card.Title>Pages</Card.Title>
-          <div
-            className={`${
-              selectedPages.length ? "visible" : "invisible"
-            } d-flex align-items-center`}
-          >
-            <h5
-              className="inline-block mb-0 ml-5 mt-1"
-              onClick={handleDeselectAllPages}
-              role="button"
-            >
-              Deselect ({selectedPages.length})
-            </h5>
-            <h5
-              className="inline-block mb-0 ml-3 mt-1 d-flex align-items-center"
-              role="button"
-            >
-              <span>
-                <i
-                  className="las la-trash"
-                  style={{ fontSize: "1.4rem", color: "red" }}
-                ></i>
-              </span>
-              Delete ({selectedPages.length})
-            </h5>
-          </div>
-        </div>
+        <Card.Title>Pages</Card.Title>
         <div className="d-flex  align-items-center">
           <MetarialDate />
           <div className="basic-dropdown ml-3">
@@ -137,55 +81,21 @@ const PagesTable = ({ pages, setPages }) => {
         </div>
       </Card.Header>
       <Card.Body className="p-0">
-        <Table responsive>
+        <Table responsive {...getTableBodyProps()}>
           <thead>
-            <tr>
-              <th className="width50">
-                <div className="custom-control custom-checkbox checkbox-success check-lg mr-3">
-                  <input
-                    type="checkbox"
-                    className="custom-control-input"
-                    id="checkAll"
-                    required=""
-                    onChange={handleAllPages}
-                    checked={
-                      selectedPages.length === pages.length && pages.length > 0
-                    }
-                    disabled={pages.length === 0}
-                  />
-                  <label
-                    className="custom-control-label"
-                    htmlFor="checkAll"
-                  ></label>
-                </div>
-              </th>
-              <th>
-                <strong>Title</strong>
-              </th>
-              <th>
-                <strong>Author</strong>
-              </th>
-              <th>
-                <strong>Date</strong>
-              </th>
-              <th>
-                <strong>Category</strong>
-              </th>
-              <th>
-                <strong>Status</strong>
-              </th>
-              <th>
-                <strong>Actions</strong>
-              </th>
-            </tr>
+            {headerGroups.map((headerGroup) => (
+              <tr {...headerGroup.getHeaderGroupProps()}>
+                {headerGroup.headers.map((column) => (
+                  <th {...column.getHeaderProps()}>
+                    {column.render("Header")}
+                  </th>
+                ))}
+              </tr>
+            ))}
           </thead>
           <tbody>
             <>
-              <DndContext
-                collisionDetection={closestCenter}
-                onDragEnd={handleDragEnd}
-                sensors={sensors}
-              >
+              <DndContext collisionDetection={closestCenter}>
                 <SortableContext
                   items={pages}
                   strategy={verticalListSortingStrategy}
