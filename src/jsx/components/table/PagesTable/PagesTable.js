@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import { Table, Card, Dropdown } from "react-bootstrap";
 import MetarialDate from "../../Forms/Pickers/MetarialDate";
 import {
@@ -25,26 +25,26 @@ const PagesTable = ({ pages, setPages }) => {
 
   const dispatch = useDispatch();
 
-  const sort = 3;
+  // const sort = 3;
 
-  let pagesPagination = Array(Math.ceil(pages.length / sort))
-    .fill()
-    .map((_, i) => i + 1);
+  // let pagesPagination = Array(Math.ceil(pages.length / sort))
+  //   .fill()
+  //   .map((_, i) => i + 1);
 
-  const activePag = useRef(0);
+  // const activePag = useRef(0);
 
-  const pagesData = useRef(
-    pages.slice(activePag.current * sort, (activePag.current + 1) * sort)
-  );
+  // const pagesData = useRef(
+  //   pages.slice(activePag.current * sort, (activePag.current + 1) * sort)
+  // );
 
-  const onClick = (i) => {
-    activePag.current = i;
+  // const onClick = (i) => {
+  //   activePag.current = i;
 
-    pagesData = pages.slice(
-      activePag.current * sort,
-      (activePag.current + 1) * sort
-    );
-  };
+  //   pagesData = pages.slice(
+  //     activePag.current * sort,
+  //     (activePag.current + 1) * sort
+  //   );
+  // };
 
   const handleAllPages = () => {
     dispatch(toggleSelectAllPages());
