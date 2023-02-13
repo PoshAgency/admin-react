@@ -149,16 +149,16 @@ class SideBar extends Component {
         "page-error-404",
         "page-error-500",
         "page-error-503",
-      ];
-    //TODO: Organize menu
-    // The Posh Menu
-    // thePosh = ["pages"];
+      ],
+      //TODO: Organize menu
+      // The Posh Menu
+      thePosh = ["pages"];
 
     return (
       <div className="deznav">
         <PerfectScrollbar className="deznav-scroll">
           <MM className="metismenu" id="menu">
-            {/* <li className={`${thePosh.includes(path) ? "mm-active" : ""}`}>
+            <li className={`${thePosh.includes(path) ? "mm-active" : ""}`}>
               <Link className="has-arrow ai-icon" to="#">
                 <i className="las la-star"></i>{" "}
                 <span className="nav-text">The Posh</span>
@@ -173,7 +173,7 @@ class SideBar extends Component {
                   </Link>
                 </li>
               </ul>
-            </li> */}
+            </li>
             <li className={`${deshBoard.includes(path) ? "mm-active" : ""}`}>
               <Link className="has-arrow ai-icon" to="#">
                 <i className="flaticon-381-networking"></i>
