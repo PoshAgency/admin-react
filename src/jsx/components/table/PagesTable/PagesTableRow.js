@@ -60,7 +60,7 @@ const PagesTableRow = ({ page }) => {
       {...attributes}
       {...listeners}
     >
-      <td>
+      {/* <td>
         <div className="custom-control custom-checkbox checkbox-success check-lg mr-3">
           <input
             type="checkbox"
@@ -74,7 +74,7 @@ const PagesTableRow = ({ page }) => {
             htmlFor={`checkbox-${page.id}`}
           ></label>
         </div>
-      </td>
+      </td> */}
       <td>
         <strong>{page.title}</strong>
       </td>

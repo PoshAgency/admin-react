@@ -37,9 +37,9 @@ const PagesTable = ({ pages, setPages }) => {
     []
   );
 
-  const IndeterminateCheckbox = forwardRef(
-    ({ indeterminate, ...rest }, ref) => {}
-  );
+  // const IndeterminateCheckbox = forwardRef(
+  //   ({ indeterminate, ...rest }, ref) => {}
+  // );
 
   // Create table instance
   const tableInstance = useTable({ columns, data });
@@ -93,20 +93,22 @@ const PagesTable = ({ pages, setPages }) => {
               </tr>
             ))}
           </thead>
-          <tbody>
+          <tbody {...getTableBodyProps()}>
             <>
               <DndContext collisionDetection={closestCenter}>
                 <SortableContext
                   items={pages}
                   strategy={verticalListSortingStrategy}
                 >
-                  {pages.map((page, index) => (
-                    <PagesTableRow page={page} key={index} />
-                  ))}
+                  {rows.map((row, index) => {
+                    prepareRow(row);
+                    return <PagesTableRow page={row} key={index} />;
+                  })}
                 </SortableContext>
               </DndContext>
             </>
           </tbody>
+          <tfoot></tfoot>
         </Table>
       </Card.Body>
     </Card>
