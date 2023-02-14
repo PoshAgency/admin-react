@@ -10,11 +10,11 @@ import {
   togglePagePinned,
 } from "../../../../store/actions/PagesActions";
 
-const PagesTableRow = ({ page }) => {
+const PagesTableRow = ({ row, index }) => {
   const { selectedPages } = useSelector((state) => state.pages);
 
   const { attributes, listeners, setNodeRef, transform, transition } =
-    useSortable({ id: !page.pinned && page.id });
+    useSortable({ id: !row.original.pinned && row.id });
   const dispatch = useDispatch();
 
   const style = {
@@ -41,7 +41,7 @@ const PagesTableRow = ({ page }) => {
   };
 
   const selectPage = () => {
-    dispatch(toggleCheckPage(page.id));
+    dispatch(toggleCheckPage(row.id));
   };
 
   const isChecked = (id) => {
@@ -49,16 +49,17 @@ const PagesTableRow = ({ page }) => {
   };
 
   const togglePinned = () => {
-    dispatch(togglePagePinned(page.id));
+    dispatch(togglePagePinned(row.id));
   };
 
   return (
     <tr
-      key={page.id}
+      key={row.id}
       ref={setNodeRef}
       style={style}
       {...attributes}
       {...listeners}
+      {...row.getRowProps()}
     >
       {/* <td>
         <div className="custom-control custom-checkbox checkbox-success check-lg mr-3">
@@ -76,25 +77,25 @@ const PagesTableRow = ({ page }) => {
         </div>
       </td> */}
       <td>
-        <strong>{page.title}</strong>
+        <strong>{row.original.title}</strong>
       </td>
       <td>
         <div className="d-flex align-items-center">
-          <span className="w-space-no">{page.author}</span>
+          <span className="w-space-no">{row.original.author}</span>
         </div>
       </td>
-      <td>{page.date} </td>
-      <td>{page.category}</td>
+      <td>{row.original.date} </td>
+      <td>{row.original.category}</td>
       <td onClick={togglePinned}>
         <div className="d-flex align-items-center">
           {
             <>
               <i
                 className={`fa fa-circle ${
-                  page.pinned ? "text-success" : "text-danger"
+                  row.original.pinned ? "text-success" : "text-danger"
                 } mr-1`}
               ></i>
-              {page.pinned ? "Pinned" : "Not Pinned"}
+              {row.original.pinned ? "Pinned" : "Not Pinned"}
             </>
           }
         </div>

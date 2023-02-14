@@ -1,5 +1,5 @@
 import React, { useMemo, useRef, forwardRef } from "react";
-import { Table, Card, Dropdown } from "react-bootstrap";
+import { Table, Card, Dropdown, Button } from "react-bootstrap";
 import MetarialDate from "../../Forms/Pickers/MetarialDate";
 import {
   closestCenter,
@@ -17,25 +17,103 @@ import PagesTableRow from "./PagesTableRow";
 import { useDispatch, useSelector } from "react-redux";
 import {
   deselectAllPages,
+  togglePagePinned,
   toggleSelectAllPages,
 } from "../../../../store/actions/PagesActions";
 import { useTable, useRowSelect } from "react-table";
+import { Link } from "react-router-dom";
 
-const PagesTable = ({ pages, setPages }) => {
+const PagesTable = ({ setPages }) => {
+  const { pages } = useSelector((state) => state.pages);
+
+  const dispatch = useDispatch();
+
   // Memoize pages provided to the table
   const data = useMemo(() => pages, [pages]);
   // Define column titles
   const columns = useMemo(
     () => [
-      { Header: "Title", accessor: "title" },
-      { Header: "Author", accessor: "author" },
-      { Header: "Date", accessor: "date" },
-      { Header: "Category", accessor: "category" },
-      { Header: "Status", accessor: "status" },
-      { Header: "Actions", accessor: "actions" },
+      {
+        Header: "Title",
+        accessor: "title",
+        Cell: ({ value }) => {
+          return <strong>{value}</strong>;
+        },
+      },
+      {
+        Header: "Author",
+        accessor: "author",
+        Cell: ({ value }) => (
+          <div className="d-flex align-items-center">
+            <span className="w-space-no">{value}</span>
+          </div>
+        ),
+      },
+      {
+        Header: "Date",
+        accessor: "date",
+        Cell: ({ value }) => <>{value}</>,
+      },
+      {
+        Header: "Category",
+        accessor: "category",
+        Cell: ({ value }) => <>{value}</>,
+      },
+      {
+        Header: "Pinned",
+        accessor: "pinned",
+        Cell: ({ cell }) => {
+          return (
+            <div
+              role="button"
+              className="d-flex align-items-center"
+              onClick={() => {
+                togglePinned(cell.row.original.id);
+              }}
+            >
+              {
+                <>
+                  <i
+                    className={`fa fa-circle ${
+                      cell.value ? "text-success" : "text-danger"
+                    } mr-1`}
+                  ></i>
+                  {cell.value ? "Pinned" : "Not Pinned"}
+                </>
+              }
+            </div>
+          );
+        },
+      },
+      {
+        Header: "Actions",
+        accessor: "actions",
+        Cell: ({ value }) => (
+          <div className="d-flex" data-no-dnd="true">
+            <Link
+              to="/pages/single"
+              className="btn btn-primary shadow btn-xs sharp mr-1"
+            >
+              <i className="fa fa-pencil"></i>
+            </Link>
+            {/*  to add touch-action css */}
+            <Button className="btn btn-danger shadow btn-xs sharp mr-1">
+              <i className="fa fa-trash"></i>
+            </Button>
+            <Button className="btn btn-info shadow btn-xs sharp">
+              <i className="fa fa-copy"></i>
+            </Button>
+          </div>
+        ),
+      },
     ],
     []
   );
+
+  const togglePinned = (id) => {
+    console.log(id);
+    dispatch(togglePagePinned(id));
+  };
 
   // const IndeterminateCheckbox = forwardRef(
   //   ({ indeterminate, ...rest }, ref) => {}
@@ -102,7 +180,17 @@ const PagesTable = ({ pages, setPages }) => {
                 >
                   {rows.map((row, index) => {
                     prepareRow(row);
-                    return <PagesTableRow page={row} key={index} />;
+                    return (
+                      <tr {...row.getRowProps()}>
+                        {row.cells.map((cell) => {
+                          return (
+                            <td {...cell.getCellProps()}>
+                              {cell.render("Cell")}
+                            </td>
+                          );
+                        })}
+                      </tr>
+                    );
                   })}
                 </SortableContext>
               </DndContext>
