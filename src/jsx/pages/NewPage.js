@@ -10,7 +10,7 @@ const NewPage = () => {
     <>
       <div className="d-flex justify-content-between align-items-center">
         <h2>New Page</h2>
-        <Link>
+        <Link to="/pages">
           <Button variant="transparent">Cancel</Button>
         </Link>
       </div>
@@ -53,15 +53,18 @@ const NewPage = () => {
           </div>
           <div className="col-4 w-100">
             <h4>Featured Photo</h4>
-            <div className="d-flex align-items-center">
-              <div className="image-preview">
+            <div className="d-flex align-items-center" role="button">
+              <div className="image-upload">
                 <input
                   type="file"
                   name="featured-image"
                   className="d-none"
                   id="image-upload"
                 />
-                <label htmlFor="image-upload"></label>
+                <label
+                  htmlFor="image-upload"
+                  style={{ width: "100%", height: "256px" }}
+                ></label>
                 <img src="" alt="" />
               </div>
             </div>
