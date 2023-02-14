@@ -1,4 +1,5 @@
-import React, { useMemo, useRef, forwardRef } from "react";
+import React, { useMemo } from "react";
+import { Link } from "react-router-dom";
 import { Table, Card, Dropdown, Button } from "react-bootstrap";
 import MetarialDate from "../../Forms/Pickers/MetarialDate";
 import {
@@ -13,23 +14,23 @@ import {
   verticalListSortingStrategy,
   arrayMove,
 } from "@dnd-kit/sortable";
-import PagesTableRow from "./PagesTableRow";
 import { useDispatch, useSelector } from "react-redux";
+import { togglePagePinned } from "../../../../store/actions/PagesActions";
 import {
-  deselectAllPages,
-  togglePagePinned,
-  toggleSelectAllPages,
-} from "../../../../store/actions/PagesActions";
-import { useTable, useRowSelect } from "react-table";
-import { Link } from "react-router-dom";
+  useTable,
+  useRowSelect,
+  useGlobalFilter,
+  useAsyncDebounce,
+} from "react-table";
 
-const PagesTable = ({ setPages }) => {
-  const { pages } = useSelector((state) => state.pages);
-
+const PagesTable = ({ searchQuery, setPages }) => {
   const dispatch = useDispatch();
+
+  const { pages } = useSelector((state) => state.pages);
 
   // Memoize pages provided to the table
   const data = useMemo(() => pages, [pages]);
+
   // Define column titles
   const columns = useMemo(
     () => [
@@ -111,19 +112,23 @@ const PagesTable = ({ setPages }) => {
   );
 
   const togglePinned = (id) => {
-    console.log(id);
     dispatch(togglePagePinned(id));
   };
 
-  // const IndeterminateCheckbox = forwardRef(
-  //   ({ indeterminate, ...rest }, ref) => {}
-  // );
-
   // Create table instance
-  const tableInstance = useTable({ columns, data });
+  const tableInstance = useTable({ columns, data }, useGlobalFilter);
 
-  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
-    tableInstance;
+  const {
+    getTableProps,
+    getTableBodyProps,
+    headerGroups,
+    rows,
+    prepareRow,
+    state,
+    setGlobalFilter,
+  } = tableInstance;
+
+  const { globalFilter } = state;
 
   return (
     <Card className="w-100">
@@ -159,7 +164,7 @@ const PagesTable = ({ setPages }) => {
         </div>
       </Card.Header>
       <Card.Body className="p-0">
-        <Table responsive {...getTableBodyProps()}>
+        <Table responsive {...getTableProps()}>
           <thead>
             {headerGroups.map((headerGroup) => (
               <tr {...headerGroup.getHeaderGroupProps()}>
