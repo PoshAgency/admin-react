@@ -43,6 +43,7 @@ const NewPage = () => {
                 placeholder="Enter hero title"
               />
             </div>
+            <PageImagesUploader />
             <h4 className="mt-4">Description</h4>
             <div className="form-group">
               <textarea
@@ -52,7 +53,6 @@ const NewPage = () => {
                 id="description"
               ></textarea>
             </div>
-            <PageImagesUploader />
           </div>
           <div className="col-4 w-100">
             <div>
