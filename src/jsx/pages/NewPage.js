@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import CustomMuiDatePicker from "../components/Forms/Pickers/CustomMuiDatePicker";
+import PageImagesUploader from "../components/PageImagesUploader";
 import slugify from "slugify";
 import BasicDatePicker from "../components/Forms/Pickers/MetarialDate";
 
@@ -52,6 +52,7 @@ const NewPage = () => {
                 id="description"
               ></textarea>
             </div>
+            <PageImagesUploader />
           </div>
           <div className="col-4 w-100">
             <div>
