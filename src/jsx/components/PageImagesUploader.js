@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 
 import noImg from "../../images/no-image.jpg";
+import ImageCropModal from "./ImageCropModal";
 
 const PageImageUploader = () => {
   const [desktopImage, setDesktopImage] = useState(null);
   const [mobileImage, setMobileImage] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleDesktopImageChange = (e) => {
     if (!e.target.files[0]) return;
@@ -42,14 +44,6 @@ const PageImageUploader = () => {
               hidden
             />
           </label>
-          <Button
-            type="button"
-            variant="outline-light"
-            className="btn-xxs mt-2"
-          >
-            Crop desktop
-            <input type="file" name="" id="" className="d-none" />
-          </Button>
           <label
             htmlFor="add-mobile-image"
             className="btn btn-outline-light btn-xxs mt-2 mb-0"
@@ -63,6 +57,15 @@ const PageImageUploader = () => {
               hidden
             />
           </label>
+          <Button
+            type="button"
+            variant="outline-light"
+            className="btn-xxs mt-2"
+            onClick={() => setIsModalOpen(true)}
+            disabled={desktopImage === null}
+          >
+            Crop desktop
+          </Button>
         </div>
         <div className="col ml-3">
           <div className="d-flex mb-3">
@@ -89,6 +92,12 @@ const PageImageUploader = () => {
           </small>
         </div>
       </div>
+      <ImageCropModal
+        isModalOpen={isModalOpen}
+        setIsModalOpen={setIsModalOpen}
+        imageToCrop={desktopImage}
+        onImageCropped={(croppedImage) => setMobileImage(croppedImage)}
+      />
     </div>
   );
 };
