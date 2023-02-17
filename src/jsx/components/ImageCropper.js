@@ -1,17 +1,22 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import ReactCrop from "react-image-crop";
 import "react-image-crop/dist/ReactCrop.css";
 
 const ImageCropper = ({ imageToCrop, onImageCropped }) => {
   const [crop, setCrop] = useState({
-    unit: "%",
-    width: 30,
+    unit: "%", // Can be 'px' or '%'
+    x: 25,
+    y: 25,
+    width: 50,
+    height: 50,
     aspect: 16 / 9,
   });
 
-  const [imageRef, setImageRef] = useState(null);
+  const [imageRef, setImageRef] = useState();
 
   const cropImage = async (crop) => {
+    console.log(imageRef, crop.width, crop.height);
+
     if (imageRef && crop.width && crop.height) {
       const croppedImage = await getCroppedImage(
         imageRef,
@@ -64,16 +69,21 @@ const ImageCropper = ({ imageToCrop, onImageCropped }) => {
 
   return (
     <ReactCrop
-      // src={imageToCrop}
+      src={imageToCrop}
       crop={crop}
       ruleOfThirds
-      onImageLoaded={(imageRef) => setImageRef(imageRef)}
+      // onImageLoaded={}
       onComplete={(crop) => cropImage(crop)}
       onChange={(crop) => setCrop(crop)}
+      aspect={4 / 3}
       crossorigin="anonymous"
       style={{ maxWidth: "500px", maxHeight: "500px" }}
     >
-      <img src={imageToCrop} alt="" />
+      <img
+        src={imageToCrop}
+        alt=""
+        // onLoad={(e) => setImageRef(e.currentTarget.src)}
+      />
     </ReactCrop>
   );
 };
