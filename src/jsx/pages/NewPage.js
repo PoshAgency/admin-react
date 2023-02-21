@@ -7,7 +7,6 @@ import BasicDatePicker from "../components/Forms/Pickers/MetarialDate";
 
 const NewPage = () => {
   const [pagePath, setPagePath] = useState("");
-  const [selectedImage, setSelectedImage] = useState(null);
 
   return (
     <>
