@@ -76,9 +76,9 @@ const ImageCropper = ({ imageToCrop, onImageCropped }) => {
       ruleOfThirds
       onComplete={(crop) => cropImage(crop)}
       onChange={(crop) => setCrop(crop)}
-      aspect={4 / 3}
       crossorigin="anonymous"
       style={{ maxWidth: "500px", maxHeight: "500px" }}
+      aspect={4 / 3}
     >
       <img
         src={imageToCrop}
