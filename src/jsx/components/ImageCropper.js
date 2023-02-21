@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import ReactCrop from "react-image-crop";
 import "react-image-crop/dist/ReactCrop.css";
 
@@ -7,25 +7,27 @@ const ImageCropper = ({ imageToCrop, onImageCropped }) => {
     unit: "%", // Can be 'px' or '%'
     x: 25,
     y: 25,
-    width: 50,
+    width: 40,
     height: 50,
-    aspect: 16 / 9,
+    // aspect: 16 / 9,
   });
 
   const [imageRef, setImageRef] = useState();
 
   const cropImage = async (crop) => {
-    console.log(imageRef, crop.width, crop.height);
-
     if (imageRef && crop.width && crop.height) {
-      const croppedImage = await getCroppedImage(
-        imageRef,
-        crop,
-        "croppedImage.jpeg" // destination filename
-      );
+      try {
+        const croppedImage = await getCroppedImage(
+          imageRef,
+          crop,
+          "croppedImage.jpeg" // destination filename
+        );
 
-      // set cropped image in parent component
-      onImageCropped(croppedImage);
+        // set cropped image in parent component
+        onImageCropped(croppedImage);
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 
@@ -72,7 +74,6 @@ const ImageCropper = ({ imageToCrop, onImageCropped }) => {
       src={imageToCrop}
       crop={crop}
       ruleOfThirds
-      // onImageLoaded={}
       onComplete={(crop) => cropImage(crop)}
       onChange={(crop) => setCrop(crop)}
       aspect={4 / 3}
@@ -82,7 +83,7 @@ const ImageCropper = ({ imageToCrop, onImageCropped }) => {
       <img
         src={imageToCrop}
         alt=""
-        // onLoad={(e) => setImageRef(e.currentTarget.src)}
+        onLoad={(e) => setImageRef(e.currentTarget)}
       />
     </ReactCrop>
   );

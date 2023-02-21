@@ -9,7 +9,12 @@ const ImageCropModal = ({
   onImageCropped,
 }) => {
   return (
-    <Modal className="fade bd-example-modal-lg" show={isModalOpen} size="lg">
+    <Modal
+      className="fade bd-example-modal-lg"
+      show={isModalOpen}
+      size="lg"
+      onHide={() => setIsModalOpen(false)}
+    >
       <Modal.Header>
         <Modal.Title>Modal title</Modal.Title>
         <Button
@@ -30,9 +35,9 @@ const ImageCropModal = ({
         <Button variant="danger light" onClick={() => setIsModalOpen(false)}>
           Close
         </Button>
-        <Button variant="" type="button" className="btn btn-primary">
+        {/* <Button variant="" type="button" className="btn btn-primary">
           Save changes
-        </Button>
+        </Button> */}
       </Modal.Footer>
     </Modal>
   );
