@@ -7,7 +7,9 @@ import BasicDatePicker from "../components/Forms/Pickers/MetarialDate";
 import { Editor } from "ckeditor5-custom-build/build/ckeditor";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 
-import "./ckeditor5.css";
+import PagesSectionAccordion from "../components/PagesSectionAccordion";
+
+import "./NewPage.css";
 
 const NewPage = () => {
   const [pagePath, setPagePath] = useState("");
@@ -85,15 +87,7 @@ const NewPage = () => {
                 editor={Editor}
                 data="Enter page content"
                 onReady={(editor) => {
-                  // You can store the "editor" and use when it is needed.
-                  // editor.editing.view.change((writer) => {
-                  //   writer.setStyle(
-                  //     "height",
-                  //     "400px",
-                  //     editor.editing.view.document.getRoot()
-                  //   );
-                  //   console.log(editor.editing.view.document.getRoot());
-                  // });
+                  console.log("ready");
                 }}
                 onChange={(event, editor) => {
                   const data = editor.getData();
@@ -109,27 +103,13 @@ const NewPage = () => {
             </div>
           </div>
           <div className="row mt-5">
-            <div className="col">
-              <div className="d-flex justify-content-between">
-                <h3>Page sections</h3>
-                <div>
-                  <Button variant="light" className="btn-sm mr-3">
-                    Add sections
-                  </Button>
-                  <Button variant="light" className="btn-sm">
-                    Collapse sections
-                  </Button>
-                </div>
-              </div>
-
-              <p>TODO: Programatically add new sections</p>
-            </div>
+            <PagesSectionAccordion />
           </div>
           <div className="row mt-5">
             <div className="col">
               <h3>SEO</h3>
               <div className="form-group mt-3 w-50 px-3">
-                <label htmlFor="seo-title">Title</label>
+                <h5>Title</h5>
                 <input
                   id="seo-title"
                   type="text"
@@ -138,7 +118,7 @@ const NewPage = () => {
                 />
               </div>
               <div className="form-group mt-3 w-75 px-3">
-                <label htmlFor="seo-description">Description</label>
+                <h5>Description</h5>
                 <textarea
                   id="seo-description"
                   rows={4}

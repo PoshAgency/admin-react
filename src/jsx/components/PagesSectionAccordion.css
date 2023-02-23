@@ -1,0 +1,12 @@
+.ck-source-editing-area,
+.ck-editor__editable {
+  min-height: 200px;
+}
+
+.ck-editor__main {
+  height: 200px;
+  min-height: 200px;
+  max-height: 200px;
+  overflow-y: scroll;
+  border: 0.5px solid #bbbbbb;
+}

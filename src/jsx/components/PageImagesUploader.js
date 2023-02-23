@@ -27,7 +27,7 @@ const PageImageUploader = () => {
 
   return (
     <div className="container mt-3 px-0 d-flex flex-column">
-      <h4>Page images</h4>
+      <h3>Page images</h3>
 
       <div className="d-flex mt-3">
         <div className="col-2 d-flex flex-column px-0">
