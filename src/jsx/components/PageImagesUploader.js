@@ -64,7 +64,7 @@ const PageImageUploader = () => {
             onClick={() => setIsModalOpen(true)}
             disabled={desktopImage === null}
           >
-            Crop desktop
+            Crop for mobile
           </Button>
         </div>
         <div className="col ml-3">
