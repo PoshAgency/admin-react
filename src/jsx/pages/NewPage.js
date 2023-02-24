@@ -7,7 +7,7 @@ import BasicDatePicker from "../components/Forms/Pickers/MetarialDate";
 import { Editor } from "ckeditor5-custom-build/build/ckeditor";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 
-import PagesSectionAccordion from "../components/PagesSectionAccordion";
+import NewPageSections from "../components/NewPageSections";
 
 import "./NewPage.css";
 
@@ -103,7 +103,7 @@ const NewPage = () => {
             </div>
           </div>
           <div className="row mt-5">
-            <PagesSectionAccordion />
+            <NewPageSections />
           </div>
           <div className="row mt-5">
             <div className="col">
