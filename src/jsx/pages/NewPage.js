@@ -85,7 +85,7 @@ const NewPage = () => {
               </h3>
               <CKEditor
                 editor={Editor}
-                data="Enter page content"
+                data=""
                 onReady={(editor) => {
                   console.log("ready");
                 }}
@@ -127,6 +127,12 @@ const NewPage = () => {
                 />
               </div>
             </div>
+          </div>
+          <div className="row justify-content-center mt-5">
+            <Button variant="dark">Publish</Button>
+            <Button className="ml-3" variant="light">
+              Save as draft
+            </Button>
           </div>
         </form>
       </div>
