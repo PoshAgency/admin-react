@@ -19,9 +19,9 @@ const availableColors = [
 
 const ColorOption = ({ color, selectedColor, setSelectedColor }) => {
   const { hashValue, title } = color;
-
   return (
     <span
+      key={hashValue}
       role="button"
       className="rounded-circle mr-2"
       onClick={() => setSelectedColor(hashValue)}
@@ -50,6 +50,8 @@ const NewPageSection = ({
   const [selectedColor, setSelectedColor] = useState("#ffffff");
   const [imagePosition, setImagePosition] = useState("left");
 
+  console.log(index);
+
   const toggleItem = (index) => {
     setActivePanel((prevState) => ({
       ...prevState,
@@ -64,8 +66,7 @@ const NewPageSection = ({
   return (
     <Accordion
       className="accordion accordion-rounded-stylish accordion-bordered container px-3 mt-3 ml-0"
-      defaultActiveKey={index}
-      key={index}
+      // defaultActiveKey={index}
     >
       <div className="accordion__item mb-0">
         <Accordion.Toggle
@@ -107,13 +108,13 @@ const NewPageSection = ({
                   className="mb-0 position-relative"
                   role="button"
                 >
-                  <Badge
+                  <Button
                     variant="outline-danger"
-                    className="badge-rounded position-absolute top-0 end-0 ml-2 mt-2"
+                    className="btn-rounded btn-xxs position-absolute top-0 end-0 ml-2 mt-2"
                     badgeContent="1"
                   >
                     Remove
-                  </Badge>
+                  </Button>
                   <img src={noImg} alt="" className="img-fluid rounded" />
                   <input
                     type="file"
@@ -134,9 +135,15 @@ const NewPageSection = ({
                   defaultValue={imagePosition}
                   onChange={handleImagePosition}
                 >
-                  <option value="left">Left side</option>
-                  <option value="right">Right side</option>
-                  <option value="no-image">No Image</option>
+                  <option value="left" key={"left"}>
+                    Left side
+                  </option>
+                  <option value="right" key={"right"}>
+                    Right side
+                  </option>
+                  <option value="no-image" key={"no-image"}>
+                    No Image
+                  </option>
                 </select>
               </div>
               <div className="form-group mt-5">

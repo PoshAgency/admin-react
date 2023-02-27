@@ -1,14 +1,11 @@
 import React, { useState } from "react";
-import { Accordion, Badge, Button, Card } from "react-bootstrap";
-import MenuIcon from "@mui/icons-material/Menu";
-import { Editor } from "ckeditor5-custom-build/build/ckeditor";
-import { CKEditor } from "@ckeditor/ckeditor5-react";
+import { Button } from "react-bootstrap";
 
-import "./PagesSectionAccordion.css";
+import "./NewPageSections.css";
 
 import NewPageSection from "./NewPageSection";
 
-const PagesSectionAccordion = () => {
+const NewPageSections = () => {
   const [sections, setSections] = useState([]);
   const [isActivePanel, setActivePanel] = useState({});
 
@@ -20,7 +17,6 @@ const PagesSectionAccordion = () => {
   };
 
   const collapseAllSections = () => {
-    console.log("collapse");
     setActivePanel({});
   };
 
@@ -59,6 +55,7 @@ const PagesSectionAccordion = () => {
         ) : (
           sections.map((item, index) => (
             <NewPageSection
+              key={index}
               item={item}
               index={index}
               isActivePanel={isActivePanel}
@@ -72,4 +69,4 @@ const PagesSectionAccordion = () => {
   );
 };
 
-export default PagesSectionAccordion;
+export default NewPageSections;
