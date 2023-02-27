@@ -17,7 +17,15 @@ const NewPageSections = () => {
   };
 
   const collapseAllSections = () => {
-    setActivePanel({});
+    setActivePanel((prevState) => {
+      const nextState = {};
+
+      Object.keys(prevState).forEach((key) => {
+        nextState[key] = false;
+      });
+
+      return nextState;
+    });
   };
 
   const removeSection = (event, sectionIndex) => {

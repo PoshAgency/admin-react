@@ -50,8 +50,6 @@ const NewPageSection = ({
   const [selectedColor, setSelectedColor] = useState("#ffffff");
   const [imagePosition, setImagePosition] = useState("left");
 
-  console.log(index);
-
   const toggleItem = (index) => {
     setActivePanel((prevState) => ({
       ...prevState,
