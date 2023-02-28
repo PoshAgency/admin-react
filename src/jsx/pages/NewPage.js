@@ -10,6 +10,7 @@ import { CKEditor } from "@ckeditor/ckeditor5-react";
 import NewPageSections from "../components/NewPageSections";
 
 import "./NewPage.css";
+import NewPageGalleries from "../components/NewPageGalleries";
 
 const NewPage = () => {
   const [pagePath, setPagePath] = useState("");
@@ -101,6 +102,9 @@ const NewPage = () => {
                 }}
               />
             </div>
+          </div>
+          <div className="row mt-5">
+            <NewPageGalleries />
           </div>
           <div className="row mt-5">
             <NewPageSections />
