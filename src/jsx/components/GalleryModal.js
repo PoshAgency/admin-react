@@ -7,8 +7,6 @@ const GalleryModal = ({
   setIsModalOpen,
   setNewGallery,
 }) => {
-  console.log(modalData);
-
   return (
     <Modal
       className="fade bd-example-modal-lg"
@@ -18,7 +16,7 @@ const GalleryModal = ({
     >
       <Modal.Body
         className="d-flex pb-2"
-        style={{ minHeight: "60vh", maxWidth: "1000px" }}
+        style={{ maxWidth: "1000px", height: "500px" }}
       >
         <div className="col-5">
           <div className="w-100">
@@ -51,24 +49,19 @@ const GalleryModal = ({
               </div>
             )}
           </div>
-        </div>
-        <div className="col-7 position-relative">
-          <div>
-            <h4>Images</h4>
-          </div>
           <div
-            className="mr-3 z-3"
-            style={{ position: "absolute", bottom: "8px", right: "8px" }}
+
+          // style={{ position: "absolute", bottom: "0" }}
           >
             <label
-              style={{ width: "50px", height: "50px", borderRadius: "50%" }}
+              as="button"
               htmlFor="add-mobile-image"
-              className="btn btn-primary d-flex justify-content-center align-items-center"
+              className="btn btn-primary btn-sm position-absolute bottom-0 mb-0"
 
               // onChange={handleMobileImageChange}
             >
-              <span style={{ fontSize: "40px" }} className="">
-                +
+              <span style={{}} className="">
+                Add photo
               </span>
               <input
                 type="file"
@@ -77,6 +70,29 @@ const GalleryModal = ({
                 hidden
               />
             </label>
+          </div>
+        </div>
+        <div className="col-7 h-100 overflow-hidden position-relative">
+          <div>
+            <h4>Images</h4>
+          </div>
+          <div
+            className="d-flex flex-wrap position-relative mh-100 z-1"
+            style={{
+              overflowY: "scroll",
+            }}
+          >
+            {modalData?.images.map((image, index) => (
+              <img
+                src={image}
+                alt={index}
+                className="object-fit-cover mt-2 mr-2 rounded-lg"
+                style={{
+                  width: "180px",
+                  height: "120px",
+                }}
+              ></img>
+            ))}
           </div>
         </div>
       </Modal.Body>
