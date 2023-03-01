@@ -4,6 +4,9 @@ import GalleryModal from "./GalleryModal";
 import GalleryIcon from "./GalleryIcon";
 
 const NewPageGalleries = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalData, setModalData] = useState(null);
+  const [galleryID, setGalleryID] = useState(null);
   const [galleries, setGalleries] = useState([
     {
       id: Math.round(Math.random() * 1000000000),
@@ -28,15 +31,9 @@ const NewPageGalleries = () => {
     },
   ]);
 
-  const [modalData, setModalData] = useState({
-    id: Math.round(Math.random() * 1000000000),
-    name: "",
-    description: "",
-    images: [],
-  });
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const handleGallery = (id) => {
+    setGalleryID(id);
 
-  const createNewGallery = () => {
     setIsModalOpen(true);
   };
 
@@ -48,7 +45,7 @@ const NewPageGalleries = () => {
           <Button
             variant="light"
             className="btn-sm mr-3"
-            onClick={createNewGallery}
+            onClick={() => handleGallery(null)}
             onHide={() => setIsModalOpen(true)}
           >
             Add gallery
@@ -58,15 +55,22 @@ const NewPageGalleries = () => {
           </Button>
         </div>
         <GalleryModal
+          galleryID={galleryID}
           isModalOpen={isModalOpen}
           setIsModalOpen={setIsModalOpen}
           modalData={modalData}
           setModalData={setModalData}
+          galleries={galleries}
+          setGalleries={setGalleries}
         />
       </div>
-      <div className="d-flex mb-3">
+      <div className="d-flex mb-3 flex-wrap">
         {galleries.map((gallery, index) => (
-          <GalleryIcon gallery={gallery} key={index} />
+          <GalleryIcon
+            gallery={gallery}
+            key={index}
+            handleGallery={handleGallery}
+          />
         ))}
       </div>
     </div>

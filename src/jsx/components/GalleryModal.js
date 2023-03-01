@@ -1,12 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 
 const GalleryModal = ({
-  modalData,
   isModalOpen,
   setIsModalOpen,
-  setNewGallery,
+  galleries,
+  galleryID,
 }) => {
+  const [gallery, setGallery] = useState(null);
+
+  // set initial gallery values in modal on open
+  useEffect(() => {
+    const index = galleries.findIndex((gallery) => gallery.id === galleryID);
+
+    if (index > -1) return setGallery(galleries[index]);
+
+    setGallery({
+      id: Math.round(Math.random() * 1000000000),
+      name: "",
+      deescription: "",
+      images: [],
+    });
+  }, [galleryID]);
+
   return (
     <Modal
       className="fade bd-example-modal-lg"
@@ -21,8 +37,8 @@ const GalleryModal = ({
         <div className="col-5">
           <div className="w-100">
             <h5>Gallery title</h5>
-            {modalData?.name ? (
-              <h3 className="mt-4">{modalData.name}</h3>
+            {gallery?.name ? (
+              <h3 className="mt-4">{gallery.name}</h3>
             ) : (
               <div className="form-group mt-2">
                 <input
@@ -36,8 +52,8 @@ const GalleryModal = ({
           </div>
           <div className="w-100 mt-3">
             <h5 className="mt-4">Gallery description</h5>
-            {modalData?.description ? (
-              <p> {modalData.description}</p>
+            {gallery?.description ? (
+              <p> {gallery.description}</p>
             ) : (
               <div className="form-group mt-3 h-100">
                 <textarea
@@ -82,8 +98,9 @@ const GalleryModal = ({
               overflowY: "scroll",
             }}
           >
-            {modalData?.images.map((image, index) => (
+            {gallery?.images.map((image, index) => (
               <img
+                key={index}
                 src={image}
                 alt={index}
                 className="object-fit-cover mt-2 mr-2 rounded-lg"
