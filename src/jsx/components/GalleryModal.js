@@ -112,11 +112,22 @@ const GalleryModal = ({
               ></textarea>
             </div>
           </div>
+          <div className="mt-3">
+            <h5 className="mt-2">
+              Copy shortcode:{" "}
+              <span
+                role="button"
+                onClick={() =>
+                  navigator.clipboard.writeText(`[${gallery.name}]`)
+                }
+              >{`[${gallery?.name}]`}</span>
+            </h5>
+          </div>
           <div>
             <label
               as="button"
               htmlFor="add-gallery-images"
-              className="btn btn-primary btn-sm position-absolute bottom-0 mb-0"
+              className="btn btn-primary btn-sm position-absolute bottom-0 mb-0 mt-3"
               onChange={handleImageUpload}
             >
               <span style={{}} className="">
