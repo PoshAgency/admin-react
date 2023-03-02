@@ -123,7 +123,6 @@ const NewPageGalleries = () => {
             variant="light"
             className="btn-sm mr-3"
             onClick={() => handleGallery(null)}
-            onHide={() => setIsModalOpen(true)}
           >
             Add gallery
           </Button>
