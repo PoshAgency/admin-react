@@ -12,7 +12,15 @@ const NewPageSections = () => {
   const addNewSection = () => {
     setSections((prevState) => [
       ...prevState,
-      { title: `Section ${Math.floor(Math.random() * 1000)}` },
+      {
+        id: Math.floor(Math.random() * 1000),
+        title: "New Section",
+        selectedColor: "#fff",
+        imagePosition: "left",
+        buttonText: "",
+        buttonURL: "",
+        description: "",
+      },
     ]);
   };
 
@@ -28,10 +36,10 @@ const NewPageSections = () => {
     });
   };
 
-  const removeSection = (event, sectionIndex) => {
+  const removeSection = (event, sectionId) => {
     event.stopPropagation();
     const filteredSections = sections.filter(
-      (section, index) => index !== sectionIndex
+      (section) => section.id !== sectionId
     );
     setSections([...filteredSections]);
   };
@@ -61,10 +69,10 @@ const NewPageSections = () => {
         {!sections.length ? (
           <h4 className="mt-4 pl-4">Section list is empty.</h4>
         ) : (
-          sections.map((item, index) => (
+          sections.map((section, index) => (
             <NewPageSection
               key={index}
-              item={item}
+              data={section}
               index={index}
               isActivePanel={isActivePanel}
               setActivePanel={setActivePanel}

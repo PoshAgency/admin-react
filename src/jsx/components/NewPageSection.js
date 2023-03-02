@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Editor } from "ckeditor5-custom-build/build/ckeditor";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
-import { Accordion, Button, Card } from "react-bootstrap";
-import { Badge } from "material-ui";
+import { Accordion, Button } from "react-bootstrap";
 
 import noImg from "../../images/no-image.jpg";
 
@@ -41,7 +40,7 @@ const ColorOption = ({ color, selectedColor, setSelectedColor }) => {
 };
 
 const NewPageSection = ({
-  item,
+  data,
   index,
   isActivePanel,
   setActivePanel,
@@ -61,6 +60,8 @@ const NewPageSection = ({
     setImagePosition(event.target.value);
   };
 
+  console.log(data);
+
   return (
     <Accordion
       className="accordion accordion-rounded-stylish accordion-bordered container px-3 mt-3 ml-0"
@@ -68,7 +69,7 @@ const NewPageSection = ({
     >
       <div className="accordion__item mb-0">
         <Accordion.Toggle
-          as={Card.Text}
+          as={"div"}
           eventKey={`${index}`}
           className={`accordion__header ${
             isActivePanel[index] ? "" : "collapsed"
@@ -79,12 +80,12 @@ const NewPageSection = ({
             <span className="accordion__header--icon lg">
               <MenuIcon />
             </span>
-            <span className="accordion__header--text ml-2">{item.title}</span>
+            <span className="accordion__header--text ml-2">{data.title}</span>
           </div>
           <Button
             variant="danger"
             className="btn-xs"
-            onClick={(e) => removeSection(e, index)}
+            onClick={(e) => removeSection(e, data.id)}
           >
             Remove section
           </Button>
@@ -109,7 +110,7 @@ const NewPageSection = ({
                   <Button
                     variant="outline-danger"
                     className="btn-rounded btn-xxs position-absolute top-0 end-0 ml-2 mt-2"
-                    badgeContent="1"
+                    badgecontent="1"
                   >
                     Remove
                   </Button>
@@ -126,7 +127,7 @@ const NewPageSection = ({
                 </small>
               </div>
               <div className="form-group mt-5">
-                <h4 className="mb-3">Image Placement</h4>
+                <h4 className="mb-3">Image Position</h4>
                 <select
                   className="form-control"
                   name="image-placement"
