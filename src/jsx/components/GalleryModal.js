@@ -5,6 +5,7 @@ const GalleryModal = ({
   isModalOpen,
   setIsModalOpen,
   galleries,
+  setGalleries,
   galleryID,
 }) => {
   const [gallery, setGallery] = useState(null);
@@ -18,10 +19,59 @@ const GalleryModal = ({
     setGallery({
       id: Math.round(Math.random() * 1000000000),
       name: "",
-      deescription: "",
+      description: "",
       images: [],
     });
-  }, [galleryID]);
+  }, [galleries, galleryID]);
+
+  const handleImageUpload = (e) => {
+    if (!e.target.files[0]) return;
+
+    const newImageObjects = [...e.target.files].map((image) => {
+      const source = URL.createObjectURL(image);
+
+      return {
+        id: Math.round(Math.random() * 1000000000),
+        orderNumber: 0,
+        source,
+      };
+    });
+
+    setGallery((prevState) => ({
+      ...prevState,
+      images: [...prevState.images, ...newImageObjects],
+    }));
+  };
+
+  const handleGalleryInput = (e) => {
+    setGallery({ ...gallery, [e.target.name]: e.target.value });
+  };
+
+  const handleSaveGallery = () => {
+    const currentGalleryIndex = galleries.findIndex(
+      (storedGallery) => storedGallery.id === gallery.id
+    );
+
+    if (currentGalleryIndex > -1) {
+      const updatedGallery = { ...gallery };
+
+      const newGalleries = [
+        ...galleries.slice(0, currentGalleryIndex),
+        updatedGallery,
+        ...galleries.slice(currentGalleryIndex + 1),
+      ];
+
+      setGalleries(newGalleries);
+
+      setIsModalOpen(false);
+
+      return;
+    }
+
+    setIsModalOpen(false);
+
+    setGalleries((prevState) => [...prevState, gallery]);
+  };
 
   return (
     <Modal
@@ -37,53 +87,47 @@ const GalleryModal = ({
         <div className="col-5">
           <div className="w-100">
             <h5>Gallery title</h5>
-            {gallery?.name ? (
-              <h3 className="mt-4">{gallery.name}</h3>
-            ) : (
-              <div className="form-group mt-2">
-                <input
-                  type="text"
-                  className="form-control input-danger px-2 mb-3 w-100"
-                  placeholder="Enter gallery title"
-                  // onChange={(e) => setPagePath(e.target.value)}
-                />
-              </div>
-            )}
+            <div className="form-group mt-2">
+              <input
+                type="text"
+                name="name"
+                value={gallery?.name}
+                className="form-control input-danger px-2 mb-3 w-100"
+                placeholder="Enter gallery title"
+                onChange={handleGalleryInput}
+              />
+            </div>
           </div>
           <div className="w-100 mt-3">
             <h5 className="mt-4">Gallery description</h5>
-            {gallery?.description ? (
-              <p> {gallery.description}</p>
-            ) : (
-              <div className="form-group mt-3 h-100">
-                <textarea
-                  className="form-control"
-                  rows="8"
-                  placeholder="Enter gallery description"
-                  id="description"
-                ></textarea>
-              </div>
-            )}
+            <div className="form-group mt-3 h-100">
+              <textarea
+                onChange={handleGalleryInput}
+                className="form-control"
+                value={gallery?.description}
+                name="description"
+                rows="8"
+                placeholder="Enter gallery description"
+                id="description"
+              ></textarea>
+            </div>
           </div>
-          <div
-
-          // style={{ position: "absolute", bottom: "0" }}
-          >
+          <div>
             <label
               as="button"
-              htmlFor="add-mobile-image"
+              htmlFor="add-gallery-images"
               className="btn btn-primary btn-sm position-absolute bottom-0 mb-0"
-
-              // onChange={handleMobileImageChange}
+              onChange={handleImageUpload}
             >
               <span style={{}} className="">
                 Add photo
               </span>
               <input
                 type="file"
-                accept="image/jpeg, image/png"
-                id="add-mobile-image"
+                accept="image/jpeg"
+                id="add-gallery-images"
                 hidden
+                multiple
               />
             </label>
           </div>
@@ -98,27 +142,43 @@ const GalleryModal = ({
               overflowY: "scroll",
             }}
           >
-            {gallery?.images.map((image, index) => (
-              <img
-                key={index}
-                src={image}
-                alt={index}
-                className="object-fit-cover mt-2 mr-2 rounded-lg"
-                style={{
-                  width: "180px",
-                  height: "120px",
-                }}
-              ></img>
-            ))}
+            {!gallery?.images.length ? (
+              <p>Image list is empty.</p>
+            ) : (
+              gallery?.images.map((image, index) => (
+                <img
+                  key={index}
+                  src={image.source}
+                  alt={index}
+                  className="object-fit-cover mt-2 mr-2 rounded-lg"
+                  style={{
+                    width: "180px",
+                    height: "120px",
+                  }}
+                ></img>
+              ))
+            )}
           </div>
         </div>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="danger light" onClick={() => setIsModalOpen(false)}>
-          Close
+        <Button
+          variant="danger light"
+          onClick={() => {
+            setIsModalOpen(false);
+          }}
+        >
+          Close Gallery
         </Button>
-        <Button variant="" type="button" className="btn btn-primary">
-          Create gallery
+        <Button
+          variant=""
+          type="button"
+          className="btn btn-primary"
+          onClick={() => {
+            handleSaveGallery();
+          }}
+        >
+          Save gallery
         </Button>
       </Modal.Footer>
     </Modal>

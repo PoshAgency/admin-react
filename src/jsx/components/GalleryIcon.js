@@ -8,7 +8,7 @@ const GalleryIcon = ({ gallery, handleGallery }) => {
       className="rounded-lg mt-3 d-flex justify-content-center align-items-center mr-3 bg-image "
       style={{
         border: `1px solid #3D4465`,
-        backgroundImage: `linear-gradient(rgba(0,0,0,.6), rgba(0,0,0,.6)), url(${images[0]})`,
+        backgroundImage: `linear-gradient(rgba(0,0,0,.6), rgba(0,0,0,.6)), url(${images[0].source})`,
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
         backgroundPosition: "center center",
