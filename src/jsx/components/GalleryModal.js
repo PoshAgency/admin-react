@@ -1,5 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { Button, Modal } from "react-bootstrap";
+import {
+  closestCenter,
+  DndContext,
+  PointerSensor,
+  useSensor,
+  useSensors,
+} from "@dnd-kit/core";
+import {
+  SortableContext,
+  rectSortingStrategy,
+  arrayMove,
+} from "@dnd-kit/sortable";
+import GalleryImage from "./GalleryImage";
 
 const GalleryModal = ({
   isModalOpen,
@@ -72,6 +85,37 @@ const GalleryModal = ({
 
     setGalleries((prevState) => [...prevState, gallery]);
   };
+
+  // DRAG N DROP FUNCTIONALITY
+  // handle droping dragged element
+  const handleDragEnd = (e) => {
+    const { active, over } = e;
+
+    if (active.id !== over.id) {
+      setGallery((prevState) => {
+        const activeIndex = prevState.images
+          .map((image) => image.id)
+          .indexOf(active.id);
+        const overIndex = prevState.images
+          .map((image) => image.id)
+          .indexOf(over.id);
+
+        return {
+          ...prevState,
+          images: arrayMove(prevState.images, activeIndex, overIndex),
+        };
+      });
+    }
+  };
+
+  // prevent firing drag and drop element before moving more than 8px
+  const sensors = useSensors(
+    useSensor(PointerSensor, {
+      activationConstraint: {
+        distance: 8,
+      },
+    })
+  );
 
   return (
     <Modal
@@ -156,18 +200,20 @@ const GalleryModal = ({
             {!gallery?.images.length ? (
               <p>Image list is empty.</p>
             ) : (
-              gallery?.images.map((image, index) => (
-                <img
-                  key={index}
-                  src={image.source}
-                  alt={index}
-                  className="object-fit-cover mt-2 mr-2 rounded-lg"
-                  style={{
-                    width: "180px",
-                    height: "120px",
-                  }}
-                ></img>
-              ))
+              <DndContext
+                collisionDetection={closestCenter}
+                onDragEnd={handleDragEnd}
+                sensors={sensors}
+              >
+                <SortableContext
+                  items={gallery.images}
+                  strategy={rectSortingStrategy}
+                >
+                  {gallery?.images.map((image, index) => (
+                    <GalleryImage image={image} key={index} index={index} />
+                  ))}
+                </SortableContext>
+              </DndContext>
             )}
           </div>
         </div>
@@ -176,6 +222,7 @@ const GalleryModal = ({
         <Button
           variant="danger light"
           onClick={() => {
+            setGallery(null);
             setIsModalOpen(false);
           }}
         >
