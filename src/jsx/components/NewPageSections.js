@@ -4,6 +4,7 @@ import {
   closestCenter,
   DndContext,
   PointerSensor,
+  MouseSensor,
   useSensor,
   useSensors,
 } from "@dnd-kit/core";
@@ -19,7 +20,7 @@ import NewPageSection from "./NewPageSection";
 
 const NewPageSections = () => {
   const [sections, setSections] = useState([]);
-  const [isActivePanel, setActivePanel] = useState({});
+  const [activePanels, setActivePanels] = useState([]);
 
   const addNewSection = () => {
     setSections((prevState) => [
@@ -37,15 +38,7 @@ const NewPageSections = () => {
   };
 
   const collapseAllSections = () => {
-    setActivePanel((prevState) => {
-      const nextState = {};
-
-      Object.keys(prevState).forEach((key) => {
-        nextState[key] = false;
-      });
-
-      return nextState;
-    });
+    setActivePanels([]);
   };
 
   const removeSection = (event, sectionId) => {
@@ -62,6 +55,12 @@ const NewPageSections = () => {
     useSensor(PointerSensor, {
       activationConstraint: {
         distance: 8,
+      },
+    }),
+    useSensor(MouseSensor, {
+      activationConstraint: {
+        delay: 3000,
+        tolerance: 100,
       },
     })
   );
@@ -85,7 +84,10 @@ const NewPageSections = () => {
   return (
     <div className="col">
       <div className="d-flex justify-content-between mb-3">
-        <h3>Page sections</h3>
+        <div className="d-flex flex-column justify-content-center">
+          <h3>Page sections</h3>
+          <p>Please collapse all sections before changing order.</p>
+        </div>
         <div>
           <Button
             variant="light"
@@ -99,7 +101,7 @@ const NewPageSections = () => {
             className="btn-sm"
             onClick={collapseAllSections}
           >
-            Collapse sections
+            Collapse all sections
           </Button>
         </div>
       </div>
@@ -111,18 +113,20 @@ const NewPageSections = () => {
             collisionDetection={closestCenter}
             onDragEnd={handleDragEnd}
             sensors={sensors}
+            disabled={true}
           >
             <SortableContext
               items={sections}
               strategy={verticalListSortingStrategy}
+              disabled={activePanels.length > 0}
             >
               {sections.map((section, index) => (
                 <NewPageSection
                   key={index}
                   section={section}
                   index={index}
-                  isActivePanel={isActivePanel}
-                  setActivePanel={setActivePanel}
+                  activePanels={activePanels}
+                  setActivePanels={setActivePanels}
                   removeSection={removeSection}
                 />
               ))}

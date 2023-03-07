@@ -3,6 +3,8 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { Editor } from "ckeditor5-custom-build/build/ckeditor";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import { Accordion, Button } from "react-bootstrap";
+import { useSortable } from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
 
 import noImg from "../../images/no-image.jpg";
 
@@ -40,58 +42,74 @@ const ColorOption = ({ color, selectedColor, setSelectedColor }) => {
 };
 
 const NewPageSection = ({
-  data,
+  section,
   index,
-  isActivePanel,
-  setActivePanel,
+  activePanels,
+  setActivePanels,
   removeSection,
 }) => {
   const [selectedColor, setSelectedColor] = useState("#ffffff");
   const [imagePosition, setImagePosition] = useState("left");
 
-  const toggleItem = (index) => {
-    setActivePanel((prevState) => ({
-      ...prevState,
-      [index]: !Boolean(prevState[index]),
-    }));
+  const toggleItem = (id) => {
+    setActivePanels((prevState) => {
+      if (prevState.includes(id)) {
+        return prevState.filter((panelId) => panelId !== id);
+      } else {
+        return [...prevState, id];
+      }
+    });
   };
 
   const handleImagePosition = (event) => {
     setImagePosition(event.target.value);
   };
 
-  console.log(data);
+  // DRAG N DROP FUNCTIONALITY
+  const { attributes, listeners, setNodeRef, transform, transition } =
+    useSortable({ id: section.id });
+
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+  };
 
   return (
     <Accordion
       className="accordion accordion-rounded-stylish accordion-bordered container px-3 mt-3 ml-0"
-      // defaultActiveKey={index}
+      activeKey={
+        activePanels.includes(`${section.id}`) ? `${section.id}` : null
+      }
+      ref={setNodeRef}
+      style={style}
+      {...attributes}
+      {...listeners}
     >
       <div className="accordion__item mb-0">
         <Accordion.Toggle
           as={"div"}
-          eventKey={`${index}`}
-          className={`accordion__header ${
-            isActivePanel[index] ? "" : "collapsed"
-          } accordion__header--primary d-flex justify-content-between align-items-center`}
-          onClick={() => toggleItem(index)}
+          eventKey={`${section.id}`}
+          className={`accordion__header accordion__header--primary d-flex justify-content-between align-items-center`}
+          onClick={() => toggleItem(`${section.id}`)}
         >
           <div className="d-flex align-items-center">
             <span className="accordion__header--icon lg">
               <MenuIcon />
             </span>
-            <span className="accordion__header--text ml-2">{data.title}</span>
+            <span className="accordion__header--text ml-2">
+              {section.title}
+            </span>
           </div>
           <Button
             variant="danger"
             className="btn-xs"
-            onClick={(e) => removeSection(e, data.id)}
+            onClick={(e) => removeSection(e, section.id)}
           >
             Remove section
           </Button>
         </Accordion.Toggle>
         <Accordion.Collapse
-          eventKey={`${index}`}
+          eventKey={`${section.id}`}
           className="accordion__body px-5"
         >
           <div className="row">
@@ -172,13 +190,13 @@ const NewPageSection = ({
                 <h4 className="mb-3">Description</h4>
                 <CKEditor
                   editor={Editor}
-                  data=""
+                  section=""
                   onReady={(editor) => {
                     console.log("ready");
                   }}
                   onChange={(event, editor) => {
-                    const data = editor.getData();
-                    console.log({ event, editor, data });
+                    const section = editor.getData();
+                    console.log({ event, editor, section });
                   }}
                   onBlur={(event, editor) => {
                     // console.log("Blur.", editor);
