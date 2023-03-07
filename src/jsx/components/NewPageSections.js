@@ -1,5 +1,17 @@
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
+import {
+  closestCenter,
+  DndContext,
+  PointerSensor,
+  useSensor,
+  useSensors,
+} from "@dnd-kit/core";
+import {
+  SortableContext,
+  verticalListSortingStrategy,
+  arrayMove,
+} from "@dnd-kit/sortable";
 
 import "./NewPageSections.css";
 
@@ -14,7 +26,7 @@ const NewPageSections = () => {
       ...prevState,
       {
         id: Math.floor(Math.random() * 1000),
-        title: "New Section",
+        title: `New Section ${Math.floor(Math.random() * 1000)}`,
         selectedColor: "#fff",
         imagePosition: "left",
         buttonText: "",
@@ -44,6 +56,32 @@ const NewPageSections = () => {
     setSections([...filteredSections]);
   };
 
+  // DRAG N DROP FUNCTIONALITY
+  // prevent firing drag and drop element before moving more than 8px
+  const sensors = useSensors(
+    useSensor(PointerSensor, {
+      activationConstraint: {
+        distance: 8,
+      },
+    })
+  );
+
+  // handle droping dragged element
+  const handleDragEnd = (e) => {
+    const { active, over } = e;
+
+    if (active.id !== over.id) {
+      setSections((prevState) => {
+        const activeIndex = prevState
+          .map((image) => image.id)
+          .indexOf(active.id);
+        const overIndex = prevState.map((image) => image.id).indexOf(over.id);
+
+        return arrayMove(prevState, activeIndex, overIndex);
+      });
+    }
+  };
+
   return (
     <div className="col">
       <div className="d-flex justify-content-between mb-3">
@@ -69,16 +107,27 @@ const NewPageSections = () => {
         {!sections.length ? (
           <h4 className="mt-4 pl-4">Section list is empty.</h4>
         ) : (
-          sections.map((section, index) => (
-            <NewPageSection
-              key={index}
-              data={section}
-              index={index}
-              isActivePanel={isActivePanel}
-              setActivePanel={setActivePanel}
-              removeSection={removeSection}
-            />
-          ))
+          <DndContext
+            collisionDetection={closestCenter}
+            onDragEnd={handleDragEnd}
+            sensors={sensors}
+          >
+            <SortableContext
+              items={sections}
+              strategy={verticalListSortingStrategy}
+            >
+              {sections.map((section, index) => (
+                <NewPageSection
+                  key={index}
+                  section={section}
+                  index={index}
+                  isActivePanel={isActivePanel}
+                  setActivePanel={setActivePanel}
+                  removeSection={removeSection}
+                />
+              ))}
+            </SortableContext>
+          </DndContext>
         )}
       </div>
     </div>
