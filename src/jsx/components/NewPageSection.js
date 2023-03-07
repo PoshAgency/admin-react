@@ -190,13 +190,13 @@ const NewPageSection = ({
                 <h4 className="mb-3">Description</h4>
                 <CKEditor
                   editor={Editor}
-                  section=""
+                  data=""
                   onReady={(editor) => {
                     console.log("ready");
                   }}
                   onChange={(event, editor) => {
-                    const section = editor.getData();
-                    console.log({ event, editor, section });
+                    const data = editor.getData();
+                    console.log({ event, editor, data });
                   }}
                   onBlur={(event, editor) => {
                     // console.log("Blur.", editor);

@@ -4,7 +4,6 @@ import {
   closestCenter,
   DndContext,
   PointerSensor,
-  MouseSensor,
   useSensor,
   useSensors,
 } from "@dnd-kit/core";
@@ -55,12 +54,6 @@ const NewPageSections = () => {
     useSensor(PointerSensor, {
       activationConstraint: {
         distance: 8,
-      },
-    }),
-    useSensor(MouseSensor, {
-      activationConstraint: {
-        delay: 3000,
-        tolerance: 100,
       },
     })
   );
@@ -113,7 +106,6 @@ const NewPageSections = () => {
             collisionDetection={closestCenter}
             onDragEnd={handleDragEnd}
             sensors={sensors}
-            disabled={true}
           >
             <SortableContext
               items={sections}
