@@ -1,19 +1,28 @@
 import React, { useState } from "react";
-import { Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import PageImagesUploader from "../components/PageImagesUploader";
 import slugify from "slugify";
-import BasicDatePicker from "../components/Forms/Pickers/MetarialDate";
+import { useForm, Controller } from "react-hook-form";
+import { Link } from "react-router-dom";
+import { Button } from "react-bootstrap";
 import { Editor } from "ckeditor5-custom-build/build/ckeditor";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 
+import BasicDatePicker from "../components/Forms/Pickers/MetarialDate";
 import NewPageSections from "../components/NewPageSections";
+import PageImagesUploader from "../components/PageImagesUploader";
+import NewPageGalleries from "../components/NewPageGalleries";
+
+import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
+import DateFnsUtils from "@date-io/date-fns";
 
 import "./NewPage.css";
-import NewPageGalleries from "../components/NewPageGalleries";
 
 const NewPage = () => {
   const [pagePath, setPagePath] = useState("");
+  const { register, handleSubmit, control } = useForm();
+
+  const onSubmit = (data) => {
+    console.log(data);
+  };
 
   return (
     <>
@@ -24,7 +33,7 @@ const NewPage = () => {
         </Link>
       </div>
       <div className="w-100 mt-5 card">
-        <form onSubmit={(e) => e.preventDefault()} className="card-body">
+        <form onSubmit={handleSubmit(onSubmit)} className="card-body">
           <div className="row d-flex justify-content-between">
             <div className="col-8 w-100">
               <h3>Page Title</h3>
@@ -33,6 +42,7 @@ const NewPage = () => {
                   type="text"
                   className="form-control input-default px-2 mb-3"
                   placeholder="Enter page title"
+                  {...register("title")}
                   onChange={(e) => setPagePath(e.target.value)}
                 />
                 <span className="ml-3">{`https://theposh.agency/${slugify(
@@ -42,6 +52,7 @@ const NewPage = () => {
               <h3 className="mt-4">Hero Title</h3>
               <div className="form-group mt-3">
                 <input
+                  {...register("hero")}
                   type="text"
                   className="form-control input-default px-2 mb-3"
                   placeholder="Enter hero title"
@@ -51,6 +62,7 @@ const NewPage = () => {
               <h3 className="mt-4">Description</h3>
               <div className="form-group">
                 <textarea
+                  {...register("description")}
                   className="form-control mt-3"
                   rows="4"
                   placeholder="Enter description"
@@ -61,12 +73,30 @@ const NewPage = () => {
             <div className="col-4 w-100">
               <div>
                 <h3 className="mb-3">Date Published</h3>
-                <BasicDatePicker style={{ paddingLeft: "12px" }} />
+                <Controller
+                  control={control}
+                  name="published"
+                  render={({ field: { onChange, onBlur, value, ref } }) => (
+                    <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                      <DatePicker
+                        // autoOk
+                        // label="Published"
+                        clearable
+                        format="dd/MM/yyyy"
+                        disableFuture
+                        value={value}
+                        onChange={onChange}
+                        onBlur={onBlur}
+                        inputRef={ref}
+                      />
+                    </MuiPickersUtilsProvider>
+                  )}
+                />
               </div>
               <div>
                 <h3 className="mb-3 mt-3">Template</h3>
                 <div className="form-group">
-                  <select className="form-control">
+                  <select className="form-control" {...register("template")}>
                     <option value="">Select a template</option>
                     <option value="homepage">Homepage</option>
                     <option value="about-us">About Us</option>
@@ -133,7 +163,9 @@ const NewPage = () => {
             </div>
           </div>
           <div className="row justify-content-center mt-5">
-            <Button variant="dark">Publish</Button>
+            <Button variant="primary" type="submit">
+              Publish
+            </Button>
             <Button className="ml-3" variant="light">
               Save as draft
             </Button>
