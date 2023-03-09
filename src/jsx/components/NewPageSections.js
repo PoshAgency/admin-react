@@ -16,24 +16,42 @@ import {
 import "./NewPageSections.css";
 
 import NewPageSection from "./NewPageSection";
+import { useFieldArray } from "react-hook-form";
 
-const NewPageSections = () => {
+const NewPageSections = ({ control }) => {
   const [sections, setSections] = useState([]);
   const [activePanels, setActivePanels] = useState([]);
 
+  const { fields, append, prepend, remove, swap, move, insert } = useFieldArray(
+    {
+      control,
+      name: "sections",
+    }
+  );
+
+  console.log(fields);
+
   const addNewSection = () => {
-    setSections((prevState) => [
-      ...prevState,
-      {
-        id: Math.floor(Math.random() * 1000),
-        title: `New Section ${Math.floor(Math.random() * 1000)}`,
-        selectedColor: "#fff",
-        imagePosition: "left",
-        buttonText: "",
-        buttonURL: "",
-        description: "",
-      },
-    ]);
+    // setSections((prevState) => [
+    //   ...prevState,
+    //   {
+    //     id: Math.floor(Math.random() * 1000),
+    //     title: `New Section ${Math.floor(Math.random() * 1000)}`,
+    //     selectedColor: "#fff",
+    //     imagePosition: "left",
+    //     buttonText: "",
+    //     buttonURL: "",
+    //     description: "",
+    //   },
+    // ]);
+    append({
+      title: `New Section ${Math.floor(Math.random() * 1000)}`,
+      selectedColor: "#fff",
+      imagePosition: "left",
+      buttonText: "",
+      buttonURL: "",
+      description: "",
+    });
   };
 
   const collapseAllSections = () => {

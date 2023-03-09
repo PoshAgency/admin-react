@@ -6,7 +6,6 @@ import { Button } from "react-bootstrap";
 import { Editor } from "ckeditor5-custom-build/build/ckeditor";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 
-import BasicDatePicker from "../components/Forms/Pickers/MetarialDate";
 import NewPageSections from "../components/NewPageSections";
 import PageImagesUploader from "../components/PageImagesUploader";
 import NewPageGalleries from "../components/NewPageGalleries";
@@ -18,7 +17,14 @@ import "./NewPage.css";
 
 const NewPage = () => {
   const [pagePath, setPagePath] = useState("");
-  const { register, handleSubmit, control } = useForm();
+  const { register, handleSubmit, control } = useForm({
+    defaultValues: {
+      sections: [
+        // { name: "1", description: "one" },
+        // { name: "1", description: "one" },
+      ],
+    },
+  });
 
   const onSubmit = (data) => {
     console.log(data);
@@ -58,7 +64,7 @@ const NewPage = () => {
                   placeholder="Enter hero title"
                 />
               </div>
-              <PageImagesUploader />
+              <PageImagesUploader register={register} />
               <h3 className="mt-4">Description</h3>
               <div className="form-group">
                 <textarea
@@ -81,6 +87,7 @@ const NewPage = () => {
                       <DatePicker
                         // autoOk
                         // label="Published"
+                        defaultValue={null}
                         clearable
                         format="dd/MM/yyyy"
                         disableFuture
@@ -137,7 +144,7 @@ const NewPage = () => {
             <NewPageGalleries />
           </div>
           <div className="row mt-5">
-            <NewPageSections />
+            <NewPageSections control={control} />
           </div>
           <div className="row mt-5">
             <div className="col">

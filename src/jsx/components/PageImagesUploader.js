@@ -4,7 +4,7 @@ import { Button } from "react-bootstrap";
 import noImg from "../../images/no-image.jpg";
 import ImageCropModal from "./ImageCropModal";
 
-const PageImageUploader = () => {
+const PageImageUploader = ({ register }) => {
   const [desktopImage, setDesktopImage] = useState(null);
   const [mobileImage, setMobileImage] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -38,6 +38,7 @@ const PageImageUploader = () => {
           >
             Add desktop{" "}
             <input
+              {...register("desktopImage")}
               type="file"
               accept="image/jpeg, image/png"
               id="add-desktop-image"
@@ -51,6 +52,7 @@ const PageImageUploader = () => {
           >
             Add Mobile{" "}
             <input
+              {...register("mobileImage")}
               type="file"
               accept="image/jpeg, image/png"
               id="add-mobile-image"
