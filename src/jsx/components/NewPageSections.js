@@ -29,7 +29,7 @@ const NewPageSections = ({ control }) => {
     }
   );
 
-  console.log(fields);
+  // console.log(fields);
 
   const addNewSection = () => {
     // setSections((prevState) => [
@@ -50,7 +50,7 @@ const NewPageSections = ({ control }) => {
       imagePosition: "left",
       buttonText: "",
       buttonURL: "",
-      description: "",
+      sectionDescription: "",
     });
   };
 
@@ -58,12 +58,11 @@ const NewPageSections = ({ control }) => {
     setActivePanels([]);
   };
 
-  const removeSection = (event, sectionId) => {
+  const removeField = (event, fieldId) => {
     event.stopPropagation();
-    const filteredSections = sections.filter(
-      (section) => section.id !== sectionId
-    );
-    setSections([...filteredSections]);
+    // const filteredFields = fields.filter((field) => field.id !== sectionId);
+    // setSections([...filteredSections]);
+    remove(fieldId);
   };
 
   // DRAG N DROP FUNCTIONALITY
@@ -117,7 +116,7 @@ const NewPageSections = ({ control }) => {
         </div>
       </div>
       <div>
-        {!sections.length ? (
+        {!fields.length ? (
           <h4 className="mt-4 pl-4">Section list is empty.</h4>
         ) : (
           <DndContext
@@ -126,18 +125,18 @@ const NewPageSections = ({ control }) => {
             sensors={sensors}
           >
             <SortableContext
-              items={sections}
+              items={fields}
               strategy={verticalListSortingStrategy}
               disabled={activePanels.length > 0}
             >
-              {sections.map((section, index) => (
+              {fields.map((field, index) => (
                 <NewPageSection
                   key={index}
-                  section={section}
+                  field={field}
                   index={index}
                   activePanels={activePanels}
                   setActivePanels={setActivePanels}
-                  removeSection={removeSection}
+                  removeField={removeField}
                 />
               ))}
             </SortableContext>

@@ -5,8 +5,10 @@ import { CKEditor } from "@ckeditor/ckeditor5-react";
 import { Accordion, Button } from "react-bootstrap";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
+import { Controller } from "react-hook-form";
 
 import noImg from "../../images/no-image.jpg";
+import { useFormContext } from "react-hook-form";
 
 const availableColors = [
   { title: "White", hashValue: "#ffffff" },
@@ -42,14 +44,16 @@ const ColorOption = ({ color, selectedColor, setSelectedColor }) => {
 };
 
 const NewPageSection = ({
-  section,
+  field,
   index,
   activePanels,
   setActivePanels,
-  removeSection,
+  removeField,
 }) => {
   const [selectedColor, setSelectedColor] = useState("#ffffff");
   const [imagePosition, setImagePosition] = useState("left");
+  const [sectionTitle, setSectionTitle] = useState(field.title);
+  const methods = useFormContext();
 
   const toggleItem = (id) => {
     setActivePanels((prevState) => {
@@ -67,19 +71,23 @@ const NewPageSection = ({
 
   // DRAG N DROP FUNCTIONALITY
   const { attributes, listeners, setNodeRef, transform, transition } =
-    useSortable({ id: section.id });
+    useSortable({ id: field.id });
+
+  // console.log(field);
 
   const style = {
     transform: CSS.Transform.toString(transform),
     transition,
   };
 
+  // const handleValueChange = (index, value) => {
+  //   methods.setValue(`items[${index}].buttonURL`, value);
+  // };
+
   return (
     <Accordion
       className="accordion accordion-rounded-stylish accordion-bordered container px-3 mt-3 ml-0"
-      activeKey={
-        activePanels.includes(`${section.id}`) ? `${section.id}` : null
-      }
+      activeKey={activePanels.includes(`${field.id}`) ? `${field.id}` : null}
       ref={setNodeRef}
       style={style}
       {...attributes}
@@ -88,34 +96,32 @@ const NewPageSection = ({
       <div className="accordion__item mb-0">
         <Accordion.Toggle
           as={"div"}
-          eventKey={`${section.id}`}
+          eventKey={`${field.id}`}
           className={`accordion__header accordion__header--primary d-flex justify-content-between align-items-center`}
-          onClick={() => toggleItem(`${section.id}`)}
+          onClick={() => toggleItem(`${field.id}`)}
         >
           <div className="d-flex align-items-center">
             <span className="accordion__header--icon lg">
               <MenuIcon />
             </span>
-            <span className="accordion__header--text ml-2">
-              {section.title}
-            </span>
+            <span className="accordion__header--text ml-2">{sectionTitle}</span>
           </div>
           <Button
             variant="danger"
             className="btn-xs"
-            onClick={(e) => removeSection(e, section.id)}
+            onClick={(e) => removeField(e, field.id)}
           >
-            Remove section
+            Remove field
           </Button>
         </Accordion.Toggle>
         <Accordion.Collapse
-          eventKey={`${section.id}`}
+          eventKey={`${field.id}`}
           className="accordion__body px-5"
         >
           <div className="row">
             <div
               className={`col-4 order-${
-                imagePosition === "right" ? "last" : "first"
+                field.imagePosition === "right" ? "last" : "first"
               }`}
             >
               <div className="form-group mt-3 d-flex flex-column">
@@ -137,6 +143,7 @@ const NewPageSection = ({
                     type="file"
                     accept="image/jpeg, image/png"
                     id="add-desktop-image"
+                    {...methods.register(`sections.${index}.sectionImage`)}
                     hidden
                   />
                 </label>
@@ -150,7 +157,7 @@ const NewPageSection = ({
                   className="form-control"
                   name="image-placement"
                   defaultValue={imagePosition}
-                  onChange={handleImagePosition}
+                  {...methods.register(`sections.${index}.imagePosition`)}
                 >
                   <option value="left" key={"left"}>
                     Left side
@@ -184,26 +191,36 @@ const NewPageSection = ({
                   type="text"
                   className="form-control input-default px-2 mb-3"
                   placeholder="Enter title"
+                  {...methods.register(`sections.${index}.title`)}
+                  onChange={(e) => setSectionTitle(e.target.value)}
                 />
               </div>
               <div className="form-group mt-3">
                 <h4 className="mb-3">Description</h4>
-                <CKEditor
-                  editor={Editor}
-                  data=""
-                  onReady={(editor) => {
-                    console.log("ready");
-                  }}
-                  onChange={(event, editor) => {
-                    const data = editor.getData();
-                    console.log({ event, editor, data });
-                  }}
-                  onBlur={(event, editor) => {
-                    // console.log("Blur.", editor);
-                  }}
-                  onFocus={(event, editor) => {
-                    // console.log("Focus.", editor);
-                  }}
+                <Controller
+                  name={`sections.${index}.sectionDescription`}
+                  control={methods.control}
+                  defaultValue=""
+                  render={({ field: { onChange, onBlur, value, ref } }) => (
+                    <CKEditor
+                      editor={Editor}
+                      data={value}
+                      onReady={(editor) => {
+                        // console.log("ready");
+                      }}
+                      onChange={(event, editor) => {
+                        const data = editor.getData();
+                        onChange(data);
+                      }}
+                      onBlur={(event, editor) => {
+                        // console.log("Blur.", editor);
+                        onBlur();
+                      }}
+                      onFocus={(event, editor) => {
+                        // console.log("Focus.", editor);
+                      }}
+                    />
+                  )}
                 />
               </div>
               <div className="form-group mt-3">
@@ -212,6 +229,7 @@ const NewPageSection = ({
                   type="text"
                   className="form-control input-default px-2 mb-3"
                   placeholder="Enter title"
+                  {...methods.register(`sections.${index}.buttonText`)}
                 />
               </div>
               <div className="form-group mt-3">
@@ -219,7 +237,8 @@ const NewPageSection = ({
                 <input
                   type="text"
                   className="form-control input-default px-2 mb-3"
-                  placeholder="Enter title"
+                  placeholder="Button URL"
+                  {...methods.register(`sections.${index}.buttonURL`)}
                 />
               </div>
             </div>
