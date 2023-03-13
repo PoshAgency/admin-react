@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import slugify from "slugify";
 import { useForm, Controller, FormProvider } from "react-hook-form";
 import { Link } from "react-router-dom";
@@ -23,6 +23,10 @@ const NewPage = () => {
     console.log(data);
   };
 
+  const updateSeoValues = (field, value) => {
+    methods.setValue(field, value);
+  };
+
   return (
     <>
       <div className="d-flex justify-content-between align-items-center">
@@ -42,8 +46,12 @@ const NewPage = () => {
                     type="text"
                     className="form-control input-default px-2 mb-3"
                     placeholder="Enter page title"
+                    defaultValue=""
                     {...methods.register("title")}
-                    onChange={(e) => setPagePath(e.target.value)}
+                    onChange={(e) => {
+                      setPagePath(e.target.value);
+                      updateSeoValues("seoTitle", e.target.value);
+                    }}
                   />
                   <span className="ml-3">{`https://theposh.agency/${slugify(
                     pagePath
@@ -63,6 +71,9 @@ const NewPage = () => {
                 <div className="form-group">
                   <textarea
                     {...methods.register("description")}
+                    onChange={(e) =>
+                      updateSeoValues("seoDescription", e.target.value)
+                    }
                     className="form-control mt-3"
                     rows="4"
                     placeholder="Enter description"
@@ -157,6 +168,7 @@ const NewPage = () => {
                 <div className="form-group mt-3 w-50 px-3">
                   <h5>Title</h5>
                   <input
+                    {...methods.register("seoTitle")}
                     id="seo-title"
                     type="text"
                     className="form-control input-default px-3 mb-3"
@@ -167,6 +179,7 @@ const NewPage = () => {
                   <h5>Description</h5>
                   <textarea
                     id="seo-description"
+                    {...methods.register("seoDescription")}
                     rows={4}
                     className="form-control input-default px-3"
                     placeholder="Max 160 characters"

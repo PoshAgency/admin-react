@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import {
   closestCenter,
@@ -19,33 +19,21 @@ import NewPageSection from "./NewPageSection";
 import { useFieldArray } from "react-hook-form";
 
 const NewPageSections = ({ control }) => {
+  const { fields, append, remove, move, replace } = useFieldArray({
+    control,
+    name: "sections",
+  });
+
   const [sections, setSections] = useState([]);
   const [activePanels, setActivePanels] = useState([]);
 
-  const { fields, append, prepend, remove, swap, move, insert } = useFieldArray(
-    {
-      control,
-      name: "sections",
-    }
-  );
-
-  // console.log(fields);
+  useEffect(() => {
+    setSections(fields);
+  }, [fields]);
 
   const addNewSection = () => {
-    // setSections((prevState) => [
-    //   ...prevState,
-    //   {
-    //     id: Math.floor(Math.random() * 1000),
-    //     title: `New Section ${Math.floor(Math.random() * 1000)}`,
-    //     selectedColor: "#fff",
-    //     imagePosition: "left",
-    //     buttonText: "",
-    //     buttonURL: "",
-    //     description: "",
-    //   },
-    // ]);
     append({
-      title: `New Section ${Math.floor(Math.random() * 1000)}`,
+      title: `New Section ${Math.round(Math.random() * 10000)}`,
       selectedColor: "#fff",
       imagePosition: "left",
       buttonText: "",
@@ -60,8 +48,7 @@ const NewPageSections = ({ control }) => {
 
   const removeField = (event, fieldId) => {
     event.stopPropagation();
-    // const filteredFields = fields.filter((field) => field.id !== sectionId);
-    // setSections([...filteredSections]);
+
     remove(fieldId);
   };
 
@@ -75,20 +62,36 @@ const NewPageSections = ({ control }) => {
     })
   );
 
+  console.log(fields);
+
   // handle droping dragged element
   const handleDragEnd = (e) => {
     const { active, over } = e;
 
-    if (active.id !== over.id) {
-      setSections((prevState) => {
-        const activeIndex = prevState
-          .map((image) => image.id)
-          .indexOf(active.id);
-        const overIndex = prevState.map((image) => image.id).indexOf(over.id);
+    const activeIndex = fields.findIndex((field) => field.id === active.id);
+    const overIndex = fields.findIndex((field) => field.id === over.id);
 
-        return arrayMove(prevState, activeIndex, overIndex);
-      });
-    }
+    // if (active.id !== over.id) {
+    //   setSections((prevState) => {
+    //     const activeIndex = prevState
+    //       .map((section) => section.id)
+    //       .indexOf(active.id);
+    //     const overIndex = prevState
+    //       .map((section) => section.id)
+    //       .indexOf(over.id);
+
+    //     return arrayMove(prevState, activeIndex, overIndex);
+    //   });
+    // }
+
+    move(activeIndex, overIndex);
+  };
+
+  const moveDown = (e) => {
+    e.stopPropagation();
+    const index = fields.findIndex((field) => field.id === e.target.value);
+
+    move(index, index + 1);
   };
 
   return (
@@ -137,6 +140,7 @@ const NewPageSections = ({ control }) => {
                   activePanels={activePanels}
                   setActivePanels={setActivePanels}
                   removeField={removeField}
+                  moveDown={moveDown}
                 />
               ))}
             </SortableContext>

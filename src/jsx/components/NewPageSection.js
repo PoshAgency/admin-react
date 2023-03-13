@@ -49,6 +49,7 @@ const NewPageSection = ({
   activePanels,
   setActivePanels,
   removeField,
+  moveDown,
 }) => {
   const [selectedColor, setSelectedColor] = useState("#ffffff");
   const [imagePosition, setImagePosition] = useState("left");
@@ -73,16 +74,12 @@ const NewPageSection = ({
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({ id: field.id });
 
-  // console.log(field);
-
   const style = {
     transform: CSS.Transform.toString(transform),
     transition,
   };
 
-  // const handleValueChange = (index, value) => {
-  //   methods.setValue(`items[${index}].buttonURL`, value);
-  // };
+  console.log("rerender");
 
   return (
     <Accordion
@@ -104,7 +101,9 @@ const NewPageSection = ({
             <span className="accordion__header--icon lg">
               <MenuIcon />
             </span>
-            <span className="accordion__header--text ml-2">{sectionTitle}</span>
+            <span className="accordion__header--text ml-2">
+              {field.title || sectionTitle}
+            </span>
           </div>
           <Button
             variant="danger"
@@ -198,13 +197,15 @@ const NewPageSection = ({
               <div className="form-group mt-3">
                 <h4 className="mb-3">Description</h4>
                 <Controller
-                  name={`sections.${index}.sectionDescription`}
+                  // name={`sections.${index}.sectionDescription`}
+                  {...methods.register(`sections.${index}.sectionDescription`)}
                   control={methods.control}
                   defaultValue=""
                   render={({ field: { onChange, onBlur, value, ref } }) => (
                     <CKEditor
                       editor={Editor}
                       data={value}
+                      ref={ref}
                       onReady={(editor) => {
                         // console.log("ready");
                       }}
