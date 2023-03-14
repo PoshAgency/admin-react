@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Editor } from "ckeditor5-custom-build/build/ckeditor";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
@@ -49,7 +49,6 @@ const NewPageSection = ({
   activePanels,
   setActivePanels,
   removeField,
-  moveDown,
 }) => {
   const [selectedColor, setSelectedColor] = useState("#ffffff");
   const [imagePosition, setImagePosition] = useState("left");
@@ -66,9 +65,19 @@ const NewPageSection = ({
     });
   };
 
-  const handleImagePosition = (event) => {
-    setImagePosition(event.target.value);
-  };
+  useEffect(() => {
+    const newImagePosition = methods.watch(`sections.${index}.imagePosition`);
+
+    setImagePosition(newImagePosition);
+  }, [methods, index]);
+
+  // useEffect(() => {
+  //   setImagePosition(field.imagePosition);
+  // }, [field.imagePosition]);
+
+  // const handleImagePosition = (event) => {
+  //   setImagePosition(event.target.value);
+  // };
 
   // DRAG N DROP FUNCTIONALITY
   const { attributes, listeners, setNodeRef, transform, transition } =
@@ -79,12 +88,10 @@ const NewPageSection = ({
     transition,
   };
 
-  console.log("rerender");
-
   return (
     <Accordion
       className="accordion accordion-rounded-stylish accordion-bordered container px-3 mt-3 ml-0"
-      activeKey={activePanels.includes(`${field.id}`) ? `${field.id}` : null}
+      activeKey={activePanels.includes(`${index}`) ? `${index}` : null}
       ref={setNodeRef}
       style={style}
       {...attributes}
@@ -93,34 +100,32 @@ const NewPageSection = ({
       <div className="accordion__item mb-0">
         <Accordion.Toggle
           as={"div"}
-          eventKey={`${field.id}`}
+          eventKey={`${index}`}
           className={`accordion__header accordion__header--primary d-flex justify-content-between align-items-center`}
-          onClick={() => toggleItem(`${field.id}`)}
+          onClick={() => toggleItem(`${index}`)}
         >
           <div className="d-flex align-items-center">
             <span className="accordion__header--icon lg">
               <MenuIcon />
             </span>
-            <span className="accordion__header--text ml-2">
-              {field.title || sectionTitle}
-            </span>
+            <span className="accordion__header--text ml-2">{sectionTitle}</span>
           </div>
           <Button
             variant="danger"
             className="btn-xs"
-            onClick={(e) => removeField(e, field.id)}
+            onClick={(e) => removeField(e, index)}
           >
             Remove field
           </Button>
         </Accordion.Toggle>
         <Accordion.Collapse
-          eventKey={`${field.id}`}
+          eventKey={`${index}`}
           className="accordion__body px-5"
         >
           <div className="row">
             <div
               className={`col-4 order-${
-                field.imagePosition === "right" ? "last" : "first"
+                imagePosition === "right" ? "last" : "first"
               }`}
             >
               <div className="form-group mt-3 d-flex flex-column">
@@ -155,7 +160,6 @@ const NewPageSection = ({
                 <select
                   className="form-control"
                   name="image-placement"
-                  defaultValue={imagePosition}
                   {...methods.register(`sections.${index}.imagePosition`)}
                 >
                   <option value="left" key={"left"}>
@@ -191,37 +195,42 @@ const NewPageSection = ({
                   className="form-control input-default px-2 mb-3"
                   placeholder="Enter title"
                   {...methods.register(`sections.${index}.title`)}
-                  onChange={(e) => setSectionTitle(e.target.value)}
+                  onChange={(e) => {
+                    setSectionTitle(e.target.value);
+                  }}
                 />
               </div>
               <div className="form-group mt-3">
                 <h4 className="mb-3">Description</h4>
                 <Controller
-                  // name={`sections.${index}.sectionDescription`}
-                  {...methods.register(`sections.${index}.sectionDescription`)}
+                  name={`sections.${index}.sectionDescription`}
                   control={methods.control}
-                  defaultValue=""
-                  render={({ field: { onChange, onBlur, value, ref } }) => (
-                    <CKEditor
-                      editor={Editor}
-                      data={value}
-                      ref={ref}
-                      onReady={(editor) => {
-                        // console.log("ready");
-                      }}
-                      onChange={(event, editor) => {
-                        const data = editor.getData();
-                        onChange(data);
-                      }}
-                      onBlur={(event, editor) => {
-                        // console.log("Blur.", editor);
-                        onBlur();
-                      }}
-                      onFocus={(event, editor) => {
-                        // console.log("Focus.", editor);
-                      }}
-                    />
-                  )}
+                  render={({
+                    field: { onChange, onBlur, value, ref, name },
+                  }) => {
+                    return (
+                      <CKEditor
+                        editor={Editor}
+                        name={name}
+                        data={value}
+                        ref={ref}
+                        onReady={(editor) => {
+                          // console.log("ready");
+                        }}
+                        onChange={(event, editor) => {
+                          const data = editor.getData();
+                          onChange(data);
+                        }}
+                        onBlur={(event, editor) => {
+                          // console.log("Blur.", editor);
+                          onBlur();
+                        }}
+                        onFocus={(event, editor) => {
+                          // console.log("Focus.", editor);
+                        }}
+                      />
+                    );
+                  }}
                 />
               </div>
               <div className="form-group mt-3">

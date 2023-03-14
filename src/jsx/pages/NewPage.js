@@ -54,7 +54,8 @@ const NewPage = () => {
                     }}
                   />
                   <span className="ml-3">{`https://theposh.agency/${slugify(
-                    pagePath
+                    pagePath,
+                    { lower: true }
                   )}`}</span>
                 </div>
                 <h3 className="mt-4">Hero Title</h3>

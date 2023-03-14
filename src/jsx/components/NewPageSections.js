@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 import {
   closestCenter,
@@ -10,7 +10,6 @@ import {
 import {
   SortableContext,
   verticalListSortingStrategy,
-  arrayMove,
 } from "@dnd-kit/sortable";
 
 import "./NewPageSections.css";
@@ -19,17 +18,12 @@ import NewPageSection from "./NewPageSection";
 import { useFieldArray } from "react-hook-form";
 
 const NewPageSections = ({ control }) => {
-  const { fields, append, remove, move, replace } = useFieldArray({
+  const { fields, append, remove, move } = useFieldArray({
     control,
     name: "sections",
   });
 
-  const [sections, setSections] = useState([]);
   const [activePanels, setActivePanels] = useState([]);
-
-  useEffect(() => {
-    setSections(fields);
-  }, [fields]);
 
   const addNewSection = () => {
     append({
@@ -62,8 +56,6 @@ const NewPageSections = ({ control }) => {
     })
   );
 
-  console.log(fields);
-
   // handle droping dragged element
   const handleDragEnd = (e) => {
     const { active, over } = e;
@@ -71,27 +63,7 @@ const NewPageSections = ({ control }) => {
     const activeIndex = fields.findIndex((field) => field.id === active.id);
     const overIndex = fields.findIndex((field) => field.id === over.id);
 
-    // if (active.id !== over.id) {
-    //   setSections((prevState) => {
-    //     const activeIndex = prevState
-    //       .map((section) => section.id)
-    //       .indexOf(active.id);
-    //     const overIndex = prevState
-    //       .map((section) => section.id)
-    //       .indexOf(over.id);
-
-    //     return arrayMove(prevState, activeIndex, overIndex);
-    //   });
-    // }
-
     move(activeIndex, overIndex);
-  };
-
-  const moveDown = (e) => {
-    e.stopPropagation();
-    const index = fields.findIndex((field) => field.id === e.target.value);
-
-    move(index, index + 1);
   };
 
   return (
@@ -134,13 +106,12 @@ const NewPageSections = ({ control }) => {
             >
               {fields.map((field, index) => (
                 <NewPageSection
-                  key={index}
+                  key={field.id}
                   field={field}
                   index={index}
                   activePanels={activePanels}
                   setActivePanels={setActivePanels}
                   removeField={removeField}
-                  moveDown={moveDown}
                 />
               ))}
             </SortableContext>
