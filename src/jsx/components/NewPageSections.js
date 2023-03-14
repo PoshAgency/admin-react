@@ -28,7 +28,7 @@ const NewPageSections = ({ control }) => {
   const addNewSection = () => {
     append({
       title: `New Section ${Math.round(Math.random() * 10000)}`,
-      selectedColor: "#fff",
+      selectedColor: "#ffffff",
       imagePosition: "left",
       buttonText: "",
       buttonURL: "",

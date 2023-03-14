@@ -14,20 +14,27 @@ const availableColors = [
   { title: "White", hashValue: "#ffffff" },
   { title: "Light Gray 1", hashValue: "#f8f8f8" },
   { title: "Light Gray 2", hashValue: "#e8e8e8" },
-  { title: "Light Gray 3", hashValue: "#ddd" },
+  { title: "Light Gray 3", hashValue: "#dddddd" },
   { title: "Light Gray 4", hashValue: "#d0d0d0" },
   { title: "Black", hashValue: "#000000" },
   { title: "Gold", hashValue: "#ffcc08" },
 ];
 
-const ColorOption = ({ color, selectedColor, setSelectedColor }) => {
+const ColorOption = ({
+  color,
+  setSectionBackgroundColor,
+  getSelectedColor,
+}) => {
+  const selectedColor = getSelectedColor();
+
   const { hashValue, title } = color;
+
   return (
     <span
       key={hashValue}
       role="button"
       className="rounded-circle mr-2"
-      onClick={() => setSelectedColor(hashValue)}
+      onClick={() => setSectionBackgroundColor(hashValue)}
       style={{
         width: "32px",
         height: "32px",
@@ -50,9 +57,9 @@ const NewPageSection = ({
   setActivePanels,
   removeField,
 }) => {
-  const [selectedColor, setSelectedColor] = useState("#ffffff");
   const [imagePosition, setImagePosition] = useState("left");
   const [sectionTitle, setSectionTitle] = useState(field.title);
+  const [previewImage, setPreviewImage] = useState(noImg);
   const methods = useFormContext();
 
   const toggleItem = (id) => {
@@ -65,19 +72,37 @@ const NewPageSection = ({
     });
   };
 
+  // useEffect for handling section image preview
+  useEffect(() => {
+    const addedImage = methods.watch(`sections.${index}.sectionImage`);
+
+    const reader = new FileReader();
+
+    reader.onloadend = () => {
+      setPreviewImage(reader.result);
+    };
+
+    if (addedImage.length) {
+      reader.readAsDataURL(addedImage[0]);
+    }
+  }, [index, methods]);
+
+  // useEffect for handling image position in section
   useEffect(() => {
     const newImagePosition = methods.watch(`sections.${index}.imagePosition`);
 
     setImagePosition(newImagePosition);
   }, [methods, index]);
 
-  // useEffect(() => {
-  //   setImagePosition(field.imagePosition);
-  // }, [field.imagePosition]);
+  const setSectionBackgroundColor = (color) => {
+    methods.setValue(`sections.${index}.selectedColor`, color);
+  };
 
-  // const handleImagePosition = (event) => {
-  //   setImagePosition(event.target.value);
-  // };
+  const getSelectedColor = () => {
+    const selectedColor = methods.watch(`sections.${index}.selectedColor`);
+
+    return selectedColor;
+  };
 
   // DRAG N DROP FUNCTIONALITY
   const { attributes, listeners, setNodeRef, transform, transition } =
@@ -131,22 +156,29 @@ const NewPageSection = ({
               <div className="form-group mt-3 d-flex flex-column">
                 <h4 className="mb-3">Image</h4>
                 <label
-                  htmlFor="add-desktop-image"
-                  className="mb-0 position-relative"
+                  htmlFor="add-section-image"
+                  className="mb-0 position-relative w-100"
                   role="button"
+                  // style={{ maxHeight: "200px" }}
                 >
                   <Button
                     variant="outline-danger"
-                    className="btn-rounded btn-xxs position-absolute top-0 end-0 ml-2 mt-2"
-                    badgecontent="1"
+                    className="btn-rounded btn-xxs badge-circle position-absolute ml-2 mt-2"
                   >
-                    Remove
+                    X
                   </Button>
-                  <img src={noImg} alt="" className="img-fluid rounded" />
+                  <img
+                    src={previewImage || noImg}
+                    alt=""
+                    className="img-fluid rounded object-fit-cover"
+                    height={200}
+                    width={300}
+                    style={{ objectFit: "cover" }}
+                  />
                   <input
                     type="file"
                     accept="image/jpeg, image/png"
-                    id="add-desktop-image"
+                    id="add-section-image"
                     {...methods.register(`sections.${index}.sectionImage`)}
                     hidden
                   />
@@ -180,8 +212,8 @@ const NewPageSection = ({
                     <ColorOption
                       color={color}
                       key={index}
-                      selectedColor={selectedColor}
-                      setSelectedColor={setSelectedColor}
+                      getSelectedColor={getSelectedColor}
+                      setSectionBackgroundColor={setSectionBackgroundColor}
                     />
                   ))}
                 </div>
