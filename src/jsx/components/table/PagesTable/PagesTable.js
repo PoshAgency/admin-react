@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import { Table, Card, Dropdown } from "react-bootstrap";
 import MetarialDate from "../../Forms/Pickers/MetarialDate";
 import {
@@ -56,25 +56,25 @@ const PagesTable = ({ pages, setPages }) => {
     }
   };
 
-  // PAGINATION
-  const sort = 3;
-  let jobPagination = Array(Math.ceil(pages.length / sort))
-    .fill()
-    .map((_, i) => i + 1);
+  // // PAGINATION
+  // const sort = 3;
+  // let jobPagination = Array(Math.ceil(pages.length / sort))
+  //   .fill()
+  //   .map((_, i) => i + 1);
 
-  const activePag = useRef(0);
-  const jobData = useRef(
-    pages.slice(activePag.current * sort, (activePag.current + 1) * sort)
-  );
+  // const activePag = useRef(0);
+  // const jobData = useRef(
+  //   pages.slice(activePag.current * sort, (activePag.current + 1) * sort)
+  // );
 
-  const onClick = (i) => {
-    activePag.current = i;
+  // const onClick = (i) => {
+  //   activePag.current = i;
 
-    jobData.current = pages.slice(
-      activePag.current * sort,
-      (activePag.current + 1) * sort
-    );
-  };
+  //   jobData.current = pages.slice(
+  //     activePag.current * sort,
+  //     (activePag.current + 1) * sort
+  //   );
+  // };
 
   return (
     <Card className="w-100">
