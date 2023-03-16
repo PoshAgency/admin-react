@@ -41,7 +41,7 @@ const Pages = () => {
   return (
     <div className="container w-100">
       <div className="row d-flex justify-content-end">
-        <Link to="/pages/single">
+        <Link to="/pages/new">
           <Button variant="primary" className="btn">
             New Page
           </Button>

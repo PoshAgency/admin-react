@@ -9,18 +9,18 @@ import SimpleReactLightbox from "simple-react-lightbox";
 import ThemeContext from "./context/ThemeContext";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <SimpleReactLightbox>
-        <BrowserRouter>
-          <ThemeContext>
-            <App />
-          </ThemeContext>
-          {/*   <App /> */}
-        </BrowserRouter>
-      </SimpleReactLightbox>
-    </Provider>
-  </React.StrictMode>,
+  // <React.StrictMode>
+  <Provider store={store}>
+    <SimpleReactLightbox>
+      <BrowserRouter basename="/react/demo/">
+        <ThemeContext>
+          <App />
+        </ThemeContext>
+        {/*   <App /> */}
+      </BrowserRouter>
+    </SimpleReactLightbox>
+  </Provider>,
+  // </React.StrictMode>,
   document.getElementById("root")
 );
 reportWebVitals();

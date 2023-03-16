@@ -25,27 +25,6 @@ const PagesTable = ({ pages, setPages }) => {
 
   const dispatch = useDispatch();
 
-  // const sort = 3;
-
-  // let pagesPagination = Array(Math.ceil(pages.length / sort))
-  //   .fill()
-  //   .map((_, i) => i + 1);
-
-  // const activePag = useRef(0);
-
-  // const pagesData = useRef(
-  //   pages.slice(activePag.current * sort, (activePag.current + 1) * sort)
-  // );
-
-  // const onClick = (i) => {
-  //   activePag.current = i;
-
-  //   pagesData = pages.slice(
-  //     activePag.current * sort,
-  //     (activePag.current + 1) * sort
-  //   );
-  // };
-
   const handleAllPages = () => {
     dispatch(toggleSelectAllPages());
   };
@@ -76,6 +55,26 @@ const PagesTable = ({ pages, setPages }) => {
       });
     }
   };
+
+  // // PAGINATION
+  // const sort = 3;
+  // let jobPagination = Array(Math.ceil(pages.length / sort))
+  //   .fill()
+  //   .map((_, i) => i + 1);
+
+  // const activePag = useRef(0);
+  // const jobData = useRef(
+  //   pages.slice(activePag.current * sort, (activePag.current + 1) * sort)
+  // );
+
+  // const onClick = (i) => {
+  //   activePag.current = i;
+
+  //   jobData.current = pages.slice(
+  //     activePag.current * sort,
+  //     (activePag.current + 1) * sort
+  //   );
+  // };
 
   return (
     <Card className="w-100">
