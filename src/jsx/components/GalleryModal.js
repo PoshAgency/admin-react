@@ -13,6 +13,7 @@ import {
   arrayMove,
 } from "@dnd-kit/sortable";
 import GalleryImage from "./GalleryImage";
+import { v4 as uuid } from "uuid";
 
 const GalleryModal = ({
   isModalOpen,
@@ -30,30 +31,49 @@ const GalleryModal = ({
     if (index > -1) return setGallery(galleries[index]);
 
     setGallery({
-      id: Math.round(Math.random() * 1000000000),
+      id: uuid(),
       name: "",
       description: "",
       images: [],
     });
   }, [galleries, galleryID]);
 
-  const handleImageUpload = (e) => {
-    if (!e.target.files[0]) return;
+  // Cloudinary image upload
+  const handleImageUpload = async (file) => {
+    const url = "https://api.cloudinary.com/v1_1/Pedja1310/image/upload";
 
-    const newImageObjects = [...e.target.files].map((image) => {
-      const source = URL.createObjectURL(image);
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("upload_preset", "posh-dashboard");
 
-      return {
-        id: Math.round(Math.random() * 1000000000),
-        orderNumber: 0,
-        source,
-      };
-    });
+    const res = await fetch(url, { method: "POST", body: formData });
 
-    setGallery((prevState) => ({
-      ...prevState,
-      images: [...prevState.images, ...newImageObjects],
-    }));
+    const data = await res.json();
+
+    return {
+      id: uuid(),
+      orderNumber: 0,
+      source: data.secure_url,
+    };
+  };
+
+  const handleUploadAllImages = async (e) => {
+    if (e.target.files.lenght) return;
+
+    const imagesArray = [...e.target.files];
+
+    try {
+      const images = await Promise.all(
+        imagesArray.map((file) => handleImageUpload(file))
+      );
+
+      setGallery((prevState) => ({
+        ...prevState,
+        images: [...prevState.images, ...images],
+      }));
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleGalleryInput = (e) => {
@@ -172,7 +192,7 @@ const GalleryModal = ({
               as="button"
               htmlFor="add-gallery-images"
               className="btn btn-primary btn-sm position-absolute bottom-0 mb-0 mt-3"
-              onChange={handleImageUpload}
+              onChange={handleUploadAllImages}
             >
               <span style={{}} className="">
                 Add photo
