@@ -99,6 +99,12 @@ const GalleryModal = ({
     append(gallery);
   };
 
+  const removeImage = (e, id) => {
+    const filteredImages = gallery.images.filter((image) => image.id !== id);
+
+    setGallery((prevState) => ({ ...prevState, images: [...filteredImages] }));
+  };
+
   // DRAG N DROP FUNCTIONALITY
   // handle droping dragged element
   const handleDragEnd = (e) => {
@@ -223,7 +229,12 @@ const GalleryModal = ({
                   strategy={rectSortingStrategy}
                 >
                   {gallery?.images.map((image, index) => (
-                    <GalleryImage image={image} key={index} index={index} />
+                    <GalleryImage
+                      image={image}
+                      key={index}
+                      index={index}
+                      removeImage={removeImage}
+                    />
                   ))}
                 </SortableContext>
               </DndContext>
