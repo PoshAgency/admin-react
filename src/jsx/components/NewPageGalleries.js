@@ -3,8 +3,10 @@ import { v4 as uuid } from "uuid";
 import { Button } from "react-bootstrap";
 import GalleryModal from "./GalleryModal";
 import GalleryIcon from "./GalleryIcon";
+import { useFieldArray, useFormContext } from "react-hook-form";
 
 const NewPageGalleries = () => {
+  const methods = useFormContext();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [galleryID, setGalleryID] = useState(null);
   const [galleries, setGalleries] = useState([
@@ -111,12 +113,19 @@ const NewPageGalleries = () => {
     },
   ]);
 
+  const { fields, append, update, replace, remove } = useFieldArray({
+    control: methods.control,
+    name: "galleries",
+  });
+
   const clearGalleries = () => {
     setGalleries([]);
   };
 
   const handleGallery = (id) => {
-    setGalleryID(id);
+    setGalleryID(`${id}`);
+
+    console.log(galleryID);
 
     setIsModalOpen(true);
   };
@@ -141,15 +150,17 @@ const NewPageGalleries = () => {
           galleryID={galleryID}
           isModalOpen={isModalOpen}
           setIsModalOpen={setIsModalOpen}
-          galleries={galleries}
+          galleries={fields}
           setGalleries={setGalleries}
+          append={append}
+          update={update}
         />
       </div>
       <div className="d-flex mb-3 flex-wrap">
-        {!galleries.length ? (
+        {!fields.length ? (
           <h4 className="mt-4 pl-4">Gallery list is empty.</h4>
         ) : (
-          galleries.map((gallery, index) => (
+          fields.map((gallery, index) => (
             <GalleryIcon
               gallery={gallery}
               key={index}

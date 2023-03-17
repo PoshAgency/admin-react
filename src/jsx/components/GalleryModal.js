@@ -21,12 +21,17 @@ const GalleryModal = ({
   galleries,
   setGalleries,
   galleryID,
+  append,
 }) => {
   const [gallery, setGallery] = useState(null);
 
   // set initial gallery values in modal on open
   useEffect(() => {
     const index = galleries.findIndex((gallery) => gallery.id === galleryID);
+
+    console.log(galleries);
+
+    console.log(index);
 
     if (index > -1) return setGallery(galleries[index]);
 
@@ -36,7 +41,7 @@ const GalleryModal = ({
       description: "",
       images: [],
     });
-  }, [galleries, galleryID]);
+  }, [galleries, galleryID, isModalOpen]);
 
   // Cloudinary image upload
   const handleImageUpload = async (file) => {
@@ -103,7 +108,8 @@ const GalleryModal = ({
 
     setIsModalOpen(false);
 
-    setGalleries((prevState) => [...prevState, gallery]);
+    // setGalleries((prevState) => [...prevState, gallery]);
+    append(gallery);
   };
 
   // DRAG N DROP FUNCTIONALITY
