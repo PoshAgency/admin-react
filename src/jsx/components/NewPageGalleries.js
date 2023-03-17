@@ -119,13 +119,11 @@ const NewPageGalleries = () => {
   });
 
   const clearGalleries = () => {
-    setGalleries([]);
+    remove();
   };
 
   const handleGallery = (id) => {
     setGalleryID(`${id}`);
-
-    console.log(galleryID);
 
     setIsModalOpen(true);
   };

@@ -29,10 +29,6 @@ const GalleryModal = ({
   useEffect(() => {
     const index = galleries.findIndex((gallery) => gallery.id === galleryID);
 
-    console.log(galleries);
-
-    console.log(index);
-
     if (index > -1) return setGallery(galleries[index]);
 
     setGallery({
