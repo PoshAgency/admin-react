@@ -19,7 +19,7 @@ const GalleryModal = ({
   isModalOpen,
   setIsModalOpen,
   galleries,
-  setGalleries,
+  update,
   galleryID,
   append,
 }) => {
@@ -87,15 +87,7 @@ const GalleryModal = ({
     );
 
     if (currentGalleryIndex > -1) {
-      const updatedGallery = { ...gallery };
-
-      const newGalleries = [
-        ...galleries.slice(0, currentGalleryIndex),
-        updatedGallery,
-        ...galleries.slice(currentGalleryIndex + 1),
-      ];
-
-      setGalleries(newGalleries);
+      update(currentGalleryIndex, gallery);
 
       setIsModalOpen(false);
 
@@ -104,7 +96,6 @@ const GalleryModal = ({
 
     setIsModalOpen(false);
 
-    // setGalleries((prevState) => [...prevState, gallery]);
     append(gallery);
   };
 
