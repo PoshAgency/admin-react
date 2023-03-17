@@ -18,6 +18,12 @@ const NewPageGalleries = () => {
     remove();
   };
 
+  const removeGallery = (e, galleryId) => {
+    e.stopPropagation();
+
+    remove(galleryId);
+  };
+
   const handleGallery = (id) => {
     setGalleryID(`${id}`);
 
@@ -58,6 +64,7 @@ const NewPageGalleries = () => {
               gallery={gallery}
               key={index}
               handleGallery={handleGallery}
+              removeGallery={removeGallery}
             />
           ))
         )}
