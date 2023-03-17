@@ -248,6 +248,7 @@ const GalleryModal = ({
           onClick={() => {
             handleSaveGallery();
           }}
+          disabled={gallery?.images.length === 0}
         >
           Save gallery
         </Button>
