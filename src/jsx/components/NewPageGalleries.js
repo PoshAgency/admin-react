@@ -21,7 +21,7 @@ const NewPageGalleries = () => {
   const removeGallery = (e, galleryId) => {
     e.stopPropagation();
 
-    const index = fields.indexOf((gallery) => gallery.id === galleryId);
+    const index = fields.findIndex((gallery) => gallery.id === galleryId);
 
     remove(index);
   };
