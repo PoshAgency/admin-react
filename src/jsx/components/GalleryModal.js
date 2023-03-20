@@ -19,8 +19,9 @@ const GalleryModal = ({
   isModalOpen,
   setIsModalOpen,
   galleries,
-  setGalleries,
+  update,
   galleryID,
+  append,
 }) => {
   const [gallery, setGallery] = useState(null);
 
@@ -36,7 +37,7 @@ const GalleryModal = ({
       description: "",
       images: [],
     });
-  }, [galleries, galleryID]);
+  }, [galleries, galleryID, isModalOpen]);
 
   // Cloudinary image upload
   const handleImageUpload = async (file) => {
@@ -86,15 +87,7 @@ const GalleryModal = ({
     );
 
     if (currentGalleryIndex > -1) {
-      const updatedGallery = { ...gallery };
-
-      const newGalleries = [
-        ...galleries.slice(0, currentGalleryIndex),
-        updatedGallery,
-        ...galleries.slice(currentGalleryIndex + 1),
-      ];
-
-      setGalleries(newGalleries);
+      update(currentGalleryIndex, gallery);
 
       setIsModalOpen(false);
 
@@ -103,7 +96,13 @@ const GalleryModal = ({
 
     setIsModalOpen(false);
 
-    setGalleries((prevState) => [...prevState, gallery]);
+    append(gallery);
+  };
+
+  const removeImage = (e, id) => {
+    const filteredImages = gallery.images.filter((image) => image.id !== id);
+
+    setGallery((prevState) => ({ ...prevState, images: [...filteredImages] }));
   };
 
   // DRAG N DROP FUNCTIONALITY
@@ -230,7 +229,12 @@ const GalleryModal = ({
                   strategy={rectSortingStrategy}
                 >
                   {gallery?.images.map((image, index) => (
-                    <GalleryImage image={image} key={index} index={index} />
+                    <GalleryImage
+                      image={image}
+                      key={index}
+                      index={index}
+                      removeImage={removeImage}
+                    />
                   ))}
                 </SortableContext>
               </DndContext>
@@ -255,6 +259,7 @@ const GalleryModal = ({
           onClick={() => {
             handleSaveGallery();
           }}
+          disabled={gallery?.images.length === 0}
         >
           Save gallery
         </Button>
