@@ -104,6 +104,8 @@ import Todo from "./pages/Todo";
 import ScrollToTop from "./layouts/ScrollToTop";
 import Pages from "./pages/Pages";
 import NewPage from "./pages/NewPage";
+import BlogsPage from "./pages/BlogsPage";
+import BlogPage from "./pages/BlogPage";
 
 const Markup = () => {
   let path = window.location.pathname;
@@ -199,6 +201,8 @@ const Markup = () => {
     /// pages
     { url: "pages/new", component: NewPage },
     { url: "pages", component: Pages },
+    { url: "blogs", component: BlogsPage },
+    { url: "blogs/new", component: BlogPage },
     { url: "page-register", component: Registration },
     { url: "page-lock-screen", component: LockScreen },
     { url: "page-login", component: Login },
