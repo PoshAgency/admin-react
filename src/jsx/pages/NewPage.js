@@ -56,17 +56,25 @@ const NewPage = () => {
                       updateSeoValues("seoTitle", e.target.value);
                       updatePageSlug(e.target.value);
                     }}
+                    onClick={() => setDisabledSlugInput(true)}
                   />
                 </div>
-                <div className="form-group mt-3">
+                <h5>Page slug</h5>
+                <div className="form-group mt-3 slug-field">
                   <input
                     type="text"
                     defaultValue={"https://theposh.agency/"}
-                    className="form-control input-default px-2 mb-3 slug-input"
+                    className="form-control input-default px-2 mb-3 slug-field__input"
                     placeholder="Enter page title"
                     {...methods.register("pageSlug")}
                     disabled={disabledSlutInput}
                   />
+                  <Button
+                    className="slug-field__button mb-3"
+                    onClick={() => setDisabledSlugInput(!disabledSlutInput)}
+                  >
+                    Edit
+                  </Button>
                 </div>
                 <h3 className="mt-4">Hero Title</h3>
                 <div className="form-group mt-3">

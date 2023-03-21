@@ -1,4 +1,12 @@
-/* .slug-input {
-  width: 80% !important;
-  border: 1px solid red !important;
-} */
+.slug-field {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.slug-field__input {
+  width: 90%;
+}
+
+.slug-field__button {
+}
