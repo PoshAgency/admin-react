@@ -39,7 +39,7 @@ const Pages = () => {
   };
 
   return (
-    <div className="container w-100">
+    <>
       <div className="row d-flex justify-content-end">
         <Link to="/pages/new">
           <Button variant="primary" className="btn">
@@ -83,7 +83,7 @@ const Pages = () => {
       <div className="row d-flex flex-wrap mt-5">
         <PagesTable pages={sortedPages} setPages={setSortedPages} />
       </div>
-    </div>
+    </>
   );
 };
 
