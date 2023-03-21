@@ -1,6 +1,7 @@
 import React from "react";
+import { Button } from "react-bootstrap";
 
-const GalleryIcon = ({ gallery, handleGallery }) => {
+const GalleryIcon = ({ gallery, handleGallery, removeGallery }) => {
   const { name, images, id } = gallery;
 
   return (
@@ -15,6 +16,7 @@ const GalleryIcon = ({ gallery, handleGallery }) => {
         color: "white",
         height: "150px",
         width: "250px",
+        position: "relative",
       }}
       role="button"
       onClick={() => handleGallery(id)}
@@ -22,6 +24,15 @@ const GalleryIcon = ({ gallery, handleGallery }) => {
       <p className="mb-0" style={{ fontSize: "32px" }}>
         {name}
       </p>
+
+      <Button
+        variant="outline-danger"
+        className="btn-rounded btn-xxs badge-circle position-absolute mr-2 mt-2"
+        onClick={(e) => removeGallery(e, id)}
+        style={{ top: "0", right: "0" }}
+      >
+        X
+      </Button>
     </div>
   );
 };

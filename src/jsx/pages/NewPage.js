@@ -16,11 +16,15 @@ import DateFnsUtils from "@date-io/date-fns";
 import "./NewPage.css";
 
 const NewPage = () => {
-  const [pagePath, setPagePath] = useState("");
+  const [disabledSlutInput, setDisabledSlugInput] = useState(true);
   const methods = useForm({});
 
   const onSubmit = (data) => {
     console.log(data);
+  };
+
+  const updatePageSlug = (value) => {
+    methods.setValue("pageSlug", `https://theposh.agency/${slugify(value)}`);
   };
 
   const updateSeoValues = (field, value) => {
@@ -49,14 +53,28 @@ const NewPage = () => {
                     defaultValue=""
                     {...methods.register("title")}
                     onChange={(e) => {
-                      setPagePath(e.target.value);
                       updateSeoValues("seoTitle", e.target.value);
+                      updatePageSlug(e.target.value);
                     }}
+                    onClick={() => setDisabledSlugInput(true)}
                   />
-                  <span className="ml-3">{`https://theposh.agency/${slugify(
-                    pagePath,
-                    { lower: true }
-                  )}`}</span>
+                </div>
+                <h5>Page slug</h5>
+                <div className="form-group mt-3 slug-field">
+                  <input
+                    type="text"
+                    defaultValue={"https://theposh.agency/"}
+                    className="form-control input-default px-2 mb-3 slug-field__input"
+                    placeholder="Enter page title"
+                    {...methods.register("pageSlug")}
+                    disabled={disabledSlutInput}
+                  />
+                  <Button
+                    className="slug-field__button mb-3"
+                    onClick={() => setDisabledSlugInput(!disabledSlutInput)}
+                  >
+                    Edit
+                  </Button>
                 </div>
                 <h3 className="mt-4">Hero Title</h3>
                 <div className="form-group mt-3">
@@ -68,7 +86,10 @@ const NewPage = () => {
                   />
                 </div>
                 <PageImagesUploader register={methods.register} />
-                <h3 className="mt-4">Description</h3>
+                <h3 className="mt-4">
+                  Description{" "}
+                  <span className="small ml-2">(300 characters)</span>
+                </h3>
                 <div className="form-group">
                   <textarea
                     {...methods.register("description")}
@@ -79,6 +100,7 @@ const NewPage = () => {
                     rows="4"
                     placeholder="Enter description"
                     id="description"
+                    maxlength="300"
                   ></textarea>
                 </div>
               </div>
@@ -126,10 +148,7 @@ const NewPage = () => {
             </div>
             <div className="row d-flex flex-column mt-5">
               <div className="col">
-                <h3 className="mb-3">
-                  Page content{" "}
-                  <span className="small ml-2">(Up to 240 characters)</span>
-                </h3>
+                <h3 className="mb-3">Page content </h3>
                 <Controller
                   name="pageContent"
                   control={methods.control}
