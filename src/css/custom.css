@@ -18,7 +18,7 @@
 }
 
 .gallery-modal__gallery-type {
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #dadada;
   margin-bottom: 30px;
   padding-bottom: 0;
 }
