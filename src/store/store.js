@@ -5,6 +5,7 @@ import { AuthReducer } from "./reducers/AuthReducer";
 //import rootReducers from './reducers/Index';
 import todoReducers from "./reducers/Reducers";
 import PagesReducer from "./reducers/PagesReducer";
+import BlogsReducer from "./reducers/BlogsReducer";
 import { reducer as reduxFormReducer } from "redux-form";
 
 const middleware = applyMiddleware(thunk);
@@ -15,6 +16,7 @@ const reducers = combineReducers({
   posts: PostsReducer,
   auth: AuthReducer,
   pages: PagesReducer,
+  blogs: BlogsReducer,
   todoReducers,
   form: reduxFormReducer,
 });
