@@ -5,10 +5,13 @@ import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
+import MenuIcon from "@mui/icons-material/Menu";
 import {
   toggleCheckPage,
   togglePagePinned,
 } from "../../../../store/actions/PagesActions";
+
+import "./PagesTableRow.css";
 
 const PagesTableRow = ({ page }) => {
   const { selectedPages } = useSelector((state) => state.pages);
@@ -61,7 +64,7 @@ const PagesTableRow = ({ page }) => {
       {...listeners}
     >
       <td>
-        <div className="custom-control custom-checkbox checkbox-success check-lg mr-3">
+        <div className="custom-control custom-checkbox checkbox-success check-lg">
           <input
             type="checkbox"
             className="custom-control-input"
@@ -72,7 +75,9 @@ const PagesTableRow = ({ page }) => {
           <label
             className="custom-control-label"
             htmlFor={`checkbox-${page.id}`}
-          ></label>
+          >
+            <MenuIcon className="ml-3" />
+          </label>
         </div>
       </td>
       <td>
@@ -114,8 +119,11 @@ const PagesTableRow = ({ page }) => {
           >
             <i className="fa fa-trash"></i>
           </Button>
-          <Button className="btn btn-info shadow btn-xs sharp">
+          <Button className="btn btn-info shadow btn-xs sharp mr-1">
             <i className="fa fa-copy"></i>
+          </Button>
+          <Button className="btn btn-secondary shadow btn-xs sharp">
+            <i className="fa fa-search"></i>
           </Button>
         </div>
       </td>

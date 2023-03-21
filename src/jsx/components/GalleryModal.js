@@ -19,8 +19,9 @@ const GalleryModal = ({
   isModalOpen,
   setIsModalOpen,
   galleries,
-  setGalleries,
+  update,
   galleryID,
+  append,
 }) => {
   const [gallery, setGallery] = useState(null);
 
@@ -34,9 +35,10 @@ const GalleryModal = ({
       id: uuid(),
       name: "",
       description: "",
+      type: "gallery",
       images: [],
     });
-  }, [galleries, galleryID]);
+  }, [galleries, galleryID, isModalOpen]);
 
   // Cloudinary image upload
   const handleImageUpload = async (file) => {
@@ -86,15 +88,7 @@ const GalleryModal = ({
     );
 
     if (currentGalleryIndex > -1) {
-      const updatedGallery = { ...gallery };
-
-      const newGalleries = [
-        ...galleries.slice(0, currentGalleryIndex),
-        updatedGallery,
-        ...galleries.slice(currentGalleryIndex + 1),
-      ];
-
-      setGalleries(newGalleries);
+      update(currentGalleryIndex, gallery);
 
       setIsModalOpen(false);
 
@@ -103,7 +97,13 @@ const GalleryModal = ({
 
     setIsModalOpen(false);
 
-    setGalleries((prevState) => [...prevState, gallery]);
+    append(gallery);
+  };
+
+  const removeImage = (e, id) => {
+    const filteredImages = gallery.images.filter((image) => image.id !== id);
+
+    setGallery((prevState) => ({ ...prevState, images: [...filteredImages] }));
   };
 
   // DRAG N DROP FUNCTIONALITY
@@ -139,102 +139,141 @@ const GalleryModal = ({
 
   return (
     <Modal
-      className="fade bd-example-modal-lg"
+      className="fade bd-example-modal-lg "
       show={isModalOpen}
       size="lg"
       onHide={() => setIsModalOpen(false)}
     >
-      <Modal.Body
-        className="d-flex pb-2"
-        style={{ maxWidth: "1000px", height: "500px" }}
-      >
-        <div className="col-5">
-          <div className="w-100">
-            <h5>Gallery title</h5>
-            <div className="form-group mt-2">
-              <input
-                type="text"
-                name="name"
-                value={gallery?.name}
-                className="form-control input-danger px-2 mb-3 w-100"
-                placeholder="Enter gallery title"
+      <Modal.Header className="display-flex align-items-center">
+        <h2 className="mb-0">{gallery?.name || "New Gallery"}</h2>
+        <h4 className="mb-0 gallery-modal__type">{gallery?.type}</h4>
+      </Modal.Header>
+      <Modal.Body className="container d-flex flex-column pb-2 pt-2 gallery-modal__body">
+        <div className="row gallery-modal__gallery-type">
+          <div className="col-12">
+            <h5 className="mt-2">Type</h5>
+            <div className="form-group mb-0">
+              <label
+                className="radio-inline mr-3"
                 onChange={handleGalleryInput}
-              />
-            </div>
-          </div>
-          <div className="w-100 mt-3">
-            <h5 className="mt-4">Gallery description</h5>
-            <div className="form-group mt-3 h-100">
-              <textarea
+              >
+                <input
+                  type="radio"
+                  name="type"
+                  value="gallery"
+                  checked={gallery?.type === "gallery"}
+                />{" "}
+                Gallery
+              </label>
+              <label
+                className="radio-inline mr-3"
                 onChange={handleGalleryInput}
-                className="form-control"
-                value={gallery?.description}
-                name="description"
-                rows="8"
-                placeholder="Enter gallery description"
-                id="description"
-              ></textarea>
+              >
+                <input
+                  type="radio"
+                  name="type"
+                  value="slider"
+                  checked={gallery?.type === "slider"}
+                />{" "}
+                Slider
+              </label>
             </div>
-          </div>
-          <div className="mt-3">
-            <h5 className="mt-2">
-              Copy shortcode:{" "}
-              <span
-                role="button"
-                onClick={() =>
-                  navigator.clipboard.writeText(`[${gallery.name}]`)
-                }
-              >{`[${gallery?.name}]`}</span>
-            </h5>
-          </div>
-          <div>
-            <label
-              as="button"
-              htmlFor="add-gallery-images"
-              className="btn btn-primary btn-sm position-absolute bottom-0 mb-0 mt-3"
-              onChange={handleUploadAllImages}
-            >
-              <span style={{}} className="">
-                Add photo
-              </span>
-              <input
-                type="file"
-                accept="image/jpeg"
-                id="add-gallery-images"
-                hidden
-                multiple
-              />
-            </label>
           </div>
         </div>
-        <div className="col-7 h-100 overflow-hidden position-relative">
-          <div>
-            <h4>Images</h4>
-          </div>
-          <div
-            className="d-flex flex-wrap position-relative mh-100 z-1"
-            style={{
-              overflowY: "scroll",
-            }}
-          >
-            {!gallery?.images.length ? (
-              <p>Image list is empty.</p>
-            ) : (
-              <DndContext
-                collisionDetection={closestCenter}
-                onDragEnd={handleDragEnd}
-                sensors={sensors}
+        <div className="row">
+          <div className="col-5">
+            <div className="w-100">
+              <h5>Gallery title</h5>
+              <div className="form-group mt-2">
+                <input
+                  type="text"
+                  name="name"
+                  value={gallery?.name}
+                  className="form-control input-danger px-2 mb-3 w-100"
+                  placeholder="Enter gallery title"
+                  onChange={handleGalleryInput}
+                />
+              </div>
+            </div>
+            <div className="w-100 mt-3">
+              <h5 className="mt-4">Gallery description</h5>
+              <div className="form-group mt-3 h-100">
+                <textarea
+                  onChange={handleGalleryInput}
+                  className="form-control"
+                  value={gallery?.description}
+                  name="description"
+                  rows="8"
+                  placeholder="Enter gallery description"
+                  id="description"
+                ></textarea>
+              </div>
+            </div>
+            <div className="mt-3">
+              <h5 className="mt-2">
+                Copy shortcode:{" "}
+                <span
+                  role="button"
+                  onClick={() =>
+                    navigator.clipboard.writeText(`[${gallery.name}]`)
+                  }
+                >{`[${gallery?.name}]`}</span>
+              </h5>
+            </div>
+            <div>
+              <label
+                as="button"
+                htmlFor="add-gallery-images"
+                className="btn btn-primary btn-sm position-absolute bottom-0 mb-0 mt-3"
+                onChange={handleUploadAllImages}
               >
-                <SortableContext
-                  items={gallery.images}
-                  strategy={rectSortingStrategy}
+                <span style={{}} className="">
+                  Add photo
+                </span>
+                <input
+                  type="file"
+                  accept="image/jpeg"
+                  id="add-gallery-images"
+                  hidden
+                  multiple
+                />
+              </label>
+            </div>
+          </div>
+          <div className="col-7 h-100 overflow-hidden position-relative">
+            <div>
+              <h4>Images</h4>
+            </div>
+            <div
+              className="d-flex flex-wrap position-relative mh-100 z-1"
+              style={{
+                overflowY: "scroll",
+              }}
+            >
+              {!gallery?.images.length ? (
+                <p>Image list is empty.</p>
+              ) : (
+                <DndContext
+                  collisionDetection={closestCenter}
+                  onDragEnd={handleDragEnd}
+                  sensors={sensors}
                 >
-                  {gallery?.images.map((image, index) => (
-                    <GalleryImage image={image} key={index} index={index} />
-                  ))}
-                </SortableContext>
-              </DndContext>
-            )}
+                  <SortableContext
+                    items={gallery.images}
+                    strategy={rectSortingStrategy}
+                  >
+                    {gallery?.images.map((image, index) => (
+                      <GalleryImage
+                        image={image}
+                        key={index}
+                        index={index}
+                        removeImage={removeImage}
+                      />
+                    ))}
+                  </SortableContext>
+                </DndContext>
+              )}
+            </div>
           </div>
         </div>
       </Modal.Body>
@@ -255,6 +294,7 @@ const GalleryModal = ({
           onClick={() => {
             handleSaveGallery();
           }}
+          disabled={gallery?.images.length === 0}
         >
           Save gallery
         </Button>
