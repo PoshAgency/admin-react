@@ -8,5 +8,17 @@
   width: 90%;
 }
 
-.slug-field__button {
+.gallery-modal__type {
+  text-transform: capitalize;
+}
+
+.gallery-modal__body {
+  max-width: 1000px;
+  height: 550px;
+}
+
+.gallery-modal__gallery-type {
+  border-bottom: 1px solid black;
+  margin-bottom: 30px;
+  padding-bottom: 0;
 }
