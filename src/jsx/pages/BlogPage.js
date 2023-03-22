@@ -12,6 +12,8 @@ import NewPageGalleries from "../components/NewPageGalleries";
 
 import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
+import BlogTagsSelector from "../components/BlogTagsSelector";
+import BlogRelatedLinks from "../components/BlogRelatedLinks";
 
 // import "./NewPage.css";
 
@@ -100,7 +102,7 @@ const BlogPage = () => {
                     rows="4"
                     placeholder="Enter description"
                     id="description"
-                    maxlength="300"
+                    maxLength="300"
                   ></textarea>
                 </div>
               </div>
@@ -128,7 +130,8 @@ const BlogPage = () => {
                     )}
                   />
                 </div>
-                {/* Maybe added later */}
+                <BlogTagsSelector methods={methods} />
+                {/* Might added later */}
                 {/* <div>
                   <h3 className="mb-3 mt-3">Template</h3>
                   <div className="form-group">
@@ -179,6 +182,9 @@ const BlogPage = () => {
             </div>
             <div className="row mt-5">
               <NewPageGalleries />
+            </div>
+            <div className="row mt-5">
+              <BlogRelatedLinks />
             </div>
             {/* <div className="row mt-5">
               <NewPageSections control={methods.control} />
