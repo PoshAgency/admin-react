@@ -7,6 +7,7 @@ import todoReducers from "./reducers/Reducers";
 import PagesReducer from "./reducers/PagesReducer";
 import BlogsReducer from "./reducers/BlogsReducer";
 import { reducer as reduxFormReducer } from "redux-form";
+import ProductsReducer from "./reducers/ProductsReducer";
 
 const middleware = applyMiddleware(thunk);
 
@@ -17,6 +18,7 @@ const reducers = combineReducers({
   auth: AuthReducer,
   pages: PagesReducer,
   blogs: BlogsReducer,
+  products: ProductsReducer,
   todoReducers,
   form: reduxFormReducer,
 });

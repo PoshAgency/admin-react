@@ -15,7 +15,7 @@ import DateFnsUtils from "@date-io/date-fns";
 
 import "./NewPage.css";
 
-const NewPage = () => {
+const SinglePage = () => {
   const [disabledSlutInput, setDisabledSlugInput] = useState(true);
   const methods = useForm({});
 
@@ -100,7 +100,7 @@ const NewPage = () => {
                     rows="4"
                     placeholder="Enter description"
                     id="description"
-                    maxlength="300"
+                    maxLength="300"
                   ></textarea>
                 </div>
               </div>
@@ -113,9 +113,7 @@ const NewPage = () => {
                     render={({ field: { onChange, onBlur, value, ref } }) => (
                       <MuiPickersUtilsProvider utils={DateFnsUtils}>
                         <DatePicker
-                          // autoOk
-                          // label="Published"
-                          defaultValue={null}
+                          autoOk
                           clearable
                           format="dd/MM/yyyy"
                           disableFuture
@@ -222,4 +220,4 @@ const NewPage = () => {
   );
 };
 
-export default NewPage;
+export default SinglePage;

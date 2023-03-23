@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import BlogsTable from "../components/table/BlogsTable/BlogsTable";
 
-const Pages = () => {
+const Blogs = () => {
   const { blogs } = useSelector((state) => state.blogs);
 
   const [sortedBlogs, setSortedBlogs] = useState(sortBlogs(blogs));
@@ -21,20 +21,20 @@ const Pages = () => {
     });
   }
 
-  const searchPages = (e) => {
-    let filteredPages = [];
+  const searchBlogs = (e) => {
+    let filteredBlogs = [];
 
     if (!e.target.value) {
       setSortedBlogs(sortBlogs(blogs));
     } else {
-      filteredPages = blogs.filter(
-        (page) =>
-          page.title.toLowerCase().includes(e.target.value.toLowerCase()) ||
-          page.author.toLowerCase().includes(e.target.value.toLowerCase()) ||
-          page.category.toLowerCase().includes(e.target.value.toLowerCase())
+      filteredBlogs = blogs.filter(
+        (blog) =>
+          blog.title.toLowerCase().includes(e.target.value.toLowerCase()) ||
+          blog.author.toLowerCase().includes(e.target.value.toLowerCase()) ||
+          blog.category.toLowerCase().includes(e.target.value.toLowerCase())
       );
 
-      setSortedBlogs(sortBlogs(filteredPages));
+      setSortedBlogs(sortBlogs(filteredBlogs));
     }
   };
 
@@ -59,7 +59,7 @@ const Pages = () => {
               type="text"
               className="form-control"
               placeholder="Search blogs"
-              onChange={searchPages}
+              onChange={searchBlogs}
             />
             <div className="input-group-append">
               <span className="input-group-text">
@@ -87,4 +87,4 @@ const Pages = () => {
   );
 };
 
-export default Pages;
+export default Blogs;
