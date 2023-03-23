@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Controller } from "react-hook-form";
 import CreatableSelect from "react-select/creatable";
 
-const BlogTagsSelector = ({ control }) => {
+const BlogTagsSelector = ({ control, title, name }) => {
   const [inputValue, setInputValue] = useState("");
   const [value, setValue] = useState([]);
 
@@ -23,10 +23,12 @@ const BlogTagsSelector = ({ control }) => {
   });
 
   const handleKeyDown = (event, field) => {
-    if (!inputValue) return;
     switch (event.key) {
       case "Enter":
       case "Tab":
+        if (inputValue === "") return event.preventDefault();
+        console.log(inputValue);
+
         const tagExists =
           field.value !== null &&
           field?.value.findIndex((tag) => tag.value === inputValue);
@@ -45,25 +47,28 @@ const BlogTagsSelector = ({ control }) => {
   };
 
   return (
-    <Controller
-      name="tags"
-      control={control}
-      defaultValue={[]}
-      render={({ field }) => (
-        <CreatableSelect
-          {...field}
-          options={options}
-          isMulti
-          isClearable
-          components={components}
-          onChange={(newValue) => field.onChange(newValue)}
-          onInputChange={(newValue) => setInputValue(newValue)}
-          onKeyDown={(e) => handleKeyDown(e, field)}
-          placeholder="Create or select existing tags"
-          value={field.value}
-        />
-      )}
-    />
+    <div className="mt-3">
+      <h3 className="mb-3">{title}</h3>
+      <Controller
+        name={name}
+        control={control}
+        defaultValue={[]}
+        render={({ field }) => (
+          <CreatableSelect
+            {...field}
+            options={options}
+            isMulti
+            isClearable
+            components={components}
+            onChange={(newValue) => field.onChange(newValue)}
+            onInputChange={(newValue) => setInputValue(newValue)}
+            onKeyDown={(e) => handleKeyDown(e, field)}
+            placeholder="Create or select existing tags"
+            value={field.value}
+          />
+        )}
+      />
+    </div>
   );
 };
 

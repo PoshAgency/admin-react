@@ -17,7 +17,7 @@ import BlogRelatedLinks from "../components/BlogRelatedLinks";
 
 // import "./NewPage.css";
 
-const BlogPage = () => {
+const SingleBlog = () => {
   const [disabledSlugInput, setDisabledSlugInput] = useState(true);
   const methods = useForm({});
 
@@ -130,7 +130,11 @@ const BlogPage = () => {
                     )}
                   />
                 </div>
-                <BlogTagsSelector methods={methods} />
+                <BlogTagsSelector
+                  methods={methods}
+                  title={"Blog tags"}
+                  name="tags"
+                />
                 {/* Might added later */}
                 {/* <div>
                   <h3 className="mb-3 mt-3">Template</h3>
@@ -229,4 +233,4 @@ const BlogPage = () => {
   );
 };
 
-export default BlogPage;
+export default SingleBlog;
