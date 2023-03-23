@@ -4,53 +4,53 @@ import { useState } from "react";
 import { Button } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import PagesTable from "../components/table/PagesTable/PagesTable";
+import BlogsTable from "../components/table/BlogsTable/BlogsTable";
 
-const Pages = () => {
-  const { pages } = useSelector((state) => state.pages);
+const Blogs = () => {
+  const { blogs } = useSelector((state) => state.blogs);
 
-  const [sortedPages, setSortedPages] = useState(sortPages(pages));
+  const [sortedBlogs, setSortedBlogs] = useState(sortBlogs(blogs));
 
   useEffect(() => {
-    setSortedPages(sortPages(pages));
-  }, [pages]);
+    setSortedBlogs(sortBlogs(blogs));
+  }, [blogs]);
 
-  function sortPages(arr) {
+  function sortBlogs(arr) {
     return arr.sort((a, b) => {
       return b.pinned - a.pinned;
     });
   }
 
-  const searchPages = (e) => {
-    let filteredPages = [];
+  const searchBlogs = (e) => {
+    let filteredBlogs = [];
 
     if (!e.target.value) {
-      setSortedPages(sortPages(pages));
+      setSortedBlogs(sortBlogs(blogs));
     } else {
-      filteredPages = pages.filter(
-        (page) =>
-          page.title.toLowerCase().includes(e.target.value.toLowerCase()) ||
-          page.author.toLowerCase().includes(e.target.value.toLowerCase()) ||
-          page.category.toLowerCase().includes(e.target.value.toLowerCase())
+      filteredBlogs = blogs.filter(
+        (blog) =>
+          blog.title.toLowerCase().includes(e.target.value.toLowerCase()) ||
+          blog.author.toLowerCase().includes(e.target.value.toLowerCase()) ||
+          blog.category.toLowerCase().includes(e.target.value.toLowerCase())
       );
 
-      setSortedPages(sortPages(filteredPages));
+      setSortedBlogs(sortBlogs(filteredBlogs));
     }
   };
 
   return (
     <>
       <div className="row d-flex justify-content-end">
-        <Link to="/pages/new">
+        <Link to="/blogs/new">
           <Button variant="primary" className="btn">
-            New Page
+            New Blog
           </Button>
         </Link>
       </div>
       <div className="row mt-5">
         <div className="col d-flex align-items-center">
-          <h4 className="mb-0">{`${sortedPages.length} ${
-            sortedPages.length === 1 ? "page" : "pages"
+          <h4 className="mb-0">{`${sortedBlogs.length} ${
+            sortedBlogs.length === 1 ? "blog" : "blogs"
           }`}</h4>
         </div>
         <div className="col d-flex justify-content-end px-0">
@@ -58,8 +58,8 @@ const Pages = () => {
             <input
               type="text"
               className="form-control"
-              placeholder="Search pages"
-              onChange={searchPages}
+              placeholder="Search blogs"
+              onChange={searchBlogs}
             />
             <div className="input-group-append">
               <span className="input-group-text">
@@ -81,10 +81,10 @@ const Pages = () => {
         </div>
       </div>
       <div className="row d-flex flex-wrap mt-5">
-        <PagesTable pages={sortedPages} setPages={setSortedPages} />
+        <BlogsTable blogs={sortedBlogs} setBlogs={setSortedBlogs} />
       </div>
     </>
   );
 };
 
-export default Pages;
+export default Blogs;

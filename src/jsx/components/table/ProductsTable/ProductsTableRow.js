@@ -7,17 +7,17 @@ import { Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import MenuIcon from "@mui/icons-material/Menu";
 import {
-  toggleCheckPage,
-  togglePagePinned,
-} from "../../../../store/actions/PagesActions";
+  toggleCheckProduct,
+  toggleProductPinned,
+} from "../../../../store/actions/ProductsActions";
 
-import "./PagesTableRow.css";
+// import "./PagesTableRow.css";
 
-const PagesTableRow = ({ page }) => {
-  const { selectedPages } = useSelector((state) => state.pages);
+const ProductsTableRow = ({ product }) => {
+  const { selectedProducts } = useSelector((state) => state.products);
 
   const { attributes, listeners, setNodeRef, transform, transition } =
-    useSortable({ id: !page.pinned && page.id });
+    useSortable({ id: !product.pinned && product.id });
   const dispatch = useDispatch();
 
   const style = {
@@ -28,36 +28,36 @@ const PagesTableRow = ({ page }) => {
   const handlePageDelete = () => {
     swal({
       title: "Are you sure?",
-      text: "Once deleted, you will not be able to recover this page!",
+      text: "Once deleted, you will not be able to recover this product!",
       icon: "warning",
       buttons: true,
       dangerMode: true,
     }).then((willDelete) => {
       if (willDelete) {
-        swal("Selected page has been deleted!", {
+        swal("Selected product has been deleted!", {
           icon: "success",
         });
       } else {
-        swal("Selected page is safe!");
+        swal("Selected product is safe!");
       }
     });
   };
 
   const selectPage = () => {
-    dispatch(toggleCheckPage(page.id));
+    dispatch(toggleCheckProduct(product.id));
   };
 
   const isChecked = (id) => {
-    return selectedPages.includes(id);
+    return selectedProducts.includes(id);
   };
 
   const togglePinned = () => {
-    dispatch(togglePagePinned(page.id));
+    dispatch(toggleProductPinned(product.id));
   };
 
   return (
     <tr
-      key={page.id}
+      key={product.id}
       ref={setNodeRef}
       style={style}
       {...attributes}
@@ -68,38 +68,38 @@ const PagesTableRow = ({ page }) => {
           <input
             type="checkbox"
             className="custom-control-input"
-            id={`checkbox-${page.id}`}
+            id={`checkbox-${product.id}`}
             onChange={selectPage}
-            checked={isChecked(page.id)}
+            checked={isChecked(product.id)}
           />
           <label
             className="custom-control-label"
-            htmlFor={`checkbox-${page.id}`}
+            htmlFor={`checkbox-${product.id}`}
           >
             <MenuIcon className="ml-3" />
           </label>
         </div>
       </td>
       <td>
-        <strong>{page.title}</strong>
+        <strong>{product.title}</strong>
       </td>
       <td>
         <div className="d-flex align-items-center">
-          <span className="w-space-no">{page.author}</span>
+          <span className="w-space-no">{product.author}</span>
         </div>
       </td>
-      <td>{page.date} </td>
-      <td>{page.category}</td>
+      <td>{product.date} </td>
+      <td>{product.category}</td>
       <td onClick={togglePinned}>
         <div className="d-flex align-items-center">
           {
             <>
               <i
                 className={`fa fa-circle ${
-                  page.pinned ? "text-success" : "text-danger"
+                  product.pinned ? "text-success" : "text-danger"
                 } mr-1`}
               ></i>
-              {page.pinned ? "Pinned" : "Not Pinned"}
+              {product.pinned ? "Pinned" : "Not Pinned"}
             </>
           }
         </div>
@@ -131,4 +131,4 @@ const PagesTableRow = ({ page }) => {
   );
 };
 
-export default PagesTableRow;
+export default ProductsTableRow;

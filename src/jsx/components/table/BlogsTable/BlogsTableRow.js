@@ -7,17 +7,17 @@ import { Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import MenuIcon from "@mui/icons-material/Menu";
 import {
-  toggleCheckPage,
-  togglePagePinned,
-} from "../../../../store/actions/PagesActions";
+  toggleBlogPinned,
+  toggleCheckBlog,
+} from "../../../../store/actions/BlogsActions";
 
-import "./PagesTableRow.css";
+// import "./PagesTableRow.css";
 
-const PagesTableRow = ({ page }) => {
-  const { selectedPages } = useSelector((state) => state.pages);
+const BlogsTableRow = ({ blog }) => {
+  const { selectedBlogs } = useSelector((state) => state.blogs);
 
   const { attributes, listeners, setNodeRef, transform, transition } =
-    useSortable({ id: !page.pinned && page.id });
+    useSortable({ id: !blog.pinned && blog.id });
   const dispatch = useDispatch();
 
   const style = {
@@ -28,36 +28,36 @@ const PagesTableRow = ({ page }) => {
   const handlePageDelete = () => {
     swal({
       title: "Are you sure?",
-      text: "Once deleted, you will not be able to recover this page!",
+      text: "Once deleted, you will not be able to recover this blog!",
       icon: "warning",
       buttons: true,
       dangerMode: true,
     }).then((willDelete) => {
       if (willDelete) {
-        swal("Selected page has been deleted!", {
+        swal("Selected blog has been deleted!", {
           icon: "success",
         });
       } else {
-        swal("Selected page is safe!");
+        swal("Selected blog is safe!");
       }
     });
   };
 
   const selectPage = () => {
-    dispatch(toggleCheckPage(page.id));
+    dispatch(toggleCheckBlog(blog.id));
   };
 
   const isChecked = (id) => {
-    return selectedPages.includes(id);
+    return selectedBlogs.includes(id);
   };
 
   const togglePinned = () => {
-    dispatch(togglePagePinned(page.id));
+    dispatch(toggleBlogPinned(blog.id));
   };
 
   return (
     <tr
-      key={page.id}
+      key={blog.id}
       ref={setNodeRef}
       style={style}
       {...attributes}
@@ -68,38 +68,38 @@ const PagesTableRow = ({ page }) => {
           <input
             type="checkbox"
             className="custom-control-input"
-            id={`checkbox-${page.id}`}
+            id={`checkbox-${blog.id}`}
             onChange={selectPage}
-            checked={isChecked(page.id)}
+            checked={isChecked(blog.id)}
           />
           <label
             className="custom-control-label"
-            htmlFor={`checkbox-${page.id}`}
+            htmlFor={`checkbox-${blog.id}`}
           >
             <MenuIcon className="ml-3" />
           </label>
         </div>
       </td>
       <td>
-        <strong>{page.title}</strong>
+        <strong>{blog.title}</strong>
       </td>
       <td>
         <div className="d-flex align-items-center">
-          <span className="w-space-no">{page.author}</span>
+          <span className="w-space-no">{blog.author}</span>
         </div>
       </td>
-      <td>{page.date} </td>
-      <td>{page.category}</td>
+      <td>{blog.date} </td>
+      <td>{blog.category}</td>
       <td onClick={togglePinned}>
         <div className="d-flex align-items-center">
           {
             <>
               <i
                 className={`fa fa-circle ${
-                  page.pinned ? "text-success" : "text-danger"
+                  blog.pinned ? "text-success" : "text-danger"
                 } mr-1`}
               ></i>
-              {page.pinned ? "Pinned" : "Not Pinned"}
+              {blog.pinned ? "Pinned" : "Not Pinned"}
             </>
           }
         </div>
@@ -131,4 +131,4 @@ const PagesTableRow = ({ page }) => {
   );
 };
 
-export default PagesTableRow;
+export default BlogsTableRow;

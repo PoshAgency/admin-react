@@ -1,16 +1,16 @@
 import { v4 as uuid } from "uuid";
 import {
-  TOGGLE_PINNED_PAGE,
-  TOGGLE_CHECK_PAGE,
-  DESELECT_ALL_PAGES,
-  TOGGLE_SELECT_ALL_PAGES,
-} from "../actions/PagesTypes";
+  TOGGLE_CHECK_BLOG,
+  TOGGLE_SELECT_ALL_BLOGS,
+  TOGGLE_PINNED_BLOG,
+  DESELECT_ALL_BLOGS,
+} from "../actions/BlogsTypes";
 
 const initialState = {
-  pages: [
+  blogs: [
     {
       title:
-        "The European Health Data Space: A new catalyst for medical innovation",
+        "BLOG The European Health Data Space: A new catalyst for medical innovation",
       text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque facere accusantium, perferendis aspernatur ipsa animi totam sed, esse, quam nisi possimus explicabo deleniti placeat temporibus corporis blanditiis quas delectus amet.",
       author: "ThePosh team",
       date: new Date(2023, 1, 3).toLocaleDateString("en-gb"),
@@ -20,7 +20,7 @@ const initialState = {
       pinned: false,
     },
     {
-      title: "IBM: Artificial Intelligence and Research Projects",
+      title: "BLOG IBM: Artificial Intelligence and Research Projects",
       text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque facere accusantium, perferendis aspernatur ipsa animi totam sed, esse, quam nisi possimus explicabo deleniti placeat temporibus corporis blanditiis quas delectus amet.",
       author: "ThePosh team",
       date: new Date(2023, 0, 13).toLocaleDateString("en-gb"),
@@ -30,7 +30,7 @@ const initialState = {
       pinned: false,
     },
     {
-      title: "INTERPOL CKE as Privanova’s Dissemination Platform for LEAs",
+      title: "BLOG INTERPOL CKE as Privanova’s Dissemination Platform for LEAs",
       text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque facere accusantium, perferendis aspernatur ipsa animi totam sed, esse, quam nisi possimus explicabo deleniti placeat temporibus corporis blanditiis quas delectus amet.",
       author: "Primanova team",
       date: new Date(2023, 0, 8).toLocaleDateString("en-gb"),
@@ -40,7 +40,8 @@ const initialState = {
       pinned: true,
     },
     {
-      title: "Horizon Europe Data Management Plan from an Ethics Perspective",
+      title:
+        "BLOG Horizon Europe Data Management Plan from an Ethics Perspective",
       text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque facere accusantium, perferendis aspernatur ipsa animi totam sed, esse, quam nisi possimus explicabo deleniti placeat temporibus corporis blanditiis quas delectus amet.",
       author: "ThePosh team",
       date: new Date(2023, 0, 2).toLocaleDateString("en-gb"),
@@ -50,7 +51,7 @@ const initialState = {
       pinned: false,
     },
     {
-      title: "Copyright infringement as a form of cybercrime",
+      title: "BLOG Copyright infringement as a form of cybercrime",
       text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque facere accusantium, perferendis aspernatur ipsa animi totam sed, esse, quam nisi possimus explicabo deleniti placeat temporibus corporis blanditiis quas delectus amet.",
       author: "Primanova team",
       date: new Date(2023, 0, 18).toLocaleDateString("en-gb"),
@@ -60,7 +61,7 @@ const initialState = {
       pinned: false,
     },
     {
-      title: "Privacy Impact Assessments for H2020 Projects",
+      title: "BLOG Privacy Impact Assessments for H2020 Projects",
       text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque facere accusantium, perferendis aspernatur ipsa animi totam sed, esse, quam nisi possimus explicabo deleniti placeat temporibus corporis blanditiis quas delectus amet.",
       author: "ThePosh team",
       date: new Date(2023, 1, 3).toLocaleDateString("en-gb"),
@@ -71,7 +72,7 @@ const initialState = {
     },
     {
       title:
-        "Opinion on the European Gambling and Betting Association’s draft Code of Conduct",
+        "BLOG Opinion on the European Gambling and Betting Association’s draft Code of Conduct",
       text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque facere accusantium, perferendis aspernatur ipsa animi totam sed, esse, quam nisi possimus explicabo deleniti placeat temporibus corporis blanditiis quas delectus amet.",
       author: "Primanova team",
       date: new Date(2023, 1, 1).toLocaleDateString("en-gb"),
@@ -81,7 +82,7 @@ const initialState = {
       pinned: false,
     },
     {
-      title: "CC-DRIVER Kickoff Meeting",
+      title: "BLOG CC-DRIVER Kickoff Meeting",
       text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque facere accusantium, perferendis aspernatur ipsa animi totam sed, esse, quam nisi possimus explicabo deleniti placeat temporibus corporis blanditiis quas delectus amet.",
       author: "ThePosh team",
       date: new Date(2023, 0, 13).toLocaleDateString("en-gb"),
@@ -91,7 +92,7 @@ const initialState = {
       pinned: false,
     },
     {
-      title: "MARVEL Kick-off Meeting",
+      title: "BLOG MARVEL Kick-off Meeting",
       text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque facere accusantium, perferendis aspernatur ipsa animi totam sed, esse, quam nisi possimus explicabo deleniti placeat temporibus corporis blanditiis quas delectus amet.",
       author: "Primanova team",
       date: new Date(2023, 1, 2).toLocaleDateString("en-gb"),
@@ -101,7 +102,7 @@ const initialState = {
       pinned: false,
     },
     {
-      title: "Living-in.EU: Digital Transformation in the European Cities",
+      title: "BLOG Living-in.EU: Digital Transformation in the European Cities",
       text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque facere accusantium, perferendis aspernatur ipsa animi totam sed, esse, quam nisi possimus explicabo deleniti placeat temporibus corporis blanditiis quas delectus amet.",
       author: "ThePosh team",
       date: new Date(2023, 0, 2).toLocaleDateString("en-gb"),
@@ -111,7 +112,7 @@ const initialState = {
       pinned: false,
     },
     {
-      title: "Privanova – INTERPOL Cybercrime Knowledge Exchange Member",
+      title: "BLOG Privanova – INTERPOL Cybercrime Knowledge Exchange Member",
       text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque facere accusantium, perferendis aspernatur ipsa animi totam sed, esse, quam nisi possimus explicabo deleniti placeat temporibus corporis blanditiis quas delectus amet.",
       author: "ThePosh team",
       date: new Date(2023, 1, 22).toLocaleDateString("en-gb"),
@@ -121,52 +122,52 @@ const initialState = {
       pinned: true,
     },
   ],
-  selectedPages: [],
+  selectedBlogs: [],
 };
 
-export default function PagesReducer(state = initialState, action) {
-  if (action.type === TOGGLE_PINNED_PAGE) {
-    const pages = [...state.pages];
-    const pageIndex = pages.findIndex((page) => action.payload.id === page.id);
+export default function BlogsReducer(state = initialState, action) {
+  if (action.type === TOGGLE_PINNED_BLOG) {
+    const blogs = [...state.blogs];
+    const blogIndex = blogs.findIndex((blog) => action.payload.id === blog.id);
 
-    pages[pageIndex].pinned = !pages[pageIndex].pinned;
+    blogs[blogIndex].pinned = !blogs[blogIndex].pinned;
 
-    return { ...state, pages };
+    return { ...state, blogs };
   }
 
-  if (action.type === TOGGLE_CHECK_PAGE) {
-    const pageIndex = state.selectedPages.findIndex(
-      (page) => page === action.payload.id
+  if (action.type === TOGGLE_CHECK_BLOG) {
+    const blogIndex = state.selectedBlogs.findIndex(
+      (blog) => blog === action.payload.id
     );
 
-    let newSelectedPages = [...state.selectedPages];
+    let newSelectedBlogs = [...state.selectedBlogs];
 
-    if (pageIndex !== -1) {
-      newSelectedPages = state.selectedPages.filter(
+    if (blogIndex !== -1) {
+      newSelectedBlogs = state.selectedBlogs.filter(
         (id) => id !== action.payload.id
       );
     } else {
-      newSelectedPages.push(action.payload.id);
+      newSelectedBlogs.push(action.payload.id);
     }
 
     return {
       ...state,
-      selectedPages: newSelectedPages,
+      selectedBlogs: newSelectedBlogs,
     };
   }
 
-  if (action.type === TOGGLE_SELECT_ALL_PAGES) {
-    let newSelectedPagesArray = [];
+  if (action.type === TOGGLE_SELECT_ALL_BLOGS) {
+    let newSelectedBlogsArray = [];
 
-    if (state.pages.length > state.selectedPages.length) {
-      newSelectedPagesArray = state.pages.map((page) => page.id);
+    if (state.blogs.length > state.selectedBlogs.length) {
+      newSelectedBlogsArray = state.blogs.map((blog) => blog.id);
     }
 
-    return { ...state, selectedPages: newSelectedPagesArray };
+    return { ...state, selectedBlogs: newSelectedBlogsArray };
   }
 
-  if (action.type === DESELECT_ALL_PAGES) {
-    return { ...state, selectedPages: [] };
+  if (action.type === DESELECT_ALL_BLOGS) {
+    return { ...state, selectedBlogs: [] };
   }
 
   return state;

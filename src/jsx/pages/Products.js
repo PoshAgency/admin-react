@@ -4,53 +4,53 @@ import { useState } from "react";
 import { Button } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import PagesTable from "../components/table/PagesTable/PagesTable";
+import ProductsTable from "../components/table/ProductsTable/ProductsTable";
 
-const Pages = () => {
-  const { pages } = useSelector((state) => state.pages);
+const Products = () => {
+  const { products } = useSelector((state) => state.products);
 
-  const [sortedPages, setSortedPages] = useState(sortPages(pages));
+  const [sortedProdcuts, setSortedProducts] = useState(sortProducts(products));
 
   useEffect(() => {
-    setSortedPages(sortPages(pages));
-  }, [pages]);
+    setSortedProducts(sortProducts(products));
+  }, [products]);
 
-  function sortPages(arr) {
+  function sortProducts(arr) {
     return arr.sort((a, b) => {
       return b.pinned - a.pinned;
     });
   }
 
-  const searchPages = (e) => {
-    let filteredPages = [];
+  const searchProducts = (e) => {
+    let filteredProducts = [];
 
     if (!e.target.value) {
-      setSortedPages(sortPages(pages));
+      setSortedProducts(sortProducts(products));
     } else {
-      filteredPages = pages.filter(
-        (page) =>
-          page.title.toLowerCase().includes(e.target.value.toLowerCase()) ||
-          page.author.toLowerCase().includes(e.target.value.toLowerCase()) ||
-          page.category.toLowerCase().includes(e.target.value.toLowerCase())
+      filteredProducts = products.filter(
+        (product) =>
+          product.title.toLowerCase().includes(e.target.value.toLowerCase()) ||
+          product.author.toLowerCase().includes(e.target.value.toLowerCase()) ||
+          product.category.toLowerCase().includes(e.target.value.toLowerCase())
       );
 
-      setSortedPages(sortPages(filteredPages));
+      setSortedProducts(sortProducts(filteredProducts));
     }
   };
 
   return (
     <>
       <div className="row d-flex justify-content-end">
-        <Link to="/pages/new">
+        <Link to="/products/new">
           <Button variant="primary" className="btn">
-            New Page
+            New Product
           </Button>
         </Link>
       </div>
       <div className="row mt-5">
         <div className="col d-flex align-items-center">
-          <h4 className="mb-0">{`${sortedPages.length} ${
-            sortedPages.length === 1 ? "page" : "pages"
+          <h4 className="mb-0">{`${sortedProdcuts.length} ${
+            sortedProdcuts.length === 1 ? "product" : "products"
           }`}</h4>
         </div>
         <div className="col d-flex justify-content-end px-0">
@@ -58,8 +58,8 @@ const Pages = () => {
             <input
               type="text"
               className="form-control"
-              placeholder="Search pages"
-              onChange={searchPages}
+              placeholder="Search products"
+              onChange={searchProducts}
             />
             <div className="input-group-append">
               <span className="input-group-text">
@@ -81,10 +81,13 @@ const Pages = () => {
         </div>
       </div>
       <div className="row d-flex flex-wrap mt-5">
-        <PagesTable pages={sortedPages} setPages={setSortedPages} />
+        <ProductsTable
+          products={sortedProdcuts}
+          setProducts={setSortedProducts}
+        />
       </div>
     </>
   );
 };
 
-export default Pages;
+export default Products;

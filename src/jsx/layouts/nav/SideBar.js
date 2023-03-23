@@ -172,6 +172,22 @@ class SideBar extends Component {
                     Pages
                   </Link>
                 </li>
+                <li>
+                  <Link
+                    className={`${path === "blogs" ? "mm-active" : ""}`}
+                    to="/blogs"
+                  >
+                    Blogs
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    className={`${path === "products" ? "mm-active" : ""}`}
+                    to="/products"
+                  >
+                    Products
+                  </Link>
+                </li>
               </ul>
             </li>
             <li className={`${deshBoard.includes(path) ? "mm-active" : ""}`}>
