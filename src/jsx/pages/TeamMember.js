@@ -1,23 +1,45 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm, Controller, FormProvider } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import { Editor } from "ckeditor5-custom-build/build/ckeditor";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 
+import noImg from "../../images/no-image.jpg";
+
 const TeamMember = () => {
+  const [previewImage, setPreviewImage] = useState(noImg);
+
   const methods = useForm({});
 
   const onSubmit = (data) => {
     console.log(data);
   };
 
-  const firstName = methods.watch("firstName");
-  const lastName = methods.watch("lastName");
+  const addedImage = methods.watch(`image`);
 
+  // useEffect for handling section image preview
   useEffect(() => {
+    console.log(addedImage);
+
+    const reader = new FileReader();
+
+    reader.onloadend = () => {
+      setPreviewImage(reader.result);
+    };
+
+    if (addedImage.length) {
+      reader.readAsDataURL(addedImage[0]);
+    }
+  }, [addedImage, methods]);
+
+  // useEffect for dynamically creating full name
+  useEffect(() => {
+    const firstName = methods.watch("firstName");
+    const lastName = methods.watch("lastName");
+
     methods.setValue("fullName", firstName + " " + lastName);
-  }, [firstName, lastName, methods]);
+  }, [methods]);
 
   return (
     <>
@@ -60,12 +82,12 @@ const TeamMember = () => {
                   </div>
                 </div>
                 <div className="form-group mt-3">
-                  <h3 className="">Title</h3>
+                  <h3 className="">Position</h3>
                   <input
-                    {...methods.register("title")}
+                    {...methods.register("position")}
                     type="text"
                     className="form-control input-default px-2"
-                    placeholder="Enter team member title"
+                    placeholder="Enter team member's position"
                   />
                 </div>
                 <div className="socials mt-4">
@@ -171,7 +193,29 @@ const TeamMember = () => {
                   />
                 </div>
               </div>
-              <div className="col-4 w-100"></div>
+              <div className="col-4">
+                <div className="mt-3 d-flex flex-column juctify-content-center align-items-center single-image-uploader">
+                  <img
+                    src={previewImage}
+                    alt=""
+                    className="single-image-uploader__image"
+                  />
+                  <label
+                    as="button"
+                    htmlFor="add-gallery-images"
+                    className="btn btn-primary btn-sm bottom-0 mb-0 mt-3"
+                  >
+                    <span className="">Add photo</span>
+                    <input
+                      type="file"
+                      accept="image/jpeg"
+                      id="add-gallery-images"
+                      hidden
+                      {...methods.register(`image`)}
+                    />
+                  </label>
+                </div>
+              </div>
             </div>
 
             <div className="row justify-content-center mt-5">
