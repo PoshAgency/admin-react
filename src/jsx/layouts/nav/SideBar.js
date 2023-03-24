@@ -196,6 +196,14 @@ class SideBar extends Component {
                     Team
                   </Link>
                 </li>
+                <li>
+                  <Link
+                    className={`${path === "settings" ? "mm-active" : ""}`}
+                    to="/settings"
+                  >
+                    Team
+                  </Link>
+                </li>
               </ul>
             </li>
             <li className={`${deshBoard.includes(path) ? "mm-active" : ""}`}>
