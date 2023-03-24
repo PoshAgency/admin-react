@@ -29,9 +29,9 @@ const Pages = () => {
     } else {
       filteredPages = pages.filter(
         (page) =>
-          page.title.toLowerCase().includes(e.target.value.toLowerCase()) ||
-          page.author.toLowerCase().includes(e.target.value.toLowerCase()) ||
-          page.category.toLowerCase().includes(e.target.value.toLowerCase())
+          page.title.toLowerCase().includes(e.target.value.toLowerCase())
+        // page.author.toLowerCase().includes(e.target.value.toLowerCase()) ||
+        // page.category.toLowerCase().includes(e.target.value.toLowerCase())
       );
 
       setSortedPages(sortPages(filteredPages));
