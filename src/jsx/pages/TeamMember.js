@@ -20,15 +20,13 @@ const TeamMember = () => {
 
   // useEffect for handling section image preview
   useEffect(() => {
-    console.log(addedImage);
-
     const reader = new FileReader();
 
     reader.onloadend = () => {
       setPreviewImage(reader.result);
     };
 
-    if (addedImage.length) {
+    if (addedImage?.length) {
       reader.readAsDataURL(addedImage[0]);
     }
   }, [addedImage, methods]);
