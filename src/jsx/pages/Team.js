@@ -47,7 +47,7 @@ const Team = () => {
   return (
     <>
       <div className="row d-flex justify-content-end">
-        <Link to="/products/new">
+        <Link to="/team/new">
           <Button variant="primary" className="btn">
             New Team Member
           </Button>
