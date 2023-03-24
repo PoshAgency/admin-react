@@ -201,7 +201,7 @@ class SideBar extends Component {
                     className={`${path === "settings" ? "mm-active" : ""}`}
                     to="/settings"
                   >
-                    Team
+                    Settings
                   </Link>
                 </li>
               </ul>
