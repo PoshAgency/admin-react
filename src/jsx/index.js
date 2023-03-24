@@ -108,6 +108,9 @@ import Blogs from "./pages/Blogs";
 import SingleBlog from "./pages/SingleBlog";
 import Products from "./pages/Products";
 import SingleProduct from "./pages/SingleProduct";
+import Team from "./pages/Team";
+import TeamMember from "./pages/TeamMember";
+import Settings from "./pages/Settings";
 
 const Markup = () => {
   let path = window.location.pathname;
@@ -207,6 +210,9 @@ const Markup = () => {
     { url: "blogs/new", component: SingleBlog },
     { url: "products", component: Products },
     { url: "products/new", component: SingleProduct },
+    { url: "team", component: Team },
+    { url: "team/new", component: TeamMember },
+    { url: "settings", component: Settings },
     { url: "page-register", component: Registration },
     { url: "page-lock-screen", component: LockScreen },
     { url: "page-login", component: Login },

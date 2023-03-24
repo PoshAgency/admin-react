@@ -4,53 +4,59 @@ import { useState } from "react";
 import { Button } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import PagesTable from "../components/table/PagesTable/PagesTable";
+import TeamTable from "../components/table/TeamTable/TeamTable";
 
-const Pages = () => {
-  const { pages } = useSelector((state) => state.pages);
+const Team = () => {
+  const { team } = useSelector((state) => state.team);
 
-  const [sortedPages, setSortedPages] = useState(sortPages(pages));
+  const [sortedTeam, setSortedTeam] = useState(sortProducts(team));
 
   useEffect(() => {
-    setSortedPages(sortPages(pages));
-  }, [pages]);
+    setSortedTeam(sortProducts(team));
+  }, [team]);
 
-  function sortPages(arr) {
+  function sortProducts(arr) {
     return arr.sort((a, b) => {
       return b.pinned - a.pinned;
     });
   }
 
-  const searchPages = (e) => {
-    let filteredPages = [];
+  const searchTeam = (e) => {
+    let filteredTeam = [];
 
     if (!e.target.value) {
-      setSortedPages(sortPages(pages));
+      setSortedTeam(sortProducts(team));
     } else {
-      filteredPages = pages.filter(
-        (page) =>
-          page.title.toLowerCase().includes(e.target.value.toLowerCase())
-        // page.author.toLowerCase().includes(e.target.value.toLowerCase()) ||
-        // page.category.toLowerCase().includes(e.target.value.toLowerCase())
+      filteredTeam = team.filter(
+        (teamMember) =>
+          teamMember.title
+            .toLowerCase()
+            .includes(e.target.value.toLowerCase()) ||
+          teamMember.author
+            .toLowerCase()
+            .includes(e.target.value.toLowerCase()) ||
+          teamMember.category
+            .toLowerCase()
+            .includes(e.target.value.toLowerCase())
       );
 
-      setSortedPages(sortPages(filteredPages));
+      setSortedTeam(sortProducts(filteredTeam));
     }
   };
 
   return (
     <>
       <div className="row d-flex justify-content-end">
-        <Link to="/pages/new">
+        <Link to="/team/new">
           <Button variant="primary" className="btn">
-            New Page
+            New Team Member
           </Button>
         </Link>
       </div>
       <div className="row mt-5">
         <div className="col d-flex align-items-center">
-          <h4 className="mb-0">{`${sortedPages.length} ${
-            sortedPages.length === 1 ? "page" : "pages"
+          <h4 className="mb-0">{`${sortedTeam.length} ${
+            sortedTeam.length === 1 ? "Team member" : "Team members"
           }`}</h4>
         </div>
         <div className="col d-flex justify-content-end px-0">
@@ -58,8 +64,8 @@ const Pages = () => {
             <input
               type="text"
               className="form-control"
-              placeholder="Search pages"
-              onChange={searchPages}
+              placeholder="Search team members"
+              onChange={searchTeam}
             />
             <div className="input-group-append">
               <span className="input-group-text">
@@ -81,10 +87,10 @@ const Pages = () => {
         </div>
       </div>
       <div className="row d-flex flex-wrap mt-5">
-        <PagesTable pages={sortedPages} setPages={setSortedPages} />
+        <TeamTable team={sortedTeam} setTeam={setSortedTeam} />
       </div>
     </>
   );
 };
 
-export default Pages;
+export default Team;

@@ -8,6 +8,7 @@ import PagesReducer from "./reducers/PagesReducer";
 import BlogsReducer from "./reducers/BlogsReducer";
 import { reducer as reduxFormReducer } from "redux-form";
 import ProductsReducer from "./reducers/ProductsReducer";
+import TeamReducer from "./reducers/TeamReducer";
 
 const middleware = applyMiddleware(thunk);
 
@@ -19,6 +20,7 @@ const reducers = combineReducers({
   pages: PagesReducer,
   blogs: BlogsReducer,
   products: ProductsReducer,
+  team: TeamReducer,
   todoReducers,
   form: reduxFormReducer,
 });
