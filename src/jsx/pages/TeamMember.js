@@ -31,13 +31,13 @@ const TeamMember = () => {
     }
   }, [addedImage, methods]);
 
+  const firstName = methods.watch("firstName");
+  const lastName = methods.watch("lastName");
+
   // useEffect for dynamically creating full name
   useEffect(() => {
-    const firstName = methods.watch("firstName");
-    const lastName = methods.watch("lastName");
-
     methods.setValue("fullName", firstName + " " + lastName);
-  }, [methods]);
+  }, [methods, firstName, lastName]);
 
   return (
     <>
@@ -62,7 +62,6 @@ const TeamMember = () => {
                         placeholder="Enter first name"
                         defaultValue=""
                         {...methods.register("firstName")}
-                        onChange={(e) => {}}
                       />
                     </div>
                   </div>
@@ -165,7 +164,7 @@ const TeamMember = () => {
                 <div className="mt-3 form-group">
                   <h3 className="mb-3">Team member bio</h3>
                   <Controller
-                    name="pageContent"
+                    name="bio"
                     control={methods.control}
                     defaultValue=""
                     render={({ field: { onChange, onBlur, value, ref } }) => (
