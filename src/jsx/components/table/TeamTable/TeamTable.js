@@ -166,17 +166,12 @@ const TeamTable = ({ team, setTeam }) => {
                 </div>
               </th>
               <th>
-                <strong>Title</strong>
+                <strong>Name</strong>
               </th>
               <th>
-                <strong>Author</strong>
+                <strong>Email</strong>
               </th>
-              <th>
-                <strong>Date</strong>
-              </th>
-              <th>
-                <strong>Category</strong>
-              </th>
+
               <th>
                 <strong>Status</strong>
               </th>

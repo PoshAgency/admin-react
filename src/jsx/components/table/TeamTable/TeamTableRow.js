@@ -81,15 +81,14 @@ const TeamTableRow = ({ teamMember }) => {
         </div>
       </td>
       <td>
-        <strong>{teamMember.title}</strong>
+        <strong>{teamMember.fullName}</strong>
       </td>
-      <td>
+      {/* <td>
         <div className="d-flex align-items-center">
-          <span className="w-space-no">{teamMember.author}</span>
+          <span className="w-space-no">{teamMember.email}</span>
         </div>
-      </td>
-      <td>{teamMember.date} </td>
-      <td>{teamMember.category}</td>
+      </td> */}
+      <td>{teamMember.email}</td>
       <td onClick={togglePinned}>
         <div className="d-flex align-items-center">
           {
