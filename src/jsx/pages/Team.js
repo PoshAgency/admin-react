@@ -29,15 +29,15 @@ const Team = () => {
     } else {
       filteredTeam = team.filter(
         (teamMember) =>
-          teamMember.title
-            .toLowerCase()
-            .includes(e.target.value.toLowerCase()) ||
-          teamMember.author
-            .toLowerCase()
-            .includes(e.target.value.toLowerCase()) ||
-          teamMember.category
+          teamMember.fullName
             .toLowerCase()
             .includes(e.target.value.toLowerCase())
+        // teamMember.author
+        //   .toLowerCase()
+        //   .includes(e.target.value.toLowerCase()) ||
+        // teamMember.category
+        //   .toLowerCase()
+        //   .includes(e.target.value.toLowerCase())
       );
 
       setSortedTeam(sortProducts(filteredTeam));
