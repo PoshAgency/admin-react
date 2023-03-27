@@ -13,7 +13,7 @@ export const teamMembers = [
     twitter: "twitter",
     youtube: "youtube",
     pinned: false,
-    image:
+    photo:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJaCUMva78kbQlp3iGl6vI3KAY_z6uuNkSnQ&usqp=CAU",
   },
   {
@@ -28,7 +28,7 @@ export const teamMembers = [
     twitter: "twitter",
     youtube: "youtube",
     pinned: true,
-    image:
+    photo:
       "https://c8.alamy.com/comp/JY0BC4/portrait-of-happy-male-lawyer-in-office-JY0BC4.jpg",
   },
 ];
