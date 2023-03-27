@@ -1,90 +1,13 @@
-import { v4 as uuid } from "uuid";
-
 import {
   TOGGLE_PINNED_PRODUCT,
   TOGGLE_CHECK_PRODUCT,
   DESELECT_ALL_PRODUCTS,
   TOGGLE_SELECT_ALL_PRODUCTS,
 } from "../actions/ProductsTypes";
+import { products } from "../../data/products";
 
 const initialState = {
-  products: [
-    {
-      title:
-        "PRODUCT The European Health Data Space: A new catalyst for medical innovation",
-      text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque facere accusantium, perferendis aspernatur ipsa animi totam sed, esse, quam nisi possimus explicabo deleniti placeat temporibus corporis blanditiis quas delectus amet.",
-      author: "ThePosh team",
-      date: new Date(2023, 1, 3).toLocaleDateString("en-gb"),
-      category: "news",
-      active: true,
-      id: uuid(),
-      pinned: false,
-    },
-    {
-      title:
-        "PRODUCT Horizon Europe Data Management Plan from an Ethics Perspective",
-      text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque facere accusantium, perferendis aspernatur ipsa animi totam sed, esse, quam nisi possimus explicabo deleniti placeat temporibus corporis blanditiis quas delectus amet.",
-      author: "ThePosh team",
-      date: new Date(2023, 1, 3).toLocaleDateString("en-gb"),
-      category: "news",
-      active: true,
-      id: uuid(),
-      pinned: false,
-    },
-    {
-      title: "PRODUCT Privacy Impact Assessments for H2020 Projects",
-      text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque facere accusantium, perferendis aspernatur ipsa animi totam sed, esse, quam nisi possimus explicabo deleniti placeat temporibus corporis blanditiis quas delectus amet.",
-      author: "ThePosh team",
-      date: new Date(2023, 1, 3).toLocaleDateString("en-gb"),
-      category: "news",
-      active: true,
-      id: uuid(),
-      pinned: false,
-    },
-    {
-      title:
-        "PRODUCT Opinion on the European Gambling and Betting Association’s draft Code of Conduct",
-      text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque facere accusantium, perferendis aspernatur ipsa animi totam sed, esse, quam nisi possimus explicabo deleniti placeat temporibus corporis blanditiis quas delectus amet.",
-      author: "ThePosh team",
-      date: new Date(2023, 1, 3).toLocaleDateString("en-gb"),
-      category: "news",
-      active: true,
-      id: uuid(),
-      pinned: false,
-    },
-    {
-      title: "PRODUCT CC-DRIVER Kickoff Meeting",
-      text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque facere accusantium, perferendis aspernatur ipsa animi totam sed, esse, quam nisi possimus explicabo deleniti placeat temporibus corporis blanditiis quas delectus amet.",
-      author: "ThePosh team",
-      date: new Date(2023, 1, 3).toLocaleDateString("en-gb"),
-      category: "news",
-      active: true,
-      id: uuid(),
-      pinned: false,
-    },
-    {
-      title:
-        "PRODUCT Living-in.EU: Digital Transformation in the European Cities",
-      text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque facere accusantium, perferendis aspernatur ipsa animi totam sed, esse, quam nisi possimus explicabo deleniti placeat temporibus corporis blanditiis quas delectus amet.",
-      author: "ThePosh team",
-      date: new Date(2023, 1, 3).toLocaleDateString("en-gb"),
-      category: "news",
-      active: true,
-      id: uuid(),
-      pinned: true,
-    },
-    {
-      title:
-        "PRODUCT Privanova – INTERPOL Cybercrime Knowledge Exchange Member",
-      text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque facere accusantium, perferendis aspernatur ipsa animi totam sed, esse, quam nisi possimus explicabo deleniti placeat temporibus corporis blanditiis quas delectus amet.",
-      author: "ThePosh team",
-      date: new Date(2023, 1, 3).toLocaleDateString("en-gb"),
-      category: "news",
-      active: true,
-      id: uuid(),
-      pinned: true,
-    },
-  ],
+  products,
   selectedProducts: [],
 };
 

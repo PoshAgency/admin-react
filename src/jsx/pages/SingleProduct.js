@@ -68,7 +68,7 @@ const SingleProduct = () => {
                     defaultValue={"https://theposh.agency/"}
                     className="form-control input-default slug-field__input"
                     placeholder="Enter page title"
-                    {...methods.register("pageSlug")}
+                    {...methods.register("slug")}
                     disabled={disabledSlugInput}
                   />
                   <Button
