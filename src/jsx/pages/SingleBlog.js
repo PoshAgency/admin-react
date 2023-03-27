@@ -46,7 +46,7 @@ const SingleBlog = () => {
           <form onSubmit={methods.handleSubmit(onSubmit)} className="card-body">
             <div className="row d-flex justify-content-between">
               <div className="col-8 w-100">
-                <h3>Page Title</h3>
+                <h3>Blog Title</h3>
                 <div className="form-group mt-3">
                   <input
                     type="text"
@@ -61,14 +61,14 @@ const SingleBlog = () => {
                     onClick={() => setDisabledSlugInput(true)}
                   />
                 </div>
-                <h5>Page slug</h5>
+                <h5>Blog slug</h5>
                 <div className="form-group mt-3 slug-field">
                   <input
                     type="text"
                     defaultValue={"https://theposh.agency/"}
                     className="form-control input-default px-2 mb-3 slug-field__input"
                     placeholder="Enter page title"
-                    {...methods.register("pageSlug")}
+                    {...methods.register("slug")}
                     disabled={disabledSlugInput}
                   />
                   <Button
@@ -78,13 +78,22 @@ const SingleBlog = () => {
                     {disabledSlugInput ? "Edit" : "Save"}
                   </Button>
                 </div>
-                <h3 className="mt-4">Hero Title</h3>
+                <h3 className="mt-4">Blog hero Title</h3>
                 <div className="form-group mt-3">
                   <input
                     {...methods.register("hero")}
                     type="text"
                     className="form-control input-default px-2 mb-3"
                     placeholder="Enter hero title"
+                  />
+                </div>
+                <h3 className="mt-4">Author</h3>
+                <div className="form-group mt-3">
+                  <input
+                    {...methods.register("author")}
+                    type="text"
+                    className="form-control input-default px-2 mb-3"
+                    placeholder="Enter author"
                   />
                 </div>
                 <PageImagesUploader register={methods.register} />
@@ -156,9 +165,9 @@ const SingleBlog = () => {
             </div>
             <div className="row d-flex flex-column mt-5">
               <div className="col">
-                <h3 className="mb-3">Page content </h3>
+                <h3 className="mb-3">Content</h3>
                 <Controller
-                  name="pageContent"
+                  name="content"
                   control={methods.control}
                   defaultValue=""
                   render={({ field: { onChange, onBlur, value, ref } }) => (
