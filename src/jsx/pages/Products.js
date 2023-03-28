@@ -30,7 +30,6 @@ const Products = () => {
       filteredProducts = products.filter(
         (product) =>
           product.title.toLowerCase().includes(e.target.value.toLowerCase()) ||
-          product.author.toLowerCase().includes(e.target.value.toLowerCase()) ||
           product.category.toLowerCase().includes(e.target.value.toLowerCase())
       );
 
