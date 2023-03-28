@@ -44,7 +44,7 @@ const Customers = () => {
   return (
     <>
       <div className="row d-flex justify-content-end">
-        <Link to="/products/new">
+        <Link to="/customers/new">
           <Button variant="primary" className="btn">
             New Customer
           </Button>

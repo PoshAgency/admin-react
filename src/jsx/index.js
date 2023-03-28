@@ -113,6 +113,7 @@ import SingleProduct from "./pages/SingleProduct";
 import Team from "./pages/Team";
 import TeamMember from "./pages/TeamMember";
 import Customers from "./pages/Customers";
+import SingleCustomer from "./pages/SingleCustomer";
 import Settings from "./pages/Settings";
 
 const Markup = () => {
@@ -206,17 +207,7 @@ const Markup = () => {
     //{ url: 'table-filtering', component: FilteringTable },
     //{ url: 'table-sorting', component: SortingTable },
 
-    /// pages
-    { url: "pages", component: Pages },
-    { url: "pages/new", component: SinglePage },
-    { url: "blogs", component: Blogs },
-    { url: "blogs/new", component: SingleBlog },
-    { url: "products", component: Products },
-    { url: "products/new", component: SingleProduct },
-    { url: "team", component: Team },
-    { url: "team/new", component: TeamMember },
-    { url: "customers", component: Customers },
-    { url: "settings", component: Settings },
+    //
     { url: "page-register", component: Registration },
     { url: "page-lock-screen", component: LockScreen },
     { url: "page-login", component: Login },
@@ -226,6 +217,19 @@ const Markup = () => {
     { url: "page-error-500", component: Error500 },
     { url: "page-error-503", component: Error503 },
     { url: "todo", component: Todo },
+
+    /// custom pages
+    { url: "pages", component: Pages },
+    { url: "pages/new", component: SinglePage },
+    { url: "blogs", component: Blogs },
+    { url: "blogs/new", component: SingleBlog },
+    { url: "products", component: Products },
+    { url: "products/new", component: SingleProduct },
+    { url: "team", component: Team },
+    { url: "team/new", component: TeamMember },
+    { url: "customers", component: Customers },
+    { url: "customers/new", component: SingleCustomer },
+    { url: "settings", component: Settings },
   ];
 
   return (
