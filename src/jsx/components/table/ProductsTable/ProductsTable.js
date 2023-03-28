@@ -168,9 +168,6 @@ const ProductsTable = ({ products, setProducts }) => {
                 <strong>Title</strong>
               </th>
               <th>
-                <strong>Author</strong>
-              </th>
-              <th>
                 <strong>Date</strong>
               </th>
               <th>

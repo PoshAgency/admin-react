@@ -83,11 +83,6 @@ const ProductsTableRow = ({ product }) => {
       <td>
         <strong>{product.title}</strong>
       </td>
-      <td>
-        <div className="d-flex align-items-center">
-          <span className="w-space-no">{product.author}</span>
-        </div>
-      </td>
       <td>{product.date} </td>
       <td>{product.category}</td>
       <td onClick={togglePinned}>
