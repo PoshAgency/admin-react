@@ -3,11 +3,7 @@ import { Link } from "react-router-dom";
 import swal from "sweetalert";
 import { Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import MenuIcon from "@mui/icons-material/Menu";
-import {
-  toggleSelectAllCustomers,
-  toggleCheckCustomer,
-} from "../../../../store/actions/CustomersActions";
+import { toggleCheckCustomer } from "../../../../store/actions/CustomersActions";
 
 // import "./PagesTableRow.css";
 
@@ -64,7 +60,7 @@ const CustomerTableRow = ({ customer }) => {
       </td>
       <td>{customer.email}</td>
       <td>{customer.phone}</td>
-      <td>{`${customer.address}, ${customer.city} ${customer.postalCode}, ${customer.country}`}</td>
+      <td>{`${customer.address}, ${customer.postalCode} ${customer.city}, ${customer.country}`}</td>
       <td data-no-dnd="true">
         <div className="d-flex">
           <Link

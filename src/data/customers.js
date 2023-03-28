@@ -6,7 +6,7 @@ export const customers = [
     firstName: "John",
     lastName: "Doe",
     fullName: "John Doe",
-    email: "john@google.com",
+    email: "john@yahoo.com",
     phone: "555-555-5555",
     country: "USA",
     city: "New York City",

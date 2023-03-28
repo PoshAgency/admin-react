@@ -1,5 +1,4 @@
 import React from "react";
-import { useEffect } from "react";
 import { useState } from "react";
 import { Button } from "react-bootstrap";
 import { useSelector } from "react-redux";
@@ -34,6 +33,8 @@ const Customers = () => {
         customer.lastName
           .toLowerCase()
           .includes(e.target.value.toLowerCase()) ||
+        customer.email.toLowerCase().includes(e.target.value.toLowerCase()) ||
+        customer.phone.toLowerCase().includes(e.target.value.toLowerCase()) ||
         customer.email.toLowerCase().includes(e.target.value.toLowerCase())
     );
 
