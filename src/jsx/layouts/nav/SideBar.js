@@ -198,6 +198,14 @@ class SideBar extends Component {
                 </li>
                 <li>
                   <Link
+                    className={`${path === "customers" ? "mm-active" : ""}`}
+                    to="/customers"
+                  >
+                    Customers
+                  </Link>
+                </li>
+                <li>
+                  <Link
                     className={`${path === "settings" ? "mm-active" : ""}`}
                     to="/settings"
                   >

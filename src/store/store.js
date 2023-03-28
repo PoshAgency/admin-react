@@ -9,6 +9,7 @@ import BlogsReducer from "./reducers/BlogsReducer";
 import { reducer as reduxFormReducer } from "redux-form";
 import ProductsReducer from "./reducers/ProductsReducer";
 import TeamReducer from "./reducers/TeamReducer";
+import CustomersReducer from "./reducers/CustomersReducer";
 
 const middleware = applyMiddleware(thunk);
 
@@ -21,6 +22,7 @@ const reducers = combineReducers({
   blogs: BlogsReducer,
   products: ProductsReducer,
   team: TeamReducer,
+  customers: CustomersReducer,
   todoReducers,
   form: reduxFormReducer,
 });

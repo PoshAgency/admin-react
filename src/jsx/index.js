@@ -102,6 +102,8 @@ import Todo from "./pages/Todo";
 
 //Scroll To Top
 import ScrollToTop from "./layouts/ScrollToTop";
+
+// Custom Page Components
 import Pages from "./pages/Pages";
 import SinglePage from "./pages/SinglePage";
 import Blogs from "./pages/Blogs";
@@ -110,6 +112,7 @@ import Products from "./pages/Products";
 import SingleProduct from "./pages/SingleProduct";
 import Team from "./pages/Team";
 import TeamMember from "./pages/TeamMember";
+import Customers from "./pages/Customers";
 import Settings from "./pages/Settings";
 
 const Markup = () => {
@@ -212,6 +215,7 @@ const Markup = () => {
     { url: "products/new", component: SingleProduct },
     { url: "team", component: Team },
     { url: "team/new", component: TeamMember },
+    { url: "customers", component: Customers },
     { url: "settings", component: Settings },
     { url: "page-register", component: Registration },
     { url: "page-lock-screen", component: LockScreen },
