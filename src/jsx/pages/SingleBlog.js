@@ -141,7 +141,7 @@ const SingleBlog = () => {
                 </div>
                 <BlogTagsSelector
                   methods={methods}
-                  title={"Blog tags"}
+                  title="Blog tags"
                   name="tags"
                 />
                 {/* Might added later */}

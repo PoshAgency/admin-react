@@ -1,8 +1,7 @@
-import React, { useState } from "react";
-import { Controller } from "react-hook-form";
+import React, { useEffect, useState } from "react";
 import CreatableSelect from "react-select/creatable";
 
-const BlogTagsSelector = ({ control, title, name }) => {
+const BlogTagsSelector = ({ methods, title, name }) => {
   const [inputValue, setInputValue] = useState("");
   const [value, setValue] = useState([]);
 
@@ -17,27 +16,22 @@ const BlogTagsSelector = ({ control, title, name }) => {
     DropdownIndicator: null,
   };
 
+  useEffect(() => {
+    methods.setValue(name, value);
+  }, [value, methods, name]);
+
   const createOption = (label) => ({
     label: label.replace(/./, (c) => c.toUpperCase()),
     value: label,
   });
 
-  const handleKeyDown = (event, field) => {
+  const handleKeyDown = (event) => {
+    if (!inputValue) return;
     switch (event.key) {
       case "Enter":
       case "Tab":
-        if (inputValue === "") return event.preventDefault();
-        console.log(inputValue);
-
-        const tagExists =
-          field.value !== null &&
-          field?.value.findIndex((tag) => tag.value === inputValue);
-
-        if (tagExists > -1) return event.preventDefault();
-
         setValue((prev) => [...prev, createOption(inputValue)]);
         setInputValue("");
-
         event.preventDefault();
 
         break;
@@ -49,24 +43,16 @@ const BlogTagsSelector = ({ control, title, name }) => {
   return (
     <div className="mt-3">
       <h3 className="mb-3">{title}</h3>
-      <Controller
-        name={name}
-        control={control}
-        defaultValue={[]}
-        render={({ field }) => (
-          <CreatableSelect
-            {...field}
-            options={options}
-            isMulti
-            isClearable
-            components={components}
-            onChange={(newValue) => field.onChange(newValue)}
-            onInputChange={(newValue) => setInputValue(newValue)}
-            onKeyDown={(e) => handleKeyDown(e, field)}
-            placeholder="Create or select existing tags"
-            value={field.value}
-          />
-        )}
+      <CreatableSelect
+        options={options}
+        isMulti
+        isClearable
+        components={components}
+        onChange={(newValue) => setValue(newValue)}
+        onInputChange={(newValue) => setInputValue(newValue)}
+        onKeyDown={(e) => handleKeyDown(e)}
+        placeholder="Create or select existing tags"
+        value={value}
       />
     </div>
   );
