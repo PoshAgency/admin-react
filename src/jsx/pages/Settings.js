@@ -136,7 +136,7 @@ const Settings = () => {
                 </div>
               </div>
               <div className="col-4">
-                <div className="mt-3 d-flex flex-column juctify-content-center align-items-center single-image-uploader">
+                <div className="mt-3 d-flex flex-column justify-content-center align-items-center single-image-uploader">
                   <img
                     src={previewImage}
                     alt=""
@@ -156,6 +156,30 @@ const Settings = () => {
                       {...methods.register(`logo`)}
                     />
                   </label>
+                </div>
+                <div className="mt-3 d-flex flex-column justify-content-center align-items-center">
+                  <h3>Edit Menu</h3>
+                  <div className="mt-2">
+                    <Link to="settings/header">
+                      <Button
+                        variant="primary"
+                        type="submit"
+                        className="btn-sm mr-3"
+                        to="settings/header"
+                      >
+                        Header
+                      </Button>
+                    </Link>
+                    <Link to="settings/footer">
+                      <Button
+                        variant="primary"
+                        type="submit"
+                        className="btn-sm"
+                      >
+                        Footer
+                      </Button>
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>

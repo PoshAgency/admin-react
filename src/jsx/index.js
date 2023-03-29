@@ -115,6 +115,7 @@ import TeamMember from "./pages/TeamMember";
 import Customers from "./pages/Customers";
 import SingleCustomer from "./pages/SingleCustomer";
 import Settings from "./pages/Settings";
+import MenuEditor from "./pages/MenuEditor";
 
 const Markup = () => {
   let path = window.location.pathname;
@@ -230,6 +231,7 @@ const Markup = () => {
     { url: "customers", component: Customers },
     { url: "customers/new", component: SingleCustomer },
     { url: "settings", component: Settings },
+    { url: "settings/:menu", component: MenuEditor },
   ];
 
   return (
