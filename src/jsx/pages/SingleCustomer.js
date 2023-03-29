@@ -163,7 +163,7 @@ const SingleCustomer = () => {
                         {...methods.register("password")}
                         type="password"
                         className="form-control input-default px-2"
-                        placeholder="Enter team member's position"
+                        placeholder="Enter password"
                       />
                     </div>
                   </div>
@@ -174,7 +174,7 @@ const SingleCustomer = () => {
                         {...methods.register("confirmPassword")}
                         type="password"
                         className="form-control input-default px-2"
-                        placeholder="Enter team member's position"
+                        placeholder="Enter password confirmation"
                       />
                     </div>
                   </div>
