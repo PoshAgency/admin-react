@@ -54,7 +54,6 @@ const MenuEditor = () => {
                 />
               </div>
               <div className="form-group mt-4">
-                {/* <h3>Page Title</h3> */}
                 <input
                   type="text"
                   className="form-control input-default px-2 mt-3"
@@ -72,8 +71,6 @@ const MenuEditor = () => {
                   type="checkbox"
                   className="custom-control-input"
                   id={`menu-item-title`}
-                  // onChange={selectTeamMember}
-                  // checked={false}
                 />
                 <label
                   className="custom-control-label"
@@ -87,8 +84,6 @@ const MenuEditor = () => {
                   type="checkbox"
                   className="custom-control-input"
                   id={`menu-item-external-link`}
-                  // onChange={}
-                  // checked={false}
                 />
                 <label
                   className="custom-control-label"
