@@ -10,6 +10,7 @@ import { reducer as reduxFormReducer } from "redux-form";
 import ProductsReducer from "./reducers/ProductsReducer";
 import TeamReducer from "./reducers/TeamReducer";
 import CustomersReducer from "./reducers/CustomersReducer";
+import MenuItemsReducer from "./reducers/MenuItemsReducer";
 
 const middleware = applyMiddleware(thunk);
 
@@ -23,6 +24,7 @@ const reducers = combineReducers({
   products: ProductsReducer,
   team: TeamReducer,
   customers: CustomersReducer,
+  menuItems: MenuItemsReducer,
   todoReducers,
   form: reduxFormReducer,
 });

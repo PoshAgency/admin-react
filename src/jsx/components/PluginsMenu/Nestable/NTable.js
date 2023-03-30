@@ -1,5 +1,8 @@
 import React, { Component } from "react";
+import { Button } from "react-bootstrap";
 import Nestable from "react-nestable";
+import { connect } from "react-redux";
+import { editMenuItem } from "../../../../store/actions/MenuItemsActions";
 
 // const items = [
 //   { id: 0, text: "Item 1" },
@@ -50,10 +53,23 @@ class NTable extends Component {
 
   renderItem = ({ item, collapseIcon, handler }) => {
     return (
-      <div>
-        {handler}
-        {collapseIcon}
-        {item.text}
+      <div className="d-flex justify-content-between align-items-center">
+        <div>
+          {handler}
+          {collapseIcon}
+          {item.title}
+        </div>
+        <div>
+          <Button
+            className="btn btn-info shadow btn-xs sharp mr-1"
+            onClick={() => this.props.dispatch(editMenuItem(item))}
+          >
+            <i className="fa fa-pencil"></i>
+          </Button>
+          <Button className="btn btn-danger shadow btn-xs sharp mr-1">
+            <i className="fa fa-trash"></i>
+          </Button>
+        </div>
       </div>
     );
   };
@@ -76,4 +92,4 @@ class NTable extends Component {
   }
 }
 
-export default NTable;
+export default connect()(NTable);
