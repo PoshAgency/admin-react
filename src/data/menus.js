@@ -1,7 +1,15 @@
 import { v4 as uuid } from "uuid";
 
 export const header = [
-  { id: uuid(), title: "Contact" },
+  {
+    id: uuid(),
+    title: "Contact",
+    path: "/contanct",
+    isTitle: false,
+    status: "active",
+    isExternalLink: false,
+    children: [],
+  },
   {
     id: uuid(),
     title: "About Us",
@@ -17,6 +25,7 @@ export const header = [
         isTitle: false,
         status: "active",
         isExternalLink: true,
+        children: [],
       },
       {
         id: uuid(),
@@ -25,6 +34,7 @@ export const header = [
         isTitle: false,
         status: "active",
         isExternalLink: false,
+        children: [],
       },
       {
         id: uuid(),
@@ -33,6 +43,7 @@ export const header = [
         isTitle: false,
         status: "active",
         isExternalLink: false,
+        children: [],
       },
       {
         id: uuid(),
@@ -41,6 +52,7 @@ export const header = [
         isTitle: false,
         status: "active",
         isExternalLink: false,
+        children: [],
       },
     ],
   },
@@ -59,6 +71,7 @@ export const header = [
         isTitle: false,
         status: "active",
         isExternalLink: true,
+        children: [],
       },
       {
         id: uuid(),
@@ -67,6 +80,7 @@ export const header = [
         isTitle: true,
         status: "active",
         isExternalLink: false,
+        children: [],
       },
       {
         id: uuid(),
@@ -75,6 +89,7 @@ export const header = [
         isTitle: false,
         status: "active",
         isExternalLink: false,
+        children: [],
       },
       {
         id: uuid(),
@@ -83,6 +98,7 @@ export const header = [
         isTitle: false,
         status: "active",
         isExternalLink: false,
+        children: [],
       },
       {
         id: uuid(),
@@ -91,6 +107,7 @@ export const header = [
         isTitle: false,
         status: "active",
         isExternalLink: false,
+        children: [],
       },
       {
         id: uuid(),
@@ -99,6 +116,7 @@ export const header = [
         isTitle: false,
         status: "active",
         isExternalLink: false,
+        children: [],
       },
       {
         id: uuid(),
@@ -107,6 +125,7 @@ export const header = [
         isTitle: true,
         status: "active",
         isExternalLink: false,
+        children: [],
       },
       {
         id: uuid(),
@@ -115,6 +134,7 @@ export const header = [
         isTitle: true,
         status: "active",
         isExternalLink: false,
+        children: [],
       },
       {
         id: uuid(),
@@ -123,6 +143,7 @@ export const header = [
         isTitle: false,
         status: "active",
         isExternalLink: true,
+        children: [],
       },
       {
         id: uuid(),
@@ -131,6 +152,7 @@ export const header = [
         isTitle: false,
         status: "active",
         isExternalLink: false,
+        children: [],
       },
       {
         id: uuid(),
@@ -139,6 +161,7 @@ export const header = [
         isTitle: false,
         status: "active",
         isExternalLink: false,
+        children: [],
       },
       {
         id: uuid(),
@@ -147,6 +170,7 @@ export const header = [
         isTitle: false,
         status: "active",
         isExternalLink: true,
+        children: [],
       },
     ],
   },
@@ -165,6 +189,7 @@ export const header = [
         isTitle: false,
         status: "active",
         isExternalLink: false,
+        children: [],
       },
       {
         id: uuid(),
@@ -173,6 +198,7 @@ export const header = [
         isTitle: false,
         status: "active",
         isExternalLink: false,
+        children: [],
       },
       {
         id: uuid(),
@@ -181,6 +207,7 @@ export const header = [
         isTitle: false,
         status: "active",
         isExternalLink: true,
+        children: [],
       },
       {
         id: uuid(),
@@ -189,6 +216,7 @@ export const header = [
         isTitle: false,
         status: "active",
         isExternalLink: false,
+        children: [],
       },
     ],
   },
@@ -207,6 +235,7 @@ export const header = [
         isTitle: false,
         status: "active",
         isExternalLink: true,
+        children: [],
       },
       {
         id: uuid(),
@@ -215,6 +244,7 @@ export const header = [
         isTitle: false,
         status: "active",
         isExternalLink: false,
+        children: [],
       },
       {
         id: uuid(),
@@ -223,6 +253,7 @@ export const header = [
         isTitle: true,
         status: "active",
         isExternalLink: false,
+        children: [],
       },
       {
         id: uuid(),
@@ -231,6 +262,7 @@ export const header = [
         isTitle: false,
         status: "active",
         isExternalLink: false,
+        children: [],
       },
       {
         id: uuid(),
@@ -239,6 +271,7 @@ export const header = [
         isTitle: false,
         status: "active",
         isExternalLink: false,
+        children: [],
       },
       {
         id: uuid(),
@@ -247,6 +280,7 @@ export const header = [
         isTitle: false,
         status: "active",
         isExternalLink: true,
+        children: [],
       },
       {
         id: uuid(),
@@ -255,6 +289,7 @@ export const header = [
         isTitle: false,
         status: "active",
         isExternalLink: true,
+        children: [],
       },
       {
         id: uuid(),
@@ -263,6 +298,7 @@ export const header = [
         isTitle: false,
         status: "active",
         isExternalLink: false,
+        children: [],
       },
     ],
   },
@@ -281,6 +317,7 @@ export const header = [
         isTitle: false,
         status: "active",
         isExternalLink: false,
+        children: [],
       },
       {
         id: uuid(),
@@ -289,6 +326,7 @@ export const header = [
         isTitle: false,
         status: "active",
         isExternalLink: false,
+        children: [],
       },
       {
         id: uuid(),
@@ -297,6 +335,7 @@ export const header = [
         isTitle: false,
         status: "active",
         isExternalLink: true,
+        children: [],
       },
       {
         id: uuid(),
@@ -305,6 +344,7 @@ export const header = [
         isTitle: false,
         status: "active",
         isExternalLink: false,
+        children: [],
       },
     ],
   },
@@ -326,6 +366,7 @@ export const footer = [
         isTitle: false,
         status: "active",
         isExternalLink: false,
+        children: [],
       },
       {
         id: uuid(),
@@ -334,6 +375,7 @@ export const footer = [
         isTitle: false,
         status: "active",
         isExternalLink: false,
+        children: [],
       },
       {
         id: uuid(),
@@ -342,6 +384,7 @@ export const footer = [
         isTitle: true,
         status: "active",
         isExternalLink: false,
+        children: [],
       },
       {
         id: uuid(),
@@ -350,6 +393,7 @@ export const footer = [
         isTitle: false,
         status: "active",
         isExternalLink: false,
+        children: [],
       },
     ],
   },
@@ -368,6 +412,7 @@ export const footer = [
         isTitle: true,
         status: "active",
         isExternalLink: false,
+        children: [],
       },
       {
         id: uuid(),
@@ -376,6 +421,7 @@ export const footer = [
         isTitle: false,
         status: "active",
         isExternalLink: true,
+        children: [],
       },
       {
         id: uuid(),
@@ -384,6 +430,7 @@ export const footer = [
         isTitle: false,
         status: "active",
         isExternalLink: false,
+        children: [],
       },
       {
         id: uuid(),
@@ -392,6 +439,7 @@ export const footer = [
         isTitle: false,
         status: "active",
         isExternalLink: false,
+        children: [],
       },
     ],
   },
@@ -410,6 +458,7 @@ export const footer = [
         isTitle: false,
         status: "active",
         isExternalLink: true,
+        children: [],
       },
       {
         id: uuid(),
@@ -418,6 +467,7 @@ export const footer = [
         isTitle: false,
         status: "active",
         isExternalLink: true,
+        children: [],
       },
       {
         id: uuid(),
@@ -426,6 +476,7 @@ export const footer = [
         isTitle: true,
         status: "active",
         isExternalLink: false,
+        children: [],
       },
       {
         id: uuid(),
@@ -434,6 +485,7 @@ export const footer = [
         isTitle: false,
         status: "active",
         isExternalLink: false,
+        children: [],
       },
     ],
   },
@@ -452,6 +504,7 @@ export const footer = [
         isTitle: false,
         status: "active",
         isExternalLink: false,
+        children: [],
       },
       {
         id: uuid(),
@@ -460,6 +513,7 @@ export const footer = [
         isTitle: false,
         status: "active",
         isExternalLink: false,
+        children: [],
       },
       {
         id: uuid(),
@@ -468,6 +522,7 @@ export const footer = [
         isTitle: false,
         status: "active",
         isExternalLink: true,
+        children: [],
       },
       {
         id: uuid(),
@@ -476,6 +531,7 @@ export const footer = [
         isTitle: false,
         status: "active",
         isExternalLink: false,
+        children: [],
       },
     ],
   },
@@ -494,6 +550,7 @@ export const footer = [
         isTitle: false,
         status: "active",
         isExternalLink: false,
+        children: [],
       },
       {
         id: uuid(),
@@ -502,6 +559,7 @@ export const footer = [
         isTitle: false,
         status: "active",
         isExternalLink: false,
+        children: [],
       },
       {
         id: uuid(),
@@ -510,6 +568,7 @@ export const footer = [
         isTitle: false,
         status: "active",
         isExternalLink: false,
+        children: [],
       },
       {
         id: uuid(),
@@ -518,6 +577,7 @@ export const footer = [
         isTitle: false,
         status: "active",
         isExternalLink: true,
+        children: [],
       },
     ],
   },

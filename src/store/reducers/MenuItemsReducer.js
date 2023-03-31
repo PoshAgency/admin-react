@@ -8,7 +8,6 @@ const initialState = {
 };
 
 export default function MenuItemsReducer(state = initialState, action) {
-  console.log("in reducer");
   if (action.type === EDIT_MENU_ITEM) {
     return { ...state, selectedItem: action.payload };
   }
