@@ -222,6 +222,7 @@ const Markup = () => {
     /// custom pages
     { url: "pages", component: Pages },
     { url: "pages/new", component: SinglePage },
+    { url: "pages/:id", component: SinglePage },
     { url: "blogs", component: Blogs },
     { url: "blogs/new", component: SingleBlog },
     { url: "products", component: Products },
