@@ -31,10 +31,8 @@ const Team = () => {
         (teamMember) =>
           teamMember.fullName
             .toLowerCase()
-            .includes(e.target.value.toLowerCase())
-        // teamMember.author
-        //   .toLowerCase()
-        //   .includes(e.target.value.toLowerCase()) ||
+            .includes(e.target.value.toLowerCase()) ||
+          teamMember.email.toLowerCase().includes(e.target.value.toLowerCase())
         // teamMember.category
         //   .toLowerCase()
         //   .includes(e.target.value.toLowerCase())
