@@ -11,7 +11,7 @@ import {
 } from "../../../../store/actions/CustomersActions";
 
 const CustomersTable = ({ customers, setCustomers }) => {
-  const { selectedCustomers } = useSelector((state) => state.coupons);
+  const { selectedCustomers } = useSelector((state) => state.customers);
 
   const dispatch = useDispatch();
 
