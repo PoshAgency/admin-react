@@ -4,10 +4,9 @@ import swal from "sweetalert";
 import { Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import MenuIcon from "@mui/icons-material/Menu";
-import {
-  toggleCheckProduct,
-  toggleProductPinned,
-} from "../../../../store/actions/ProductsActions";
+import { toggleCheckProduct } from "../../../../store/actions/ProductsActions";
+import dayjs from "dayjs";
+import { coupons } from "../../../../data/coupons";
 
 // import "./PagesTableRow.css";
 
@@ -38,9 +37,9 @@ const CouponsTableRow = ({ coupon }) => {
     dispatch(toggleCheckProduct(coupon.id));
   };
 
-  const isChecked = (id) => {
-    return selectedCoupon.includes(id);
-  };
+  // const isChecked = (id) => {
+  //   return selectedCoupon.includes(id);
+  // };
 
   return (
     <tr key={coupon.id}>
@@ -51,7 +50,7 @@ const CouponsTableRow = ({ coupon }) => {
             className="custom-control-input"
             id={`checkbox-${coupon.id}`}
             onChange={selectPage}
-            checked={isChecked(coupon.id)}
+            // checked={isChecked(coupon.id)}
           />
           <label
             className="custom-control-label"
@@ -64,8 +63,9 @@ const CouponsTableRow = ({ coupon }) => {
       <td>
         <strong>{coupon.title}</strong>
       </td>
-      <td>{coupon.startDate} </td>
-      <td>{coupon.endDate} </td>
+      <td>{coupon.code}</td>
+      <td>{dayjs(coupon.startDate).format("DD/MM/YYYY")} </td>
+      <td>{dayjs(coupon.endDate).format("DD/MM/YYYY")} </td>
       <td data-no-dnd="true">
         <div className="d-flex">
           <Link

@@ -11,10 +11,7 @@ import {
 import CouponsTableRow from "./CouponsTableRow";
 
 const CouponsTable = ({ coupons, setCoupons }) => {
-  const { selectedCoupon } = useSelector((state) => state.coupons);
-
-  console.log(coupons);
-
+  const { selectedCoupons } = useSelector((state) => state.coupons);
   const dispatch = useDispatch();
 
   const handleAllCustomers = () => {
@@ -49,10 +46,10 @@ const CouponsTable = ({ coupons, setCoupons }) => {
     <Card className="w-100">
       <Card.Header className="d-flex justify-content-between">
         <div className="d-flex align-items-center">
-          <Card.Title>Customers</Card.Title>
+          <Card.Title>Coupons</Card.Title>
           <div
             className={`${
-              selectedCoupon.length ? "visible" : "invisible"
+              selectedCoupons.length ? "visible" : "invisible"
             } d-flex align-items-center`}
           >
             <h5
@@ -60,7 +57,7 @@ const CouponsTable = ({ coupons, setCoupons }) => {
               onClick={handleDeselectAllCustomers}
               role="button"
             >
-              Deselect ({selectedCoupon.length})
+              Deselect ({selectedCoupons.length})
             </h5>
             <h5
               className="inline-block mb-0 ml-3 mt-1 d-flex align-items-center"
@@ -72,7 +69,7 @@ const CouponsTable = ({ coupons, setCoupons }) => {
                   style={{ fontSize: "1.4rem", color: "red" }}
                 ></i>
               </span>
-              Delete ({selectedCoupon.length})
+              Delete ({selectedCoupons.length})
             </h5>
           </div>
         </div>
@@ -118,7 +115,7 @@ const CouponsTable = ({ coupons, setCoupons }) => {
                     required=""
                     onChange={handleAllCustomers}
                     checked={
-                      selectedCoupon.length === coupons.length &&
+                      selectedCoupons.length === coupons.length &&
                       coupons.length > 0
                     }
                     disabled={coupons.length === 0}
@@ -133,16 +130,21 @@ const CouponsTable = ({ coupons, setCoupons }) => {
                 <strong>Title</strong>
               </th>
               <th>
+                <strong>Code</strong>
+              </th>
+              <th>
                 <strong>Start Date</strong>
               </th>
               <th>
                 <strong>End Date</strong>
               </th>
+              <th>
+                <strong>Actions</strong>
+              </th>
             </tr>
           </thead>
           <tbody>
             {coupons.map((coupon, index) => {
-              console.log(coupon);
               return <CouponsTableRow coupon={coupon} key={index} />;
             })}
           </tbody>

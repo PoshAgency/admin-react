@@ -1,10 +1,8 @@
 import React from "react";
-import { useEffect } from "react";
 import { useState } from "react";
 import { Button } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import TeamTable from "../components/table/TeamTable/TeamTable";
 import CouponsTable from "../components/table/CouponsTable/CouponsTable";
 
 const Coupons = () => {
@@ -40,7 +38,7 @@ const Coupons = () => {
       <div className="row mt-5">
         <div className="col d-flex align-items-center">
           <h4 className="mb-0">{`${filteredCoupons.length} ${
-            filteredCoupons.length === 1 ? "Team member" : "Team members"
+            filteredCoupons.length === 1 ? "Coupon" : "Coupons"
           }`}</h4>
         </div>
         <div className="col d-flex justify-content-end px-0">
