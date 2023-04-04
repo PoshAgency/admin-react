@@ -115,6 +115,8 @@ import TeamMember from "./pages/TeamMember";
 import Customers from "./pages/Customers";
 import SingleCustomer from "./pages/SingleCustomer";
 import Settings from "./pages/Settings";
+import MenuEditor from "./pages/MenuEditor";
+import Coupons from "./pages/Coupons";
 
 const Markup = () => {
   let path = window.location.pathname;
@@ -221,6 +223,7 @@ const Markup = () => {
     /// custom pages
     { url: "pages", component: Pages },
     { url: "pages/new", component: SinglePage },
+    { url: "pages/:id", component: SinglePage },
     { url: "blogs", component: Blogs },
     { url: "blogs/new", component: SingleBlog },
     { url: "products", component: Products },
@@ -230,6 +233,8 @@ const Markup = () => {
     { url: "customers", component: Customers },
     { url: "customers/new", component: SingleCustomer },
     { url: "settings", component: Settings },
+    { url: "settings/:menu", component: MenuEditor },
+    { url: "coupons", component: Coupons },
   ];
 
   return (

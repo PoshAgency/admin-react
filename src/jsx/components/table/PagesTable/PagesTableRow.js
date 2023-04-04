@@ -108,7 +108,7 @@ const PagesTableRow = ({ page }) => {
       <td data-no-dnd="true">
         <div className="d-flex">
           <Link
-            to="/pages/single"
+            to={`/pages/${page.id}`}
             className="btn btn-primary shadow btn-xs sharp mr-1"
           >
             <i className="fa fa-pencil"></i>

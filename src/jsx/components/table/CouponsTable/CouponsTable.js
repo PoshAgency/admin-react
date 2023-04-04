@@ -3,16 +3,15 @@ import { Table, Card, Dropdown } from "react-bootstrap";
 import MetarialDate from "../../Forms/Pickers/MetarialDate";
 
 import { useDispatch, useSelector } from "react-redux";
-import CustomerTableRow from "./CustomerTableRow";
 
 import {
   toggleSelectAllCustomers,
   deselectAllCustomers,
 } from "../../../../store/actions/CustomersActions";
+import CouponsTableRow from "./CouponsTableRow";
 
-const CustomersTable = ({ customers, setCustomers }) => {
-  const { selectedCustomers } = useSelector((state) => state.coupons);
-
+const CouponsTable = ({ coupons, setCoupons }) => {
+  const { selectedCoupons } = useSelector((state) => state.coupons);
   const dispatch = useDispatch();
 
   const handleAllCustomers = () => {
@@ -47,10 +46,10 @@ const CustomersTable = ({ customers, setCustomers }) => {
     <Card className="w-100">
       <Card.Header className="d-flex justify-content-between">
         <div className="d-flex align-items-center">
-          <Card.Title>Customers</Card.Title>
+          <Card.Title>Coupons</Card.Title>
           <div
             className={`${
-              selectedCustomers.length ? "visible" : "invisible"
+              selectedCoupons.length ? "visible" : "invisible"
             } d-flex align-items-center`}
           >
             <h5
@@ -58,7 +57,7 @@ const CustomersTable = ({ customers, setCustomers }) => {
               onClick={handleDeselectAllCustomers}
               role="button"
             >
-              Deselect ({selectedCustomers.length})
+              Deselect ({selectedCoupons.length})
             </h5>
             <h5
               className="inline-block mb-0 ml-3 mt-1 d-flex align-items-center"
@@ -70,7 +69,7 @@ const CustomersTable = ({ customers, setCustomers }) => {
                   style={{ fontSize: "1.4rem", color: "red" }}
                 ></i>
               </span>
-              Delete ({selectedCustomers.length})
+              Delete ({selectedCoupons.length})
             </h5>
           </div>
         </div>
@@ -116,10 +115,10 @@ const CustomersTable = ({ customers, setCustomers }) => {
                     required=""
                     onChange={handleAllCustomers}
                     checked={
-                      selectedCustomers.length === customers.length &&
-                      customers.length > 0
+                      selectedCoupons.length === coupons.length &&
+                      coupons.length > 0
                     }
-                    disabled={customers.length === 0}
+                    disabled={coupons.length === 0}
                   />
                   <label
                     className="custom-control-label"
@@ -128,16 +127,16 @@ const CustomersTable = ({ customers, setCustomers }) => {
                 </div>
               </th>
               <th>
-                <strong>Name</strong>
+                <strong>Title</strong>
               </th>
               <th>
-                <strong>Email</strong>
+                <strong>Code</strong>
               </th>
               <th>
-                <strong>Phone</strong>
+                <strong>Start Date</strong>
               </th>
               <th>
-                <strong>Address</strong>
+                <strong>End Date</strong>
               </th>
               <th>
                 <strong>Actions</strong>
@@ -145,9 +144,9 @@ const CustomersTable = ({ customers, setCustomers }) => {
             </tr>
           </thead>
           <tbody>
-            {customers.map((customer, index) => (
-              <CustomerTableRow customer={customer} key={index} />
-            ))}
+            {coupons.map((coupon, index) => {
+              return <CouponsTableRow coupon={coupon} key={index} />;
+            })}
           </tbody>
         </Table>
       </Card.Body>
@@ -155,4 +154,4 @@ const CustomersTable = ({ customers, setCustomers }) => {
   );
 };
 
-export default CustomersTable;
+export default CouponsTable;

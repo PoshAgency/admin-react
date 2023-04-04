@@ -18,7 +18,7 @@ export const teamMembers = [
   },
   {
     id: uuid(),
-    email: "johndoe@gmail.com",
+    email: "johndoe@yahoo.com",
     firstName: "John",
     lastName: "Doe",
     fullName: "John Doe",

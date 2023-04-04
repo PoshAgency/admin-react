@@ -1,60 +1,44 @@
 import React from "react";
-import { useEffect } from "react";
 import { useState } from "react";
 import { Button } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import TeamTable from "../components/table/TeamTable/TeamTable";
+import CouponsTable from "../components/table/CouponsTable/CouponsTable";
 
-const Team = () => {
-  const { team } = useSelector((state) => state.team);
+const Coupons = () => {
+  const { coupons } = useSelector((state) => state.coupons);
+  const [filteredCoupons, setFilteredCoupons] = useState(coupons);
 
-  const [sortedTeam, setSortedTeam] = useState(sortProducts(team));
-
-  useEffect(() => {
-    setSortedTeam(sortProducts(team));
-  }, [team]);
-
-  function sortProducts(arr) {
-    return arr.sort((a, b) => {
-      return b.pinned - a.pinned;
-    });
-  }
-
-  const searchTeam = (e) => {
-    let filteredTeam = [];
-
+  const searchCoupons = (e) => {
     if (!e.target.value) {
-      setSortedTeam(sortProducts(team));
+      setFilteredCoupons(coupons);
     } else {
-      filteredTeam = team.filter(
-        (teamMember) =>
-          teamMember.fullName
-            .toLowerCase()
-            .includes(e.target.value.toLowerCase()) ||
-          teamMember.email.toLowerCase().includes(e.target.value.toLowerCase())
-        // teamMember.category
-        //   .toLowerCase()
-        //   .includes(e.target.value.toLowerCase())
+      setFilteredCoupons((prevState) =>
+        prevState.filter(
+          (coupon) =>
+            coupon.title.toLowerCase().includes(e.target.value.toLowerCase()) ||
+            coupon.code.toLowerCase().includes(e.target.value.toLowerCase())
+          // teamMember.category
+          //   .toLowerCase()
+          //   .includes(e.target.value.toLowerCase())
+        )
       );
-
-      setSortedTeam(sortProducts(filteredTeam));
     }
   };
 
   return (
     <>
       <div className="row d-flex justify-content-end">
-        <Link to="/team/new">
+        <Link to="/coupons/new">
           <Button variant="primary" className="btn">
-            New Team Member
+            New Coupon
           </Button>
         </Link>
       </div>
       <div className="row mt-5">
         <div className="col d-flex align-items-center">
-          <h4 className="mb-0">{`${sortedTeam.length} ${
-            sortedTeam.length === 1 ? "Team member" : "Team members"
+          <h4 className="mb-0">{`${filteredCoupons.length} ${
+            filteredCoupons.length === 1 ? "Coupon" : "Coupons"
           }`}</h4>
         </div>
         <div className="col d-flex justify-content-end px-0">
@@ -62,8 +46,8 @@ const Team = () => {
             <input
               type="text"
               className="form-control"
-              placeholder="Search team members"
-              onChange={searchTeam}
+              placeholder="Search coupons members"
+              onChange={searchCoupons}
             />
             <div className="input-group-append">
               <span className="input-group-text">
@@ -85,10 +69,13 @@ const Team = () => {
         </div>
       </div>
       <div className="row d-flex flex-wrap mt-5">
-        <TeamTable team={sortedTeam} setTeam={setSortedTeam} />
+        <CouponsTable
+          coupons={filteredCoupons}
+          setCoupons={setFilteredCoupons}
+        />
       </div>
     </>
   );
 };
 
-export default Team;
+export default Coupons;
