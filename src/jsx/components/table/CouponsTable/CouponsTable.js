@@ -4,22 +4,22 @@ import MetarialDate from "../../Forms/Pickers/MetarialDate";
 
 import { useDispatch, useSelector } from "react-redux";
 
-import {
-  toggleSelectAllCustomers,
-  deselectAllCustomers,
-} from "../../../../store/actions/CustomersActions";
 import CouponsTableRow from "./CouponsTableRow";
+import {
+  deselectAllCoupons,
+  toggleSelectAllCoupons,
+} from "../../../../store/actions/CouponsActions";
 
 const CouponsTable = ({ coupons, setCoupons }) => {
   const { selectedCoupons } = useSelector((state) => state.coupons);
   const dispatch = useDispatch();
 
-  const handleAllCustomers = () => {
-    dispatch(toggleSelectAllCustomers());
+  const handleAllCoupons = () => {
+    dispatch(toggleSelectAllCoupons());
   };
 
-  const handleDeselectAllCustomers = () => {
-    dispatch(deselectAllCustomers());
+  const handleDeselectAllCoupons = () => {
+    dispatch(deselectAllCoupons());
   };
 
   // // PAGINATION
@@ -54,7 +54,7 @@ const CouponsTable = ({ coupons, setCoupons }) => {
           >
             <h5
               className="inline-block mb-0 ml-5 mt-1"
-              onClick={handleDeselectAllCustomers}
+              onClick={handleDeselectAllCoupons}
               role="button"
             >
               Deselect ({selectedCoupons.length})
@@ -113,7 +113,7 @@ const CouponsTable = ({ coupons, setCoupons }) => {
                     className="custom-control-input"
                     id="checkAll"
                     required=""
-                    onChange={handleAllCustomers}
+                    onChange={handleAllCoupons}
                     checked={
                       selectedCoupons.length === coupons.length &&
                       coupons.length > 0

@@ -7,11 +7,12 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { toggleCheckProduct } from "../../../../store/actions/ProductsActions";
 import dayjs from "dayjs";
 import { coupons } from "../../../../data/coupons";
+import { toggleCheckCoupon } from "../../../../store/actions/CouponsActions";
 
 // import "./PagesTableRow.css";
 
 const CouponsTableRow = ({ coupon }) => {
-  const { selectedCoupon } = useSelector((state) => state.coupons);
+  const { selectedCoupons } = useSelector((state) => state.coupons);
 
   const dispatch = useDispatch();
 
@@ -33,13 +34,13 @@ const CouponsTableRow = ({ coupon }) => {
     });
   };
 
-  const selectPage = () => {
-    dispatch(toggleCheckProduct(coupon.id));
+  const selectCoupon = () => {
+    dispatch(toggleCheckCoupon(coupon.id));
   };
 
-  // const isChecked = (id) => {
-  //   return selectedCoupon.includes(id);
-  // };
+  const isChecked = (id) => {
+    return selectedCoupons.includes(id);
+  };
 
   return (
     <tr key={coupon.id}>
@@ -49,8 +50,8 @@ const CouponsTableRow = ({ coupon }) => {
             type="checkbox"
             className="custom-control-input"
             id={`checkbox-${coupon.id}`}
-            onChange={selectPage}
-            // checked={isChecked(coupon.id)}
+            onChange={selectCoupon}
+            checked={isChecked(coupon.id)}
           />
           <label
             className="custom-control-label"

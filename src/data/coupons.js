@@ -2,6 +2,7 @@ import { v4 as uuid } from "uuid";
 
 export const coupons = [
   {
+    id: uuid(),
     title: "Accessories 10$",
     code: "accessories10",
     description: "<h2>Coupon 1</h2><p>This is a coupon 1.</p>",
@@ -17,6 +18,7 @@ export const coupons = [
     excludedArticles: [{ id: uuid() }, { id: uuid() }, { id: uuid() }],
   },
   {
+    id: uuid(),
     title: "Shoes 10%",
     code: "shoes10",
     description: "<h2>Coupon 1</h2><p>This is a coupon 2.</p>",
