@@ -99,7 +99,7 @@ const SingleCoupon = () => {
                     className="form-control input-default px-2"
                     placeholder="Enter first name"
                     defaultValue=""
-                    {...methods.register("title")}
+                    {...methods.register("parametter")}
                   />
                 </div>
                 <div className="form-group mt-3">
@@ -113,7 +113,8 @@ const SingleCoupon = () => {
                           autoOk
                           clearable
                           format="dd/MM/yyyy"
-                          disableFuture
+                          disablePast
+                          disableToolbar
                           value={value}
                           onChange={onChange}
                           onBlur={onBlur}
@@ -134,7 +135,7 @@ const SingleCoupon = () => {
                           autoOk
                           clearable
                           format="dd/MM/yyyy"
-                          disableFuture
+                          disableToolbar
                           value={value}
                           onChange={onChange}
                           onBlur={onBlur}
@@ -171,6 +172,19 @@ const SingleCoupon = () => {
                   >
                     <p className="ml-2">One time purchase only</p>
                   </label>
+                </div>
+                <div className="form-group mt-3">
+                  <h3 className="">Works for single category</h3>
+                  <select
+                    {...methods.register("onlyCategory")}
+                    className="form-control form-control-lg"
+                    id="inlineFormCustomSelect"
+                    defaultValue={""}
+                  >
+                    <option value="shoes">Shoes</option>
+                    <option value="bags">Bags</option>
+                    <option value="accessories">Accessories</option>
+                  </select>
                 </div>
               </div>
             </div>
