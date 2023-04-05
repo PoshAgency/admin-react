@@ -147,7 +147,7 @@ const SingleCoupon = () => {
                 <div className="custom-control custom-checkbox checkbox-success check-lg">
                   <input
                     type="checkbox"
-                    {...methods.register("usedWithExistingDiscounts")}
+                    {...methods.register("useWithExistingDiscounts")}
                     className="custom-control-input"
                     id={`menu-item-used-with-other-discounts`}
                   />
@@ -171,6 +171,19 @@ const SingleCoupon = () => {
                   >
                     <p className="ml-2">One time purchase only</p>
                   </label>
+                </div>
+                <div className="form-group mt-3">
+                  <h3 className="">Apply to category</h3>
+                  <select
+                    {...methods.register("applyToCategory")}
+                    className="form-control form-control-lg"
+                    id="inlineFormCustomSelect"
+                    defaultValue={""}
+                  >
+                    <option value="shoes">Shoes</option>
+                    <option value="bags">Bags</option>
+                    <option value="accessories">Accessories</option>
+                  </select>
                 </div>
               </div>
             </div>
