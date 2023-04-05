@@ -63,8 +63,10 @@ const CouponsTableRow = ({ coupon }) => {
         <strong>{coupon.title}</strong>
       </td>
       <td>{coupon.code}</td>
-      <td>{dayjs(coupon.startDate).format("DD/MM/YYYY")} </td>
-      <td>{dayjs(coupon.endDate).format("DD/MM/YYYY")} </td>
+      <td>{coupon.typeOfDiscount}</td>
+      <td>{coupon.discountParameter}</td>
+      <td>{dayjs(coupon.startDate).format("DD/MM/YYYY")}</td>
+      <td>{dayjs(coupon.endDate).format("DD/MM/YYYY")}</td>
       <td data-no-dnd="true">
         <div className="d-flex">
           <Link

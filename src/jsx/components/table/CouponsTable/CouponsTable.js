@@ -133,6 +133,12 @@ const CouponsTable = ({ coupons, setCoupons }) => {
                 <strong>Code</strong>
               </th>
               <th>
+                <strong>Type</strong>
+              </th>
+              <th>
+                <strong>Parameter</strong>
+              </th>
+              <th>
                 <strong>Start Date</strong>
               </th>
               <th>
