@@ -116,7 +116,7 @@ const SinglePage = () => {
                           autoOk
                           clearable
                           format="dd/MM/yyyy"
-                          disableFuture
+                          disableToolbar
                           value={value}
                           onChange={onChange}
                           onBlur={onBlur}

@@ -113,7 +113,7 @@ const SingleCoupon = () => {
                           autoOk
                           clearable
                           format="dd/MM/yyyy"
-                          disableFuture
+                          disableToolbar
                           value={value}
                           onChange={onChange}
                           onBlur={onBlur}
@@ -134,7 +134,7 @@ const SingleCoupon = () => {
                           autoOk
                           clearable
                           format="dd/MM/yyyy"
-                          disableFuture
+                          disableToolbar
                           value={value}
                           onChange={onChange}
                           onBlur={onBlur}
