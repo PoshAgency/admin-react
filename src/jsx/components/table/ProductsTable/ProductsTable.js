@@ -14,23 +14,24 @@ import {
   arrayMove,
 } from "@dnd-kit/sortable";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  deselectAllPages,
-  toggleSelectAllPages,
-} from "../../../../store/actions/PagesActions";
+
 import ProductsTableRow from "./ProductsTableRow";
+import {
+  deselectAllProducts,
+  toggleSelectAllProducts,
+} from "../../../../store/actions/ProductsActions";
 
 const ProductsTable = ({ products, setProducts }) => {
   const { selectedProducts } = useSelector((state) => state.products);
 
   const dispatch = useDispatch();
 
-  const handleAllPages = () => {
-    dispatch(toggleSelectAllPages());
+  const handleAllProducts = () => {
+    dispatch(toggleSelectAllProducts());
   };
 
-  const handleDeselectAllPages = () => {
-    dispatch(deselectAllPages());
+  const handleDeselectAllProducts = () => {
+    dispatch(deselectAllProducts());
   };
 
   // prevent firing drag and drop element before moving more than 8px
@@ -84,7 +85,7 @@ const ProductsTable = ({ products, setProducts }) => {
     <Card className="w-100">
       <Card.Header className="d-flex justify-content-between">
         <div className="d-flex align-items-center">
-          <Card.Title>Pages</Card.Title>
+          <Card.Title>Products</Card.Title>
           <div
             className={`${
               selectedProducts.length ? "visible" : "invisible"
@@ -92,7 +93,7 @@ const ProductsTable = ({ products, setProducts }) => {
           >
             <h5
               className="inline-block mb-0 ml-5 mt-1"
-              onClick={handleDeselectAllPages}
+              onClick={handleDeselectAllProducts}
               role="button"
             >
               Deselect ({selectedProducts.length})
@@ -151,7 +152,7 @@ const ProductsTable = ({ products, setProducts }) => {
                     className="custom-control-input"
                     id="checkAll"
                     required=""
-                    onChange={handleAllPages}
+                    onChange={handleAllProducts}
                     checked={
                       selectedProducts.length === products.length &&
                       products.length > 0

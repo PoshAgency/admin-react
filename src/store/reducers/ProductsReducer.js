@@ -47,11 +47,11 @@ export default function ProductsReducer(state = initialState, action) {
   if (action.type === TOGGLE_SELECT_ALL_PRODUCTS) {
     let newSelectedProductsArray = [];
 
-    if (state.pages.length > state.selectedPages.length) {
-      newSelectedProductsArray = state.pages.map((page) => page.id);
+    if (state.products.length > state.selectedProducts.length) {
+      newSelectedProductsArray = state.products.map((product) => product.id);
     }
 
-    return { ...state, selectedPages: newSelectedProductsArray };
+    return { ...state, selectedProducts: newSelectedProductsArray };
   }
 
   if (action.type === DESELECT_ALL_PRODUCTS) {

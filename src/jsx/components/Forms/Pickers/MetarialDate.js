@@ -12,7 +12,7 @@ function BasicDatePicker(props) {
         label=""
         clearable
         format="dd/MM/yyyy"
-        disableFuture
+        disableToolbar
         value={selectedDate}
         onChange={handleDateChange}
       />
