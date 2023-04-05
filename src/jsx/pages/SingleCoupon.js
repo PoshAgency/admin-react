@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm, Controller, FormProvider } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
@@ -10,6 +10,7 @@ import DateFnsUtils from "@date-io/date-fns";
 import CouponProductSelector from "../components/CouponProductSelector";
 
 const SingleCoupon = () => {
+  const [displayCategoryMenu, setDisplayCategoryMenu] = useState(false);
   const methods = useForm({});
 
   const applyToCategory = methods.watch("applyToCategory");
@@ -175,7 +176,27 @@ const SingleCoupon = () => {
                     <p className="ml-2">One time purchase only</p>
                   </label>
                 </div>
-                <div className="form-group mt-3">
+                <div className="custom-control custom-checkbox checkbox-success check-lg">
+                  <input
+                    type="checkbox"
+                    className="custom-control-input"
+                    id={`menu-item-category-menu`}
+                    onChange={() =>
+                      setDisplayCategoryMenu(!displayCategoryMenu)
+                    }
+                  />
+                  <label
+                    className="custom-control-label"
+                    htmlFor={`menu-item-category-menu`}
+                  >
+                    <p className="ml-2">Show category menu</p>
+                  </label>
+                </div>
+                <div
+                  className={`form-group mt-3 ${
+                    displayCategoryMenu ? "d-block" : "d-none"
+                  }`}
+                >
                   <h3 className="">Apply to category</h3>
                   <select
                     {...methods.register("applyToCategory")}
@@ -188,9 +209,9 @@ const SingleCoupon = () => {
                     <option value="bags">Bags</option>
                     <option value="accessories">Accessories</option>
                   </select>
-                </div>
-                <div className="form-group mt-3">
-                  <CouponProductSelector applyToCategory={applyToCategory} />
+                  <div className="form-group mt-3">
+                    <CouponProductSelector applyToCategory={applyToCategory} />
+                  </div>
                 </div>
               </div>
             </div>
