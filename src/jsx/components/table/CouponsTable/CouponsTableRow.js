@@ -4,9 +4,7 @@ import swal from "sweetalert";
 import { Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import MenuIcon from "@mui/icons-material/Menu";
-import { toggleCheckProduct } from "../../../../store/actions/ProductsActions";
 import dayjs from "dayjs";
-import { coupons } from "../../../../data/coupons";
 import { toggleCheckCoupon } from "../../../../store/actions/CouponsActions";
 
 // import "./PagesTableRow.css";
