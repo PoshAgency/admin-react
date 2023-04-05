@@ -7,9 +7,12 @@ import { CKEditor } from "@ckeditor/ckeditor5-react";
 
 import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
+import CouponProductSelector from "../components/CouponProductSelector";
 
 const SingleCoupon = () => {
   const methods = useForm({});
+
+  const applyToCategory = methods.watch("applyToCategory");
 
   const onSubmit = (data) => {
     console.log(data);
@@ -180,10 +183,14 @@ const SingleCoupon = () => {
                     id="inlineFormCustomSelect"
                     defaultValue={""}
                   >
+                    <option value="">Select category</option>
                     <option value="shoes">Shoes</option>
                     <option value="bags">Bags</option>
                     <option value="accessories">Accessories</option>
                   </select>
+                </div>
+                <div className="form-group mt-3">
+                  <CouponProductSelector applyToCategory={applyToCategory} />
                 </div>
               </div>
             </div>
