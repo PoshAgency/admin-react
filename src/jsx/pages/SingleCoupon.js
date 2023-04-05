@@ -196,10 +196,7 @@ const SingleCoupon = () => {
             </div>
             <div className="row justify-content-center mt-5">
               <Button variant="primary" type="submit">
-                Publish
-              </Button>
-              <Button className="ml-3" variant="light">
-                Save as draft
+                Create coupon
               </Button>
             </div>
           </form>
