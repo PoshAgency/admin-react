@@ -96,7 +96,7 @@ const SingleCoupon = () => {
                   </select>
                 </div>
                 <div className="form-group mt-3">
-                  <h3>Parametter (% or cash)</h3>
+                  <h3>Parameter (% or cash)</h3>
                   <input
                     type="text"
                     className="form-control input-default px-2"
