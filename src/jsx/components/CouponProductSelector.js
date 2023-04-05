@@ -26,13 +26,13 @@ const CouponProductSelector = ({ applyToCategory }) => {
   const handleChange = (selectedOption) => {
     append(selectedOption);
 
-    console.log(fields);
     setValue(null);
   };
 
   return (
     <>
       <div>
+        <h4>Exclude items</h4>
         <Select
           getOptionLabel={(option) => option.title}
           getOptionValue={(option) => option.id}
