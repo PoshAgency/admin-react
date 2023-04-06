@@ -12,6 +12,7 @@ import TeamReducer from "./reducers/TeamReducer";
 import CustomersReducer from "./reducers/CustomersReducer";
 import MenuItemsReducer from "./reducers/MenuItemsReducer";
 import CouponsReducer from "./reducers/CouponsReducer";
+import SalesReducer from "./reducers/SalesReducer";
 
 const middleware = applyMiddleware(thunk);
 
@@ -24,6 +25,7 @@ const reducers = combineReducers({
   blogs: BlogsReducer,
   products: ProductsReducer,
   coupons: CouponsReducer,
+  sales: SalesReducer,
   team: TeamReducer,
   customers: CustomersReducer,
   menuItems: MenuItemsReducer,
