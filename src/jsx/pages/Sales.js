@@ -17,9 +17,7 @@ const Sales = () => {
         prevState.filter(
           (sale) =>
             sale.title.toLowerCase().includes(e.target.value.toLowerCase()) ||
-            sale.typeOfDiscount
-              .toLowerCase()
-              .includes(e.target.value.toLowerCase())
+            sale.type.toLowerCase().includes(e.target.value.toLowerCase())
           // teamMember.category
           //   .toLowerCase()
           //   .includes(e.target.value.toLowerCase())
