@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useForm, Controller, FormProvider } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
@@ -7,11 +7,9 @@ import { CKEditor } from "@ckeditor/ckeditor5-react";
 
 import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
-import ExcludedProductsSelector from "../components/ExcludedProductsSelector";
 import ProductSelector from "../components/ProductSelector";
 
-const SingleCoupon = () => {
-  const [displayCategoryMenu, setDisplayCategoryMenu] = useState(false);
+const SingleSale = () => {
   const methods = useForm({});
 
   const onSubmit = (data) => {
@@ -21,8 +19,8 @@ const SingleCoupon = () => {
   return (
     <>
       <div className="d-flex justify-content-between align-items-center">
-        <h2>New Coupon</h2>
-        <Link to="/coupons">
+        <h2>New Sale</h2>
+        <Link to="/sales">
           <Button variant="transparent">Cancel</Button>
         </Link>
       </div>
@@ -32,7 +30,7 @@ const SingleCoupon = () => {
             <div className="row">
               <div className="col-8 w-100">
                 <div className="form-group mt-3">
-                  <h3>Coupon Title</h3>
+                  <h3>Sale Title</h3>
                   <input
                     type="text"
                     className="form-control input-default px-2"
@@ -41,17 +39,6 @@ const SingleCoupon = () => {
                     {...methods.register("title")}
                   />
                 </div>
-
-                <div className="form-group mt-3">
-                  <h3 className="">Coupon code</h3>
-                  <input
-                    {...methods.register("code")}
-                    type="text"
-                    className="form-control input-default px-2"
-                    placeholder="Enter team member's position"
-                  />
-                </div>
-
                 <div className="mt-3 form-group">
                   <h3 className="mb-3">Coupon info</h3>
                   <Controller
@@ -150,7 +137,7 @@ const SingleCoupon = () => {
                 <div className="custom-control custom-checkbox checkbox-success check-lg">
                   <input
                     type="checkbox"
-                    {...methods.register("useWithExistingDiscounts")}
+                    {...methods.register("visibleOnFrontEnd")}
                     className="custom-control-input"
                     id={`menu-item-used-with-other-discounts`}
                   />
@@ -158,72 +145,18 @@ const SingleCoupon = () => {
                     className="custom-control-label"
                     htmlFor={`menu-item-used-with-other-discounts`}
                   >
-                    <p className="ml-2">Can be used with existing discounts</p>
-                  </label>
-                </div>
-                <div className="custom-control custom-checkbox checkbox-success check-lg">
-                  <input
-                    type="checkbox"
-                    {...methods.register("oneTimePurchaseOnly")}
-                    className="custom-control-input"
-                    id={`menu-item-one-time-purchase`}
-                  />
-                  <label
-                    className="custom-control-label"
-                    htmlFor={`menu-item-one-time-purchase`}
-                  >
-                    <p className="ml-2">One time purchase only</p>
-                  </label>
-                </div>
-                <div className="custom-control custom-checkbox checkbox-success check-lg">
-                  <input
-                    type="checkbox"
-                    className="custom-control-input"
-                    id={`menu-item-category-menu`}
-                    onChange={() =>
-                      setDisplayCategoryMenu(!displayCategoryMenu)
-                    }
-                  />
-                  <label
-                    className="custom-control-label"
-                    htmlFor={`menu-item-category-menu`}
-                  >
-                    <p className="ml-2">Show category menu</p>
+                    <p className="ml-2">Visible on Front End</p>
                   </label>
                 </div>
                 <ProductSelector
-                  name={"couponProducts"}
-                  title={"Coupon products"}
+                  name={"saleProducts"}
+                  title={"Sale products"}
                 />
-                <div
-                  className={`form-group mt-3 ${
-                    displayCategoryMenu ? "d-block" : "d-none"
-                  }`}
-                >
-                  <h3 className="">Apply to category</h3>
-                  <select
-                    {...methods.register("applyToCategory")}
-                    className="form-control form-control-lg"
-                    id="inlineFormCustomSelect"
-                    defaultValue={""}
-                  >
-                    <option value="">Select category</option>
-                    <option value="shoes">Shoes</option>
-                    <option value="bags">Bags</option>
-                    <option value="accessories">Accessories</option>
-                  </select>
-                  <div className="form-group mt-3">
-                    <ExcludedProductsSelector
-                      name={"excludedItems"}
-                      header={"Exclude Items"}
-                    />
-                  </div>
-                </div>
               </div>
             </div>
             <div className="row justify-content-center mt-5">
               <Button variant="primary" type="submit">
-                Create coupon
+                Create sale
               </Button>
             </div>
           </form>
@@ -233,4 +166,4 @@ const SingleCoupon = () => {
   );
 };
 
-export default SingleCoupon;
+export default SingleSale;

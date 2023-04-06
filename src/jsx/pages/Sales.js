@@ -18,9 +18,6 @@ const Sales = () => {
           (sale) =>
             sale.title.toLowerCase().includes(e.target.value.toLowerCase()) ||
             sale.type.toLowerCase().includes(e.target.value.toLowerCase())
-          // teamMember.category
-          //   .toLowerCase()
-          //   .includes(e.target.value.toLowerCase())
         )
       );
     }
@@ -29,9 +26,9 @@ const Sales = () => {
   return (
     <>
       <div className="row d-flex justify-content-end">
-        <Link to="/coupons/new">
+        <Link to="/sales/new">
           <Button variant="primary" className="btn">
-            New Coupon
+            New Sale
           </Button>
         </Link>
       </div>

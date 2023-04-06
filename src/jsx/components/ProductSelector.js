@@ -7,11 +7,11 @@ import CouponItem from "./CouponItem";
 // const CustomOption = ({ innerProps, isDisabled }) =>
 //   !isDisabled ? <div {...innerProps}>{`test`}</div> : null;
 
-const CouponProductSelector = ({ name, title }) => {
+const ProductSelector = ({ name, title }) => {
   const { control } = useFormContext();
   const { fields, append, remove } = useFieldArray({
     control,
-    name: "couponProducts",
+    name: name,
   });
   const [value, setValue] = useState("");
   const { products } = useSelector((state) => state.products);
@@ -25,7 +25,7 @@ const CouponProductSelector = ({ name, title }) => {
   return (
     <>
       <div>
-        <h3>Coupon products</h3>
+        <h3>{title}</h3>
         <Select
           getOptionLabel={(option) => option.title}
           getOptionValue={(option) => option.id}
@@ -44,4 +44,4 @@ const CouponProductSelector = ({ name, title }) => {
   );
 };
 
-export default CouponProductSelector;
+export default ProductSelector;
