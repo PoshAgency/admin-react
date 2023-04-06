@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useForm, Controller, FormProvider } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
@@ -9,11 +9,34 @@ import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 import ProductSelector from "../components/ProductSelector";
 
+import noImg from "../../images/no-image.jpg";
+
 const SingleSale = () => {
+  const [previewImage, setPreviewImage] = useState("");
   const methods = useForm({});
 
   const onSubmit = (data) => {
     console.log(data);
+  };
+
+  const addedImage = methods.watch(`banner`);
+
+  // useEffect for handling section image preview
+  useEffect(() => {
+    const reader = new FileReader();
+
+    reader.onloadend = () => {
+      setPreviewImage(reader.result);
+    };
+
+    if (addedImage) {
+      reader.readAsDataURL(addedImage[0]);
+    }
+  }, [methods, addedImage]);
+
+  const removeBanner = () => {
+    methods.setValue("banner", "");
+    setPreviewImage("");
   };
 
   return (
@@ -67,6 +90,10 @@ const SingleSale = () => {
                     )}
                   />
                 </div>
+                <ProductSelector
+                  name={"saleProducts"}
+                  title={"Sale products"}
+                />
               </div>
               <div className="col-4 w-100">
                 <div className="form-group mt-3">
@@ -148,10 +175,37 @@ const SingleSale = () => {
                     <p className="ml-2">Visible on Front End</p>
                   </label>
                 </div>
-                <ProductSelector
-                  name={"saleProducts"}
-                  title={"Sale products"}
-                />
+                <div className="form-group mt-3 d-flex flex-column">
+                  <h4 className="mb-3">Banner</h4>
+                  <label
+                    htmlFor="banner-image"
+                    className="mb-0 position-relative"
+                    role="button"
+                  >
+                    <Button
+                      variant="outline-danger"
+                      className="btn-rounded btn-xxs badge-circle position-absolute ml-2 mt-2"
+                      onClick={removeBanner}
+                    >
+                      X
+                    </Button>
+                    <img
+                      src={previewImage || noImg}
+                      alt=""
+                      className="img-fluid rounded object-fit-cover"
+                      height={200}
+                      width={300}
+                      style={{ objectFit: "cover" }}
+                    />
+                    <input
+                      type="file"
+                      accept="image/jpeg, image/png"
+                      id="banner-image"
+                      {...methods.register(`banner`)}
+                      hidden
+                    />
+                  </label>
+                </div>
               </div>
             </div>
             <div className="row justify-content-center mt-5">
