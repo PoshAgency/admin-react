@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "react-bootstrap";
 
-const ExcludedItem = ({ item, remove }) => {
+const CouponItem = ({ item, remove }) => {
   const removeFromExcludedItems = () => {
     remove(item.id);
   };
@@ -24,4 +24,4 @@ const ExcludedItem = ({ item, remove }) => {
   );
 };
 
-export default ExcludedItem;
+export default CouponItem;

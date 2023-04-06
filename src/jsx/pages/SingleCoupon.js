@@ -7,13 +7,12 @@ import { CKEditor } from "@ckeditor/ckeditor5-react";
 
 import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
+import ExcludedProductsSelector from "../components/ExcludedProductsSelector";
 import CouponProductSelector from "../components/CouponProductSelector";
 
 const SingleCoupon = () => {
   const [displayCategoryMenu, setDisplayCategoryMenu] = useState(false);
   const methods = useForm({});
-
-  const applyToCategory = methods.watch("applyToCategory");
 
   const onSubmit = (data) => {
     console.log(data);
@@ -192,6 +191,7 @@ const SingleCoupon = () => {
                     <p className="ml-2">Show category menu</p>
                   </label>
                 </div>
+                <CouponProductSelector />
                 <div
                   className={`form-group mt-3 ${
                     displayCategoryMenu ? "d-block" : "d-none"
@@ -210,7 +210,10 @@ const SingleCoupon = () => {
                     <option value="accessories">Accessories</option>
                   </select>
                   <div className="form-group mt-3">
-                    <CouponProductSelector applyToCategory={applyToCategory} />
+                    <ExcludedProductsSelector
+                      name={"excludedItems"}
+                      header={"Exclude Items"}
+                    />
                   </div>
                 </div>
               </div>

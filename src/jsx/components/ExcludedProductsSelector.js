@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useFieldArray, useFormContext } from "react-hook-form";
 import { useSelector } from "react-redux";
 import Select from "react-select";
-import ExcludedItem from "./ExcludedItem";
+import CouponItem from "./CouponItem";
 
 // const CustomOption = ({ innerProps, isDisabled }) =>
 //   !isDisabled ? <div {...innerProps}>{`test`}</div> : null;
@@ -46,7 +46,7 @@ const ExcludedProductsSelector = ({ name, title }) => {
       </div>
       <div>
         {fields.map((item) => (
-          <ExcludedItem item={item} key={item.id} remove={remove} />
+          <CouponItem item={item} key={item.id} remove={remove} />
         ))}
       </div>
     </>
