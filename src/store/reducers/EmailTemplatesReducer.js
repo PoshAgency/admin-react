@@ -39,7 +39,7 @@ export default function EmailTemplatesReducers(state = initialState, action) {
       );
     }
 
-    return { ...state, selectedTamplates: newSelectedTemplatesArray };
+    return { ...state, selectedTemplates: newSelectedTemplatesArray };
   }
 
   if (action.type === DESELECT_ALL_EMAIL_TEMPLATES) {

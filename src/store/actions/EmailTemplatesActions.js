@@ -2,7 +2,7 @@ import {
   TOGGLE_CHECK_EMAIL_TEMPLATE,
   DESELECT_ALL_EMAIL_TEMPLATES,
   TOGGLE_SELECT_ALL_EMAIL_TEMPLATES,
-} from "./actions/EmailTemplatesTypes";
+} from "./EmailTemplatesTypes";
 
 export function toggleCheckEmailTemplate(id) {
   return {
