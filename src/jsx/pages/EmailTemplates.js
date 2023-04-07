@@ -27,9 +27,9 @@ const EmailTemplates = () => {
   return (
     <>
       <div className="row d-flex justify-content-end">
-        <Link to="/coupons/new">
+        <Link to="/email-templates/new">
           <Button variant="primary" className="btn">
-            New Coupon
+            New Email Template
           </Button>
         </Link>
       </div>
