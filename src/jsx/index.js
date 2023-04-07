@@ -120,6 +120,8 @@ import Coupons from "./pages/Coupons";
 import SingleCoupon from "./pages/SingleCoupon";
 import Sales from "./pages/Sales";
 import SingleSale from "./pages/SingleSale";
+import EmailTemplates from "./pages/EmailTemplates";
+import SingleEmailTemplate from "./pages/SingleEmailTemplate";
 
 const Markup = () => {
   let path = window.location.pathname;
@@ -241,6 +243,8 @@ const Markup = () => {
     { url: "coupons/new", component: SingleCoupon },
     { url: "sales", component: Sales },
     { url: "sales/new", component: SingleSale },
+    { url: "email-templates", component: EmailTemplates },
+    { url: "email-templates/new", component: SingleEmailTemplate },
   ];
 
   return (

@@ -222,6 +222,16 @@ class SideBar extends Component {
                 </li>
                 <li>
                   <Link
+                    className={`${
+                      path === "email-templates" ? "mm-active" : ""
+                    }`}
+                    to="/email-templates"
+                  >
+                    Email Templates
+                  </Link>
+                </li>
+                <li>
+                  <Link
                     className={`${path === "settings" ? "mm-active" : ""}`}
                     to="/settings"
                   >

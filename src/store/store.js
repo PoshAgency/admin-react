@@ -13,6 +13,7 @@ import CustomersReducer from "./reducers/CustomersReducer";
 import MenuItemsReducer from "./reducers/MenuItemsReducer";
 import CouponsReducer from "./reducers/CouponsReducer";
 import SalesReducer from "./reducers/SalesReducer";
+import EmailTemplatesReducers from "./reducers/EmailTemplatesReducer";
 
 const middleware = applyMiddleware(thunk);
 
@@ -27,6 +28,7 @@ const reducers = combineReducers({
   coupons: CouponsReducer,
   sales: SalesReducer,
   team: TeamReducer,
+  emailTemplates: EmailTemplatesReducers,
   customers: CustomersReducer,
   menuItems: MenuItemsReducer,
   todoReducers,
