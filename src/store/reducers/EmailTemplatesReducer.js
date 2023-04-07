@@ -6,7 +6,7 @@ import {
 
 import { emailTemplates } from "../../data/emailTemplates";
 
-const initialState = { templates: emailTemplates, selectedTemplates: [] };
+const initialState = { emailTemplates: emailTemplates, selectedTemplates: [] };
 
 export default function EmailTemplatesReducers(state = initialState, action) {
   if (action.type === TOGGLE_CHECK_EMAIL_TEMPLATE) {
