@@ -10,16 +10,18 @@ import DateFnsUtils from "@date-io/date-fns";
 import ProductSelector from "../components/ProductSelector";
 
 import noImg from "../../images/no-image.jpg";
+import slugify from "slugify";
 
 const SingleSale = () => {
   const [previewImage, setPreviewImage] = useState("");
+  const [disabledSlugInput, setDisabledSlugInput] = useState(true);
   const methods = useForm({});
 
   const onSubmit = (data) => {
     console.log(data);
   };
 
-  const addedImage = methods.watch(`banner`);
+  let addedImage = methods.watch("banner");
 
   // useEffect for handling section image preview
   useEffect(() => {
@@ -29,7 +31,7 @@ const SingleSale = () => {
       setPreviewImage(reader.result);
     };
 
-    if (addedImage) {
+    if (addedImage?.length) {
       reader.readAsDataURL(addedImage[0]);
     }
   }, [methods, addedImage]);
@@ -37,6 +39,13 @@ const SingleSale = () => {
   const removeBanner = () => {
     methods.setValue("banner", "");
     setPreviewImage("");
+  };
+
+  const updateSaleSlug = (value) => {
+    methods.setValue(
+      "saleSlug",
+      `https://theposh.agency/${slugify(value).toLocaleLowerCase()}`
+    );
   };
 
   return (
@@ -60,7 +69,25 @@ const SingleSale = () => {
                     placeholder="Enter first name"
                     defaultValue=""
                     {...methods.register("title")}
+                    onChange={(e) => updateSaleSlug(e.target.value)}
                   />
+                </div>
+                <h5>Sale slug</h5>
+                <div className="form-group mt-3 slug-field">
+                  <input
+                    type="text"
+                    defaultValue={"https://theposh.agency/"}
+                    className="form-control input-default px-2 mb-3 slug-field__input"
+                    placeholder="Enter sale slug"
+                    {...methods.register("saleSlug")}
+                    disabled={disabledSlugInput}
+                  />
+                  <Button
+                    className="slug-field__button mb-3"
+                    onClick={() => setDisabledSlugInput(!disabledSlugInput)}
+                  >
+                    Edit
+                  </Button>
                 </div>
                 <div className="mt-3 form-group">
                   <h3 className="mb-3">Coupon info</h3>
@@ -116,7 +143,7 @@ const SingleSale = () => {
                     className="form-control input-default px-2"
                     placeholder="Enter first name"
                     defaultValue=""
-                    {...methods.register("title")}
+                    {...methods.register("parameter")}
                   />
                 </div>
                 <div className="form-group mt-3">
@@ -201,7 +228,7 @@ const SingleSale = () => {
                       type="file"
                       accept="image/jpeg, image/png"
                       id="banner-image"
-                      {...methods.register(`banner`)}
+                      {...methods.register("banner")}
                       hidden
                     />
                   </label>
