@@ -14,6 +14,7 @@ import MenuItemsReducer from "./reducers/MenuItemsReducer";
 import CouponsReducer from "./reducers/CouponsReducer";
 import SalesReducer from "./reducers/SalesReducer";
 import EmailTemplatesReducers from "./reducers/EmailTemplatesReducer";
+import NewsletterReducer from "./reducers/NewsletterReducer";
 
 const middleware = applyMiddleware(thunk);
 
@@ -28,6 +29,7 @@ const reducers = combineReducers({
   coupons: CouponsReducer,
   sales: SalesReducer,
   team: TeamReducer,
+  newsletter: NewsletterReducer,
   emailTemplates: EmailTemplatesReducers,
   customers: CustomersReducer,
   menuItems: MenuItemsReducer,
