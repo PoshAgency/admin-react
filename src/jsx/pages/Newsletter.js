@@ -3,10 +3,11 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { Button } from "react-bootstrap";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import NewsletterTable from "../components/table/NewsletterTable/NewsletterTable";
+import NewsletterModal from "../components/NewsletterModal";
 
 const Newsletter = () => {
+  const [openModal, setOpenModal] = useState(false);
   const { emailList } = useSelector((state) => state.newsletter);
 
   const [sortedEmailList, setSortedEmailList] = useState(
@@ -31,11 +32,11 @@ const Newsletter = () => {
     } else {
       filteredEmailList = emailList.filter(
         (email) =>
-          email.fullName.toLowerCase().includes(e.target.value.toLowerCase()) ||
+          email.firstName
+            .toLowerCase()
+            .includes(e.target.value.toLowerCase()) ||
+          email.lastName.toLowerCase().includes(e.target.value.toLowerCase()) ||
           email.email.toLowerCase().includes(e.target.value.toLowerCase())
-        // teamMember.category
-        //   .toLowerCase()
-        //   .includes(e.target.value.toLowerCase())
       );
 
       setSortedEmailList(sortEmailList(filteredEmailList));
@@ -45,7 +46,11 @@ const Newsletter = () => {
   return (
     <>
       <div className="row d-flex justify-content-end">
-        <Button variant="primary" className="btn">
+        <Button
+          variant="primary"
+          className="btn"
+          onClick={() => setOpenModal(true)}
+        >
           New Contact
         </Button>
       </div>
@@ -88,6 +93,7 @@ const Newsletter = () => {
           setEmailList={setSortedEmailList}
         />
       </div>
+      <NewsletterModal openModal={openModal} setOpenModal={setOpenModal} />
     </>
   );
 };
