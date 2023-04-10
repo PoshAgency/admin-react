@@ -10,6 +10,7 @@ import { Button } from "react-bootstrap";
 import { Editor } from "ckeditor5-custom-build/build/ckeditor";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import slugify from "slugify";
+import TemplateVariable from "../components/TemplateVariable";
 
 const SingleEmailTemplate = () => {
   const [disabledSlugInput, setDisabledSlugInput] = useState(true);
@@ -39,11 +40,14 @@ const SingleEmailTemplate = () => {
   };
 
   const createTemplateVariable = () => {
-    console.log(variableFields);
     append({
       variable: `{${variableFields.variable}}`,
       title: variableFields.title,
     });
+  };
+
+  const removeTemplateVariable = (index) => {
+    remove(index);
   };
 
   return (
@@ -143,11 +147,14 @@ const SingleEmailTemplate = () => {
                   Add Variable
                 </Button>
                 <div className="mt-3">
-                  <h3>Existing Fields</h3>
+                  <h3>Template variables</h3>
                   {fields.map((field, index) => (
-                    <p key={index}>
-                      {field.variable} - {field.title}
-                    </p>
+                    <TemplateVariable
+                      field={field}
+                      removeTemplateVariable={removeTemplateVariable}
+                      index={index}
+                      key={index}
+                    />
                   ))}
                 </div>
               </div>
