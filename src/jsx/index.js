@@ -123,6 +123,7 @@ import SingleSale from "./pages/SingleSale";
 import EmailTemplates from "./pages/EmailTemplates";
 import SingleEmailTemplate from "./pages/SingleEmailTemplate";
 import Newsletter from "./pages/Newsletter";
+import Orders from "./pages/Orders";
 
 const Markup = () => {
   let path = window.location.pathname;
@@ -247,6 +248,7 @@ const Markup = () => {
     { url: "email-templates", component: EmailTemplates },
     { url: "email-templates/new", component: SingleEmailTemplate },
     { url: "newsletter", component: Newsletter },
+    { url: "orders/:status", component: Orders },
   ];
 
   return (
