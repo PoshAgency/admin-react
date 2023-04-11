@@ -9,7 +9,7 @@ import {
   toggleSelectAllOrders,
 } from "../../../../store/actions/OrdersActions";
 
-const OrdersTable = ({ orders }) => {
+const OrdersTable = ({ orders, setModalOpen }) => {
   const { selectedOrders } = useSelector((state) => state.orders);
   const dispatch = useDispatch();
 
@@ -147,7 +147,13 @@ const OrdersTable = ({ orders }) => {
           </thead>
           <tbody>
             {orders.map((order, index) => {
-              return <OrdersTableRow order={order} key={order.id} />;
+              return (
+                <OrdersTableRow
+                  order={order}
+                  key={order.id}
+                  setModalOpen={setModalOpen}
+                />
+              );
             })}
           </tbody>
         </Table>

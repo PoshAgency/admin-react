@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { Button } from "react-bootstrap";
 import { useSelector } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import OrdersTable from "../components/table/OrdersTable/OrdersTable";
+import OrdersModal from "../components/OrdersModal";
 
 const Orders = () => {
   const { status } = useParams();
+  const [modalOpen, setModalOpen] = useState(false);
 
   const { orders } = useSelector((state) => state.orders);
 
@@ -68,8 +69,13 @@ const Orders = () => {
         </div>
       </div>
       <div className="row d-flex flex-wrap mt-5">
-        <OrdersTable orders={filteredOrders} setOrders={setFilteredOrders} />
+        <OrdersTable
+          orders={filteredOrders}
+          setOrders={setFilteredOrders}
+          setModalOpen={setModalOpen}
+        />
       </div>
+      <OrdersModal modalOpen={modalOpen} setModalOpen={setModalOpen} />
     </>
   );
 };

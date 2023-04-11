@@ -2,13 +2,28 @@ import {
   TOGGLE_CHECK_ORDER,
   TOGGLE_SELECT_ALL_ORDERS,
   DESELECT_ALL_ORDERS,
+  SET_PREVIEW_ORDER,
 } from "../actions/OrdersTypes";
 
 import { orders } from "../../data/orders";
 
-const initialState = { orders: orders, selectedOrders: [] };
+const initialState = {
+  orders: orders,
+  selectedOrders: [],
+  previewOrder: null,
+};
 
-export default function SalesReducer(state = initialState, action) {
+export default function OrdersReducer(state = initialState, action) {
+  if (action.type === SET_PREVIEW_ORDER) {
+    const orderIndex = state.orders.findIndex(
+      (order) => order.id === action.payload.id
+    );
+
+    if (orderIndex >= 0) {
+      return { ...state, previewOrder: state.orders[orderIndex] };
+    }
+  }
+
   if (action.type === TOGGLE_CHECK_ORDER) {
     const orderIndex = state.selectedOrders.findIndex(
       (order) => order === action.payload.id
