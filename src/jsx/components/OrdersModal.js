@@ -71,7 +71,7 @@ const OrdersModal = ({ modalOpen, setModalOpen }) => {
         <Button variant="danger light" onClick={() => setModalOpen(false)}>
           Close
         </Button>
-        <Link to={`orders/${previewOrder.id}`}>
+        <Link to={`/orders/${previewOrder?.id}`}>
           <Button variant="" type="button" className="btn btn-primary">
             Order page
           </Button>
