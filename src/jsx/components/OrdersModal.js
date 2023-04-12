@@ -1,6 +1,8 @@
 import React from "react";
 import { Button, Modal } from "react-bootstrap";
 import { useSelector } from "react-redux";
+import OrdersModalTable from "./table/OrdersModalTable/OrdersModalTable";
+import { Link } from "react-router-dom";
 
 const OrdersModal = ({ modalOpen, setModalOpen }) => {
   const { previewOrder } = useSelector((state) => state.orders);
@@ -22,14 +24,58 @@ const OrdersModal = ({ modalOpen, setModalOpen }) => {
           <span>&times;</span>
         </Button>
       </Modal.Header>
-      <Modal.Body>Modal body text goes here.</Modal.Body>
+      <Modal.Body>
+        <div className="row">
+          <div className="col">
+            <p className="mb-0">
+              <span className="w-50 d-inline-block">Full name:</span>{" "}
+              <b>{previewOrder?.clientInfo?.fullName}</b>
+            </p>
+            <p className="mb-0">
+              <span className="w-50 d-inline-block">Date:</span>{" "}
+              <b>{previewOrder?.createdAt}</b>
+            </p>
+            <p className="mb-0">
+              <span className="w-50 d-inline-block">Order status:</span>{" "}
+              <b>{previewOrder?.status}</b>
+            </p>
+            <p className="mb-0">
+              <span className="w-50 d-inline-block">Payment method:</span>{" "}
+              <b>{previewOrder?.paymentMethod}</b>
+            </p>
+          </div>
+          <div className="col">
+            <p className="mb-0">
+              <span className="w-50 d-inline-block">Total:</span>{" "}
+              <b>{`$${previewOrder?.orderTotal.toFixed(2)}`}</b>
+            </p>
+            <p className="mb-0">
+              <span className="w-50 d-inline-block">Tax (included):</span>{" "}
+              <b>{`$${previewOrder?.tax.toFixed(2)}`}</b>
+            </p>
+            <p className="mb-0">
+              <span className="w-50 d-inline-block">Discount:</span>{" "}
+              <b>{`$${previewOrder?.discount.toFixed(2)}`}</b>
+            </p>
+            <p className="mb-0">
+              <span className="w-50 d-inline-block">Order total:</span>{" "}
+              <b>{`$${previewOrder?.orderTotal.toFixed(2)}`}</b>
+            </p>
+          </div>
+        </div>
+        <div className="row mt-3">
+          <OrdersModalTable orders={previewOrder?.products} />
+        </div>
+      </Modal.Body>
       <Modal.Footer>
         <Button variant="danger light" onClick={() => setModalOpen(false)}>
           Close
         </Button>
-        <Button variant="" type="button" className="btn btn-primary">
-          Save changes
-        </Button>
+        <Link to={`orders/${previewOrder.id}`}>
+          <Button variant="" type="button" className="btn btn-primary">
+            Order page
+          </Button>
+        </Link>
       </Modal.Footer>
     </Modal>
   );
