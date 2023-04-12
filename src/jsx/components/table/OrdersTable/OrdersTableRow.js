@@ -62,9 +62,7 @@ const OrdersTableRow = ({ order, setModalOpen }) => {
           <label
             className="custom-control-label"
             htmlFor={`checkbox-${order.id}`}
-          >
-            <MenuIcon className="ml-3" />
-          </label>
+          ></label>
         </div>
       </td>
       <td>
@@ -73,7 +71,7 @@ const OrdersTableRow = ({ order, setModalOpen }) => {
       <td>{order.id}</td>
       <td>{order.client}</td>
       <td>{dayjs(order.createdAt).format("DD/MM/YYYY")}</td>
-      <td>${order.orderTotal}</td>
+      <td>{`$${order.orderTotal.toFixed(2)}`}</td>
       <td data-no-dnd="true">
         <div className="d-flex">
           <Link
