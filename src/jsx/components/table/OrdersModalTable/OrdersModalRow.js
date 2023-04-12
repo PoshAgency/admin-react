@@ -1,9 +1,6 @@
 import React from "react";
-import dayjs from "dayjs";
-// import "./PagesTableRow.css";
 
 const OrdersTableRow = ({ order, index }) => {
-  console.log(order);
   return (
     <tr>
       <td>{index + 1}</td>
