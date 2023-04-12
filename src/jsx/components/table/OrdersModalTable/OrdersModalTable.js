@@ -1,5 +1,5 @@
 import React from "react";
-import { Table, Card } from "react-bootstrap";
+import { Table } from "react-bootstrap";
 import OrdersModalRow from "./OrdersModalRow";
 
 const OrdersModalTable = ({ orders }) => {
@@ -29,9 +29,9 @@ const OrdersModalTable = ({ orders }) => {
         </tr>
       </thead>
       <tbody>
-        {orders.map((order, index) => {
-          return <OrdersModalRow order={order} key={order.id} index={index} />;
-        })}
+        {orders.map((order, index) => (
+          <OrdersModalRow order={order} index={index} key={index} />
+        ))}
       </tbody>
     </Table>
   );
