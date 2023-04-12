@@ -13,7 +13,7 @@ export const orders = [
     paymentMethod: "Cash on delivery",
     delivery: 21,
     orderTotal: 255,
-    message: "This is some order message.",
+    message: "Message from Marijana Zivanovic",
     products: [
       {
         image: "https://www.milami.rs/images/3TuraMain/T175-02Main.jpg",
@@ -55,7 +55,7 @@ export const orders = [
     paymentMethod: "On delivery",
     delivery: 0,
     orderTotal: 6242,
-    message: "This is some order message from urke.",
+    message: null,
     products: [
       {
         image:
@@ -114,7 +114,7 @@ export const orders = [
     paymentMethod: "Cash on delivery",
     delivery: 300,
     orderTotal: 2050,
-    message: "",
+    message: "Message from Jelena Petrovic",
     products: [
       {
         image: "https://www.milami.rs/images/Milami-stari-sajt-14-09/210-8.jpg",
