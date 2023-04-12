@@ -2,7 +2,7 @@ import {
   TOGGLE_CHECK_ORDER,
   TOGGLE_SELECT_ALL_ORDERS,
   DESELECT_ALL_ORDERS,
-  SET_PREVIEW_ORDER,
+  SET_SELECTED_ORDER,
 } from "./OrdersTypes";
 
 export function toggleCheckOrder(id) {
@@ -24,9 +24,9 @@ export function deselectAllOrders() {
   };
 }
 
-export function setPreviewOrder(id) {
+export function setSelectedOrder(id) {
   return {
-    type: SET_PREVIEW_ORDER,
+    type: SET_SELECTED_ORDER,
     payload: { id },
   };
 }
