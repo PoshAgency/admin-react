@@ -3,14 +3,11 @@ import { Link } from "react-router-dom";
 import swal from "sweetalert";
 import { Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import MenuIcon from "@mui/icons-material/Menu";
 import dayjs from "dayjs";
 import {
-  setPreviewOrder,
+  setSelectedOrder,
   toggleCheckOrder,
 } from "../../../../store/actions/OrdersActions";
-
-// import "./PagesTableRow.css";
 
 const OrdersTableRow = ({ order, setModalOpen }) => {
   const { selectedOrders } = useSelector((state) => state.orders);
@@ -44,7 +41,7 @@ const OrdersTableRow = ({ order, setModalOpen }) => {
   };
 
   const openOrderPreview = () => {
-    dispatch(setPreviewOrder(order.id));
+    dispatch(setSelectedOrder(order.id));
     setModalOpen(true);
   };
 
@@ -75,8 +72,9 @@ const OrdersTableRow = ({ order, setModalOpen }) => {
       <td data-no-dnd="true">
         <div className="d-flex">
           <Link
-            to="/pages/single"
+            to={`/orders/${order.id}`}
             className="btn btn-primary shadow btn-xs sharp mr-1"
+            onClick={(e) => dispatch(setSelectedOrder(order.id))}
           >
             <i className="fa fa-pencil"></i>
           </Link>

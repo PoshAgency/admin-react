@@ -5,7 +5,7 @@ import OrdersModalTable from "./table/OrdersModalTable/OrdersModalTable";
 import { Link } from "react-router-dom";
 
 const OrdersModal = ({ modalOpen, setModalOpen }) => {
-  const { previewOrder } = useSelector((state) => state.orders);
+  const { selectedOrder } = useSelector((state) => state.orders);
 
   return (
     <Modal
@@ -15,7 +15,7 @@ const OrdersModal = ({ modalOpen, setModalOpen }) => {
       onHide={() => setModalOpen(false)}
     >
       <Modal.Header>
-        <Modal.Title>Order ID: {previewOrder?.id}</Modal.Title>
+        <Modal.Title>Order ID: {selectedOrder?.id}</Modal.Title>
         <Button
           variant=""
           className="close"
@@ -29,49 +29,49 @@ const OrdersModal = ({ modalOpen, setModalOpen }) => {
           <div className="col">
             <p className="mb-0">
               <span className="w-50 d-inline-block">Full name:</span>{" "}
-              <b>{previewOrder?.clientInfo?.fullName}</b>
+              <b>{selectedOrder?.clientInfo.fullName}</b>
             </p>
             <p className="mb-0">
               <span className="w-50 d-inline-block">Date:</span>{" "}
-              <b>{previewOrder?.createdAt}</b>
+              <b>{selectedOrder?.createdAt}</b>
             </p>
             <p className="mb-0">
               <span className="w-50 d-inline-block">Order status:</span>{" "}
-              <b>{previewOrder?.status}</b>
+              <b>{selectedOrder?.status}</b>
             </p>
             <p className="mb-0">
               <span className="w-50 d-inline-block">Payment method:</span>{" "}
-              <b>{previewOrder?.paymentMethod}</b>
+              <b>{selectedOrder?.paymentMethod}</b>
             </p>
           </div>
           <div className="col">
             <p className="mb-0">
               <span className="w-50 d-inline-block">Total:</span>{" "}
-              <b>{`$${previewOrder?.orderTotal.toFixed(2)}`}</b>
+              <b>{`$${selectedOrder?.orderTotal.toFixed(2)}`}</b>
             </p>
             <p className="mb-0">
               <span className="w-50 d-inline-block">Tax (included):</span>{" "}
-              <b>{`$${previewOrder?.tax.toFixed(2)}`}</b>
+              <b>{`$${selectedOrder?.tax.toFixed(2)}`}</b>
             </p>
             <p className="mb-0">
               <span className="w-50 d-inline-block">Discount:</span>{" "}
-              <b>{`$${previewOrder?.discount.toFixed(2)}`}</b>
+              <b>{`$${selectedOrder?.discount.toFixed(2)}`}</b>
             </p>
             <p className="mb-0">
               <span className="w-50 d-inline-block">Order total:</span>{" "}
-              <b>{`$${previewOrder?.orderTotal.toFixed(2)}`}</b>
+              <b>{`$${selectedOrder?.orderTotal.toFixed(2)}`}</b>
             </p>
           </div>
         </div>
         <div className="row mt-3">
-          <OrdersModalTable orders={previewOrder?.products} />
+          <OrdersModalTable orders={selectedOrder?.products} />
         </div>
       </Modal.Body>
       <Modal.Footer>
         <Button variant="danger light" onClick={() => setModalOpen(false)}>
           Close
         </Button>
-        <Link to={`/orders/${previewOrder?.id}`}>
+        <Link to={`/orders/${selectedOrder?.id}`}>
           <Button variant="" type="button" className="btn btn-primary">
             Order page
           </Button>
