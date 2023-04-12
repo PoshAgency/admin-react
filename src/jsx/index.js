@@ -124,6 +124,7 @@ import EmailTemplates from "./pages/EmailTemplates";
 import SingleEmailTemplate from "./pages/SingleEmailTemplate";
 import Newsletter from "./pages/Newsletter";
 import Orders from "./pages/Orders";
+import SingleOrder from "./pages/SingleOrder";
 
 const Markup = () => {
   let path = window.location.pathname;
@@ -248,7 +249,10 @@ const Markup = () => {
     { url: "email-templates", component: EmailTemplates },
     { url: "email-templates/new", component: SingleEmailTemplate },
     { url: "newsletter", component: Newsletter },
-    { url: "orders/:status", component: Orders },
+    { url: "orders/active", component: Orders },
+    { url: "orders/fulfilled", component: Orders },
+    { url: "orders/unfulfilled", component: Orders },
+    { url: "orders/:id", component: SingleOrder },
   ];
 
   return (
