@@ -16,6 +16,7 @@ import SalesReducer from "./reducers/SalesReducer";
 import EmailTemplatesReducers from "./reducers/EmailTemplatesReducer";
 import NewsletterReducer from "./reducers/NewsletterReducer";
 import OrdersReducer from "./reducers/OrdersReducer";
+import MessagesReducer from "./reducers/MessagesReducer";
 
 const middleware = applyMiddleware(thunk);
 
@@ -35,6 +36,7 @@ const reducers = combineReducers({
   emailTemplates: EmailTemplatesReducers,
   customers: CustomersReducer,
   menuItems: MenuItemsReducer,
+  messages: MessagesReducer,
   todoReducers,
   form: reduxFormReducer,
 });

@@ -152,7 +152,19 @@ class SideBar extends Component {
       ],
       //TODO: Organize menu
       // The Posh Menu
-      thePosh = ["pages"];
+      thePosh = [
+        "pages",
+        "blogs",
+        "products",
+        "team",
+        "customers",
+        "sales",
+        "coupons",
+        "email-templates",
+        "messages",
+        "newsletter",
+        "settings",
+      ];
 
     return (
       <div className="deznav">
@@ -265,6 +277,14 @@ class SideBar extends Component {
                     to="/email-templates"
                   >
                     Email Templates
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    className={`${path === "messages" ? "mm-active" : ""}`}
+                    to="/messages"
+                  >
+                    Messages
                   </Link>
                 </li>
                 <li>

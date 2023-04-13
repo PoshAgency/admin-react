@@ -125,6 +125,7 @@ import SingleEmailTemplate from "./pages/SingleEmailTemplate";
 import Newsletter from "./pages/Newsletter";
 import Orders from "./pages/Orders";
 import SingleOrder from "./pages/SingleOrder";
+import Messages from "./pages/Messages";
 
 const Markup = () => {
   let path = window.location.pathname;
@@ -253,6 +254,7 @@ const Markup = () => {
     { url: "orders/fulfilled", component: Orders },
     { url: "orders/unfulfilled", component: Orders },
     { url: "orders/:id", component: SingleOrder },
+    { url: "messages", component: Messages },
   ];
 
   return (
