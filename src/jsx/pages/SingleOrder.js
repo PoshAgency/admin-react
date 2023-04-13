@@ -6,6 +6,7 @@ import OrderAddress from "../components/OrderAddress";
 import OrderTimeline from "../components/OrderTimeline";
 import OrderProfile from "../components/OrderProfile";
 import { useSelector } from "react-redux";
+import { useForm } from "react-hook-form";
 
 const componentSwitch = (param) => {
   switch (param) {
@@ -49,6 +50,11 @@ const tabData = [
 
 const SingleOrder = () => {
   const { selectedOrder } = useSelector((state) => state.orders);
+  const methods = useForm({ defaultValues: { id: selectedOrder.id } });
+
+  const onSubmit = (data) => {
+    console.log(data);
+  };
 
   return (
     <div className="row">
@@ -103,7 +109,97 @@ const SingleOrder = () => {
               Invoice PDF
             </Button>
             <hr />
-            <div></div>
+            <div>
+              <Accordion className="accordion accordion-rounded-stylish accordion-bordered container mt-3 ml-0 ">
+                <div className="accordion__item mb-0">
+                  <Accordion.Toggle
+                    as={"div"}
+                    eventKey="0"
+                    className={`accordion__header accordion__header--primary d-flex justify-content-between align-items-center p-0 pb-2`}
+                  >
+                    <p className="mb-0">Change order status</p>
+                    <i className={`la la-angle-down mr-2`} />
+                  </Accordion.Toggle>
+                  <Accordion.Collapse eventKey="0" className="accordion__body">
+                    {/* <p>Status description</p> */}
+                    <ul>
+                      <li className="mb-1 d-flex">
+                        <span style={{ width: "30%" }}>
+                          <b>Received</b>
+                        </span>
+                        <span>
+                          Customer created order (auto email with order
+                          confirmation)
+                        </span>
+                      </li>
+                      <li className="mb-1 d-flex">
+                        <span style={{ width: "30%" }}>
+                          <b>Accepted</b>
+                        </span>
+                        <span>Checking if order can be sent</span>
+                      </li>
+                      <li className="mb-1 d-flex">
+                        <span
+                          className="d-inline-block"
+                          style={{ width: "30%" }}
+                        >
+                          <b>Rejected</b>
+                        </span>
+                        <span>
+                          Package delivered service courier (auto email)
+                        </span>
+                      </li>
+                      <li className="mb-1 d-flex">
+                        <span
+                          className="d-inline-block"
+                          style={{ width: "30%" }}
+                        >
+                          <b>Sent</b>
+                        </span>
+                        <span>
+                          Package has returned, customer didn't received package
+                          (auto email)
+                        </span>
+                      </li>
+                      <li className="mb-1 d-flex">
+                        <span
+                          className="d-inline-block"
+                          style={{ width: "30%" }}
+                        >
+                          <b>Changed</b>
+                        </span>
+                        <span>Order is cancelled (auto email)</span>
+                      </li>
+                    </ul>
+                  </Accordion.Collapse>
+                </div>
+              </Accordion>
+            </div>
+            <div>
+              <form onSubmit={methods.handleSubmit(onSubmit)}>
+                <div className="form-group mt-3">
+                  <select
+                    {...methods.register("status")}
+                    className="form-control form-control-lg"
+                    id="inlineFormCustomSelect"
+                    defaultValue={"received"}
+                  >
+                    <option value="received">Received</option>
+                    <option value="accepted">Accepted</option>
+                    <option value="rejected">Rejected</option>
+                    <option value="sent">Sent</option>
+                    <option value="changed">Changed</option>
+                  </select>
+                </div>
+                <Button
+                  variant="primary"
+                  type="submit"
+                  className="btn-sm w-100"
+                >
+                  Save
+                </Button>
+              </form>
+            </div>
           </Card.Body>
         </Card>
       </div>
