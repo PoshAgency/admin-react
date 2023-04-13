@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Nav, Tab } from "react-bootstrap";
+import { Accordion, Button, Card, Nav, Tab } from "react-bootstrap";
 import OrderInfo from "../components/OrderInfo";
 import OrderProducts from "../components/OrderProducts";
 import OrderAddress from "../components/OrderAddress";
@@ -80,6 +80,30 @@ const SingleOrder = () => {
                 </Tab.Content>
               </Tab.Container>
             </div>
+          </Card.Body>
+        </Card>
+      </div>
+      <div className="col-4">
+        <Card className="h-auto">
+          <Card.Body>
+            <div className="d-flex justify-content-between">
+              <Button variant="primary" type="submit" className="btn-sm w-100">
+                Preview confiramtion
+              </Button>
+              <Button
+                variant="primary"
+                type="submit"
+                className="btn-sm w-100 ml-3"
+              >
+                Preview print
+              </Button>
+            </div>
+            <hr />
+            <Button variant="primary" type="submit" className="btn-sm w-100">
+              Invoice PDF
+            </Button>
+            <hr />
+            <div></div>
           </Card.Body>
         </Card>
       </div>
