@@ -67,7 +67,7 @@ const SingleProduct = () => {
                 <div className="form-group mt-3 slug-field">
                   <input
                     type="text"
-                    defaultValue={"https://theposh.agency/"}
+                    defaultValue=""
                     className="form-control input-default slug-field__input"
                     placeholder="Enter page title"
                     {...methods.register("slug")}
