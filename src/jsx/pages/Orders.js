@@ -17,7 +17,7 @@ const Orders = () => {
     if (!e.target.value) {
       setFilteredOrders(orders);
     } else {
-      setFilteredOrders((prevState) =>
+      setFilteredOrders(
         orders.filter((order) => {
           return (
             order.clientInfo.fullName

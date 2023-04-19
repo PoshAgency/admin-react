@@ -13,8 +13,8 @@ const Sales = () => {
     if (!e.target.value) {
       setFilteredSales(sales);
     } else {
-      setFilteredSales((prevState) =>
-        prevState.filter(
+      setFilteredSales(
+        sales.filter(
           (sale) =>
             sale.title.toLowerCase().includes(e.target.value.toLowerCase()) ||
             sale.type.toLowerCase().includes(e.target.value.toLowerCase())

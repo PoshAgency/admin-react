@@ -13,8 +13,8 @@ const Messages = () => {
     if (!e.target.value) {
       setFilteredMessages(messages);
     } else {
-      setFilteredMessages((prevState) =>
-        prevState.filter((message) =>
+      setFilteredMessages(
+        messages.filter((message) =>
           message.title.toLowerCase().includes(e.target.value.toLowerCase())
         )
       );

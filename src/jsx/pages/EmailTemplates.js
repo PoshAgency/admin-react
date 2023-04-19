@@ -14,8 +14,8 @@ const EmailTemplates = () => {
     if (!e.target.value) {
       setFilteredEmailTmeplates(emailTemplates);
     } else {
-      setFilteredEmailTmeplates((prevState) =>
-        prevState.filter((emailTemplate) =>
+      setFilteredEmailTmeplates(
+        emailTemplates.filter((emailTemplate) =>
           emailTemplate.title
             .toLowerCase()
             .includes(e.target.value.toLowerCase())

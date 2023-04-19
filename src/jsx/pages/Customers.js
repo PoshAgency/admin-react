@@ -8,7 +8,7 @@ import CustomersTable from "../components/table/CustomersTable/CustomersTable";
 const Customers = () => {
   const { customers } = useSelector((state) => state.customers);
 
-  const [filteredCustomers, setFilteredCustomers] = useState([]);
+  const [filteredCustomers, setFilteredCustomers] = useState(customers);
 
   // const [sortedCustomers, setSortedCustomers] = useState(
   //   sortedCustomers(customers)
@@ -52,8 +52,8 @@ const Customers = () => {
       </div>
       <div className="row mt-5">
         <div className="col d-flex align-items-center">
-          <h4 className="mb-0">{`${customers.length} ${
-            customers.length === 1 ? "customer" : "customers"
+          <h4 className="mb-0">{`${filteredCustomers.length} ${
+            filteredCustomers.length === 1 ? "customer" : "customers"
           }`}</h4>
         </div>
         <div className="col d-flex justify-content-end px-0">

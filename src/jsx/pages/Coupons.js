@@ -13,14 +13,11 @@ const Coupons = () => {
     if (!e.target.value) {
       setFilteredCoupons(coupons);
     } else {
-      setFilteredCoupons((prevState) =>
-        prevState.filter(
+      setFilteredCoupons(
+        coupons.filter(
           (coupon) =>
             coupon.title.toLowerCase().includes(e.target.value.toLowerCase()) ||
             coupon.code.toLowerCase().includes(e.target.value.toLowerCase())
-          // teamMember.category
-          //   .toLowerCase()
-          //   .includes(e.target.value.toLowerCase())
         )
       );
     }

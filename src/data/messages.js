@@ -11,6 +11,14 @@ export const messages = [
   },
   {
     id: uuid(),
+    title: "403",
+    slug: "forbidden-access",
+    message: "<h2>403</h2>",
+    buttonLink: "https://yahoo.com",
+    buttonText: "Yahoo",
+  },
+  {
+    id: uuid(),
     title: "Thank you for your message",
     slug: "thank-you-for-your-message",
     message: "<p>You will be contacted shortly.</p>",
