@@ -2,7 +2,7 @@ import {
   TOGGLE_CHECK_MESSAGE,
   DESELECT_ALL_MESSAGES,
   TOGGLE_SELECT_ALL_MESSAGES,
-} from "../actions/MessagesActions";
+} from "../actions/MessagesTypes";
 
 import { messages } from "../../data/messages";
 
@@ -10,7 +10,7 @@ const initialState = { messages: messages, selectedMessages: [] };
 
 export default function MessagesReducer(state = initialState, action) {
   if (action.type === TOGGLE_CHECK_MESSAGE) {
-    const messageIndex = state.messages.findIndex(
+    const messageIndex = state.selectedMessages.findIndex(
       (message) => message === action.payload.id
     );
 
@@ -34,7 +34,7 @@ export default function MessagesReducer(state = initialState, action) {
     let newSelectedMessagesArray = [];
 
     if (state.messages.length > state.selectedMessages.length) {
-      newSelectedMessagesArray = state.messages.map((template) => template.id);
+      newSelectedMessagesArray = state.messages.map((message) => message.id);
     }
 
     return { ...state, selectedMessages: newSelectedMessagesArray };
