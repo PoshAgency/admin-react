@@ -24,7 +24,7 @@ const Messages = () => {
   return (
     <>
       <div className="row d-flex justify-content-end">
-        <Link to="/email-templates/new">
+        <Link to="/messages/new">
           <Button variant="primary" className="btn">
             New Message
           </Button>
