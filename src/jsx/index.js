@@ -102,8 +102,31 @@ import Todo from "./pages/Todo";
 
 //Scroll To Top
 import ScrollToTop from "./layouts/ScrollToTop";
+
+// Custom Page Components
 import Pages from "./pages/Pages";
-import NewPage from "./pages/NewPage";
+import SinglePage from "./pages/SinglePage";
+import Blogs from "./pages/Blogs";
+import SingleBlog from "./pages/SingleBlog";
+import Products from "./pages/Products";
+import SingleProduct from "./pages/SingleProduct";
+import Team from "./pages/Team";
+import TeamMember from "./pages/TeamMember";
+import Customers from "./pages/Customers";
+import SingleCustomer from "./pages/SingleCustomer";
+import Settings from "./pages/Settings";
+import MenuEditor from "./pages/MenuEditor";
+import Coupons from "./pages/Coupons";
+import SingleCoupon from "./pages/SingleCoupon";
+import Sales from "./pages/Sales";
+import SingleSale from "./pages/SingleSale";
+import EmailTemplates from "./pages/EmailTemplates";
+import SingleEmailTemplate from "./pages/SingleEmailTemplate";
+import Newsletter from "./pages/Newsletter";
+import Orders from "./pages/Orders";
+import SingleOrder from "./pages/SingleOrder";
+import Messages from "./pages/Messages";
+import SingleMessage from "./pages/SingleMessage";
 
 const Markup = () => {
   let path = window.location.pathname;
@@ -196,9 +219,7 @@ const Markup = () => {
     //{ url: 'table-filtering', component: FilteringTable },
     //{ url: 'table-sorting', component: SortingTable },
 
-    /// pages
-    { url: "pages/new", component: NewPage },
-    { url: "pages", component: Pages },
+    //
     { url: "page-register", component: Registration },
     { url: "page-lock-screen", component: LockScreen },
     { url: "page-login", component: Login },
@@ -208,6 +229,34 @@ const Markup = () => {
     { url: "page-error-500", component: Error500 },
     { url: "page-error-503", component: Error503 },
     { url: "todo", component: Todo },
+
+    /// custom pages
+    { url: "pages", component: Pages },
+    { url: "pages/new", component: SinglePage },
+    { url: "pages/:id", component: SinglePage },
+    { url: "blogs", component: Blogs },
+    { url: "blogs/new", component: SingleBlog },
+    { url: "products", component: Products },
+    { url: "products/new", component: SingleProduct },
+    { url: "team", component: Team },
+    { url: "team/new", component: TeamMember },
+    { url: "customers", component: Customers },
+    { url: "customers/new", component: SingleCustomer },
+    { url: "settings", component: Settings },
+    { url: "settings/:menu", component: MenuEditor },
+    { url: "coupons", component: Coupons },
+    { url: "coupons/new", component: SingleCoupon },
+    { url: "sales", component: Sales },
+    { url: "sales/new", component: SingleSale },
+    { url: "email-templates", component: EmailTemplates },
+    { url: "email-templates/new", component: SingleEmailTemplate },
+    { url: "newsletter", component: Newsletter },
+    { url: "orders/active", component: Orders },
+    { url: "orders/fulfilled", component: Orders },
+    { url: "orders/unfulfilled", component: Orders },
+    { url: "orders/:id", component: SingleOrder },
+    { url: "messages", component: Messages },
+    { url: "messages/new", component: SingleMessage },
   ];
 
   return (

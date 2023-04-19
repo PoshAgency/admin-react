@@ -22,3 +22,11 @@
   margin-bottom: 30px;
   padding-bottom: 0;
 }
+
+.single-image-uploader {
+}
+
+.single-image-uploader__image {
+  max-width: 300px;
+  max-height: 400px;
+}

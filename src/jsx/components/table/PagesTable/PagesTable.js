@@ -163,13 +163,10 @@ const PagesTable = ({ pages, setPages }) => {
                 <strong>Title</strong>
               </th>
               <th>
-                <strong>Author</strong>
+                <strong>Date Added</strong>
               </th>
               <th>
-                <strong>Date</strong>
-              </th>
-              <th>
-                <strong>Category</strong>
+                <strong>Slug</strong>
               </th>
               <th>
                 <strong>Status</strong>

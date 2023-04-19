@@ -12,6 +12,7 @@ import {
 } from "../../../../store/actions/PagesActions";
 
 import "./PagesTableRow.css";
+import dayjs from "dayjs";
 
 const PagesTableRow = ({ page }) => {
   const { selectedPages } = useSelector((state) => state.pages);
@@ -83,13 +84,13 @@ const PagesTableRow = ({ page }) => {
       <td>
         <strong>{page.title}</strong>
       </td>
-      <td>
+      {/* <td>
         <div className="d-flex align-items-center">
           <span className="w-space-no">{page.author}</span>
         </div>
-      </td>
-      <td>{page.date} </td>
-      <td>{page.category}</td>
+      </td> */}
+      <td>{dayjs(page.published).format("DD/MM/YYYY")} </td>
+      <td>{page.slug}</td>
       <td onClick={togglePinned}>
         <div className="d-flex align-items-center">
           {
@@ -107,7 +108,7 @@ const PagesTableRow = ({ page }) => {
       <td data-no-dnd="true">
         <div className="d-flex">
           <Link
-            to="/pages/single"
+            to={`/pages/${page.id}`}
             className="btn btn-primary shadow btn-xs sharp mr-1"
           >
             <i className="fa fa-pencil"></i>

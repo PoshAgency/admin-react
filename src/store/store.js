@@ -5,7 +5,18 @@ import { AuthReducer } from "./reducers/AuthReducer";
 //import rootReducers from './reducers/Index';
 import todoReducers from "./reducers/Reducers";
 import PagesReducer from "./reducers/PagesReducer";
+import BlogsReducer from "./reducers/BlogsReducer";
 import { reducer as reduxFormReducer } from "redux-form";
+import ProductsReducer from "./reducers/ProductsReducer";
+import TeamReducer from "./reducers/TeamReducer";
+import CustomersReducer from "./reducers/CustomersReducer";
+import MenuItemsReducer from "./reducers/MenuItemsReducer";
+import CouponsReducer from "./reducers/CouponsReducer";
+import SalesReducer from "./reducers/SalesReducer";
+import EmailTemplatesReducers from "./reducers/EmailTemplatesReducer";
+import NewsletterReducer from "./reducers/NewsletterReducer";
+import OrdersReducer from "./reducers/OrdersReducer";
+import MessagesReducer from "./reducers/MessagesReducer";
 
 const middleware = applyMiddleware(thunk);
 
@@ -15,6 +26,17 @@ const reducers = combineReducers({
   posts: PostsReducer,
   auth: AuthReducer,
   pages: PagesReducer,
+  blogs: BlogsReducer,
+  products: ProductsReducer,
+  coupons: CouponsReducer,
+  sales: SalesReducer,
+  team: TeamReducer,
+  orders: OrdersReducer,
+  newsletter: NewsletterReducer,
+  emailTemplates: EmailTemplatesReducers,
+  customers: CustomersReducer,
+  menuItems: MenuItemsReducer,
+  messages: MessagesReducer,
   todoReducers,
   form: reduxFormReducer,
 });

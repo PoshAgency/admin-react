@@ -1,0 +1,8 @@
+export const TOGGLE_PINNED_TEAM_MEMBER =
+  "[Team Action] Toggle Pinned Team Member";
+export const TOGGLE_CHECK_TEAM_MEMBER =
+  "[Team Action] Toggle Check Team Member";
+export const DESELECT_ALL_TEAM_MEMBERS =
+  "[Team Action] Deselect All Team Members";
+export const TOGGLE_SELECT_ALL_TEAM_MEMBERS =
+  "[Team Action] Toggle Select All Team Members";

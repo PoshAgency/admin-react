@@ -35,7 +35,7 @@ const NewPageGalleries = () => {
   return (
     <div className="col">
       <div className="d-flex justify-content-between mb-3">
-        <h3>Galleries</h3>
+        <h3>Galleries and sliders</h3>
         <div>
           <Button
             variant="light"
@@ -59,7 +59,7 @@ const NewPageGalleries = () => {
       </div>
       <div className="d-flex mb-3 flex-wrap">
         {!fields.length ? (
-          <h4 className="mt-4 pl-4">Gallery list is empty.</h4>
+          <h4 className="mt-4 pl-4">List is empty.</h4>
         ) : (
           fields.map((gallery, index) => (
             <GalleryIcon
