@@ -45,7 +45,7 @@ const OrdersTable = ({ orders, setModalOpen }) => {
     <Card className="w-100">
       <Card.Header className="d-flex justify-content-between">
         <div className="d-flex align-items-center">
-          <Card.Title>Sales</Card.Title>
+          <Card.Title>Orders</Card.Title>
           <div
             className={`${
               selectedOrders.length ? "visible" : "invisible"

@@ -5,7 +5,7 @@ import OrdersTable from "../components/table/OrdersTable/OrdersTable";
 import OrdersModal from "../components/OrdersModal";
 
 const Orders = () => {
-  const location = useLocation();
+  // const location = useLocation();
 
   const [modalOpen, setModalOpen] = useState(false);
 
@@ -18,18 +18,16 @@ const Orders = () => {
       setFilteredOrders(orders);
     } else {
       setFilteredOrders((prevState) =>
-        prevState.filter(
-          (order) => {
-            console.log("inside");
-
-            return order.clientInfo.fullName
+        orders.filter((order) => {
+          return (
+            order.clientInfo.fullName
               .toLowerCase()
-              .includes(e.target.value.toLowerCase());
-          }
-          // order.deliveryAddress.city
-          //   .toLowerCase()
-          //   .includes(e.target.value.toLowerCase())
-        )
+              .includes(e.target.value.toLowerCase()) ||
+            order.clientInfo.email
+              .toLowerCase()
+              .includes(e.target.value.toLowerCase())
+          );
+        })
       );
     }
   };
