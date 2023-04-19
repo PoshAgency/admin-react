@@ -1,12 +1,9 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
 import OrdersTable from "../components/table/OrdersTable/OrdersTable";
 import OrdersModal from "../components/OrdersModal";
 
 const Orders = () => {
-  // const location = useLocation();
-
   const [modalOpen, setModalOpen] = useState(false);
 
   const { orders } = useSelector((state) => state.orders);
