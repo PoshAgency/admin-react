@@ -5,7 +5,6 @@ import { Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import MenuIcon from "@mui/icons-material/Menu";
 import dayjs from "dayjs";
-import { toggleCheckCoupon } from "../../../../store/actions/CouponsActions";
 import { toggleCheckSale } from "../../../../store/actions/SalesActions";
 
 // import "./PagesTableRow.css";
