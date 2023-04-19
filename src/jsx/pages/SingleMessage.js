@@ -5,6 +5,7 @@ import { Button } from "react-bootstrap";
 import { Editor } from "ckeditor5-custom-build/build/ckeditor";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import slugify from "slugify";
+import SEOFields from "../components/SEOFields";
 
 const SingleMessage = () => {
   const [disabledSlugInput, setDisabledSlugInput] = useState(true);
@@ -108,8 +109,9 @@ const SingleMessage = () => {
                     )}
                   />
                 </div>
+                <SEOFields methods={methods} />
               </div>
-              <div className="col-4 w-100">
+              <div className="col-4 w-100 h-auto">
                 <div className="form-group mt-3">
                   <h3 className="">Message template</h3>
                   <select
