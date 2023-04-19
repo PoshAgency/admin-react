@@ -14,6 +14,7 @@ import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 import BlogTagsSelector from "../components/BlogTagsSelector";
 import BlogRelatedLinks from "../components/BlogRelatedLinks";
+import SEOFields from "../components/SEOFields";
 
 // import "./NewPage.css";
 
@@ -25,8 +26,8 @@ const SingleBlog = () => {
     console.log(data);
   };
 
-  const updatePageSlug = (value) => {
-    methods.setValue("pageSlug", `https://theposh.agency/${slugify(value)}`);
+  const updateBlogSlug = (value) => {
+    methods.setValue("slug", `${slugify(value)}`);
   };
 
   const updateSeoValues = (field, value) => {
@@ -56,7 +57,7 @@ const SingleBlog = () => {
                     {...methods.register("title")}
                     onChange={(e) => {
                       updateSeoValues("seoTitle", e.target.value);
-                      updatePageSlug(e.target.value);
+                      updateBlogSlug(e.target.value);
                     }}
                     onClick={() => setDisabledSlugInput(true)}
                   />
@@ -203,28 +204,8 @@ const SingleBlog = () => {
               <NewPageSections control={methods.control} />
             </div> */}
             <div className="row mt-5">
-              <div className="col">
-                <h3>SEO</h3>
-                <div className="form-group mt-3 w-50 px-3">
-                  <h5>Title</h5>
-                  <input
-                    {...methods.register("seoTitle")}
-                    id="seo-title"
-                    type="text"
-                    className="form-control input-default px-3 mb-3"
-                    placeholder="SEO Title"
-                  />
-                </div>
-                <div className="form-group mt-3 w-75 px-3">
-                  <h5>Description</h5>
-                  <textarea
-                    id="seo-description"
-                    {...methods.register("seoDescription")}
-                    rows={4}
-                    className="form-control input-default px-3"
-                    placeholder="Max 160 characters"
-                  />
-                </div>
+              <div className="col-8">
+                <SEOFields methods={methods} />
               </div>
             </div>
             <div className="row justify-content-center mt-5">
