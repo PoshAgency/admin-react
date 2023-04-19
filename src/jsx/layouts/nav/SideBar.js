@@ -153,17 +153,17 @@ class SideBar extends Component {
       //TODO: Organize menu
       // The Posh Menu
       thePosh = [
-        "pages",
-        "blogs",
-        "products",
-        "team",
-        "customers",
-        "sales",
-        "coupons",
-        "email-templates",
-        "messages",
-        "newsletter",
-        "settings",
+        // "pages",
+        // "blogs",
+        // "products",
+        // "team",
+        // "customers",
+        // "sales",
+        // "coupons",
+        // "email-templates",
+        // "messages",
+        // "newsletter",
+        // "settings",
       ];
 
     return (
