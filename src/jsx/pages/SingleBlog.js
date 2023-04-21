@@ -15,12 +15,31 @@ import DateFnsUtils from "@date-io/date-fns";
 import BlogTagsSelector from "../components/BlogTagsSelector";
 import BlogRelatedLinks from "../components/BlogRelatedLinks";
 import SEOFields from "../components/SEOFields";
+import { useSelector } from "react-redux";
 
 // import "./NewPage.css";
 
 const SingleBlog = () => {
+  const values = useSelector((state) => state.blogs.selectedBlog);
   const [disabledSlugInput, setDisabledSlugInput] = useState(true);
-  const methods = useForm({});
+  const methods = useForm({
+    defaultValues: {
+      id: "",
+      slug: "",
+      seoTitle: "",
+      seoDescription: "",
+      seoKeywords: "",
+      author: "",
+      date: Date.now(),
+      tags: [],
+      images: [],
+      galleries: [],
+      related: [],
+      content: "",
+      pinned: false,
+    },
+    values,
+  });
 
   const onSubmit = (data) => {
     console.log(data);

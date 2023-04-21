@@ -7,6 +7,7 @@ import { Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import MenuIcon from "@mui/icons-material/Menu";
 import {
+  editBlog,
   toggleBlogPinned,
   toggleCheckBlog,
 } from "../../../../store/actions/BlogsActions";
@@ -53,6 +54,10 @@ const BlogsTableRow = ({ blog }) => {
 
   const togglePinned = () => {
     dispatch(toggleBlogPinned(blog.id));
+  };
+
+  const selectEditBlog = () => {
+    dispatch(editBlog(blog.id));
   };
 
   return (
@@ -107,8 +112,9 @@ const BlogsTableRow = ({ blog }) => {
       <td data-no-dnd="true">
         <div className="d-flex">
           <Link
-            to="/pages/single"
+            to={`/blogs/${blog.id}`}
             className="btn btn-primary shadow btn-xs sharp mr-1"
+            onClick={selectEditBlog}
           >
             <i className="fa fa-pencil"></i>
           </Link>

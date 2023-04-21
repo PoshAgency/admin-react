@@ -3,6 +3,7 @@ import {
   TOGGLE_PINNED_BLOG,
   DESELECT_ALL_BLOGS,
   TOGGLE_SELECT_ALL_BLOGS,
+  EDIT_BLOG,
 } from "../actions/BlogsTypes";
 
 export function toggleBlogPinned(id) {
@@ -28,5 +29,12 @@ export function toggleSelectAllBlogs() {
 export function deselectAllBlogs() {
   return {
     type: DESELECT_ALL_BLOGS,
+  };
+}
+
+export function editBlog(id) {
+  return {
+    type: EDIT_BLOG,
+    payload: { id },
   };
 }

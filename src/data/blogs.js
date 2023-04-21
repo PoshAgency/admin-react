@@ -5,7 +5,6 @@ export const blogs = [
   {
     title:
       "The European Health Data Space: A new catalyst for medical innovation",
-    text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque facere accusantium, perferendis aspernatur ipsa animi totam sed, esse, quam nisi possimus explicabo deleniti placeat temporibus corporis blanditiis quas delectus amet.",
     slug: `https://theposh.agency/${slugify(
       "The European Health Data Space: A new catalyst for medical innovation"
     )}`,
@@ -13,8 +12,12 @@ export const blogs = [
     date: new Date(2023, 1, 3).toLocaleDateString("en-gb"),
     category: "news",
     active: true,
+    description:
+      "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque facere accusantium, perferendis aspernatur ipsa animi totam sed, esse, quam nisi possimus explicabo deleniti placeat temporibus corporis blanditiis quas delectus amet.",
+    hero: "The European Health",
     id: uuid(),
     pinned: false,
+    tags: ["health", "data", "space"],
     content:
       "<p>The European Health Data Space: A new catalyst for medical innovation</p>",
     desktopImage:
@@ -70,7 +73,8 @@ export const blogs = [
     slug: `https://theposh.agency/${slugify(
       "IBM: Artificial Intelligence and Research Projects"
     )}`,
-    text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque facere accusantium, perferendis aspernatur ipsa animi totam sed, esse, quam nisi possimus explicabo deleniti placeat temporibus corporis blanditiis quas delectus amet.",
+    description:
+      "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque facere accusantium, perferendis aspernatur ipsa animi totam sed, esse, quam nisi possimus explicabo deleniti placeat temporibus corporis blanditiis quas delectus amet.",
     author: "ThePosh team",
     date: new Date(2023, 0, 13).toLocaleDateString("en-gb"),
     content: "<p>IBM: Artificial Intelligence and Research Projects</p>",
@@ -131,7 +135,8 @@ export const blogs = [
     slug: `https://theposh.agency/${slugify(
       "INTERPOL CKE as Privanova’s Dissemination Platform for LEAs"
     )}`,
-    text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque facere accusantium, perferendis aspernatur ipsa animi totam sed, esse, quam nisi possimus explicabo deleniti placeat temporibus corporis blanditiis quas delectus amet.",
+    description:
+      "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque facere accusantium, perferendis aspernatur ipsa animi totam sed, esse, quam nisi possimus explicabo deleniti placeat temporibus corporis blanditiis quas delectus amet.",
     author: "Primanova team",
     date: new Date(2023, 0, 8).toLocaleDateString("en-gb"),
     category: "news",
@@ -193,7 +198,8 @@ export const blogs = [
     slug: `https://theposh.agency/${slugify(
       "Horizon Europe Data Management Plan from an Ethics Perspective"
     )}`,
-    text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque facere accusantium, perferendis aspernatur ipsa animi totam sed, esse, quam nisi possimus explicabo deleniti placeat temporibus corporis blanditiis quas delectus amet.",
+    description:
+      "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque facere accusantium, perferendis aspernatur ipsa animi totam sed, esse, quam nisi possimus explicabo deleniti placeat temporibus corporis blanditiis quas delectus amet.",
     author: "ThePosh team",
     date: new Date(2023, 0, 2).toLocaleDateString("en-gb"),
     category: "insights",
@@ -255,7 +261,8 @@ export const blogs = [
     slug: `https://theposh.agency/${slugify(
       "Copyright infringement as a form of cybercrime"
     )}`,
-    text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque facere accusantium, perferendis aspernatur ipsa animi totam sed, esse, quam nisi possimus explicabo deleniti placeat temporibus corporis blanditiis quas delectus amet.",
+    description:
+      "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque facere accusantium, perferendis aspernatur ipsa animi totam sed, esse, quam nisi possimus explicabo deleniti placeat temporibus corporis blanditiis quas delectus amet.",
     author: "Primanova team",
     date: new Date(2023, 0, 18).toLocaleDateString("en-gb"),
     category: "reports",
@@ -316,11 +323,13 @@ export const blogs = [
     slug: `https://theposh.agency/${slugify(
       "Privacy Impact Assessments for H2020 Projects"
     )}`,
-    text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque facere accusantium, perferendis aspernatur ipsa animi totam sed, esse, quam nisi possimus explicabo deleniti placeat temporibus corporis blanditiis quas delectus amet.",
+    descrpition:
+      "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque facere accusantium, perferendis aspernatur ipsa animi totam sed, esse, quam nisi possimus explicabo deleniti placeat temporibus corporis blanditiis quas delectus amet.",
     author: "ThePosh team",
     date: new Date(2023, 1, 3).toLocaleDateString("en-gb"),
     category: "reports",
     active: true,
+    hero: "Privacy Impact Assessments",
     id: uuid(),
     pinned: true,
     content: "<p>Privacy Impact Assessments for H2020 Projects</p>",
@@ -370,7 +379,17 @@ export const blogs = [
         type: "slider",
       },
     ],
-    related: [],
+    tags: [
+      { label: "Insights", value: "insights", __isNew__: true },
+      { label: "Research", value: "research", __isNew__: true },
+    ],
+    related: [
+      {
+        label: "Horizon Europe Data Management Plan from an Ethics Perspective",
+        value:
+          "http://theposh.agency/horizon-europe-data-management-plan-from-an-ethics-perspective",
+      },
+    ],
   },
   {
     title:
@@ -378,7 +397,8 @@ export const blogs = [
     slug: `https://theposh.agency/${slugify(
       "Opinion on the European Gambling and Betting Association’s draft Code of Conduct"
     )}`,
-    text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque facere accusantium, perferendis aspernatur ipsa animi totam sed, esse, quam nisi possimus explicabo deleniti placeat temporibus corporis blanditiis quas delectus amet.",
+    description:
+      "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque facere accusantium, perferendis aspernatur ipsa animi totam sed, esse, quam nisi possimus explicabo deleniti placeat temporibus corporis blanditiis quas delectus amet.",
     author: "Primanova team",
     date: new Date(2023, 1, 1).toLocaleDateString("en-gb"),
     category: "news",
@@ -438,7 +458,8 @@ export const blogs = [
   {
     title: "CC-DRIVER Kickoff Meeting",
     slug: `https://theposh.agency/${slugify("CC-DRIVER Kickoff Meeting")}`,
-    text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque facere accusantium, perferendis aspernatur ipsa animi totam sed, esse, quam nisi possimus explicabo deleniti placeat temporibus corporis blanditiis quas delectus amet.",
+    description:
+      "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque facere accusantium, perferendis aspernatur ipsa animi totam sed, esse, quam nisi possimus explicabo deleniti placeat temporibus corporis blanditiis quas delectus amet.",
     author: "ThePosh team",
     date: new Date(2023, 0, 13).toLocaleDateString("en-gb"),
     category: "insights",
@@ -497,7 +518,8 @@ export const blogs = [
   {
     title: "MARVEL Kick-off Meeting",
     slug: `https://theposh.agency/${slugify("MARVEL Kick-off Meeting")}`,
-    text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque facere accusantium, perferendis aspernatur ipsa animi totam sed, esse, quam nisi possimus explicabo deleniti placeat temporibus corporis blanditiis quas delectus amet.",
+    description:
+      "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque facere accusantium, perferendis aspernatur ipsa animi totam sed, esse, quam nisi possimus explicabo deleniti placeat temporibus corporis blanditiis quas delectus amet.",
     author: "Primanova team",
     date: new Date(2023, 1, 2).toLocaleDateString("en-gb"),
     category: "news",
@@ -558,7 +580,8 @@ export const blogs = [
     slug: `https://theposh.agency/${slugify(
       "Living-in.EU: Digital Transformation in the European Cities"
     )}`,
-    text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque facere accusantium, perferendis aspernatur ipsa animi totam sed, esse, quam nisi possimus explicabo deleniti placeat temporibus corporis blanditiis quas delectus amet.",
+    description:
+      "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque facere accusantium, perferendis aspernatur ipsa animi totam sed, esse, quam nisi possimus explicabo deleniti placeat temporibus corporis blanditiis quas delectus amet.",
     author: "ThePosh team",
     date: new Date(2023, 0, 2).toLocaleDateString("en-gb"),
     category: "insights",
@@ -620,7 +643,8 @@ export const blogs = [
     slug: `https://theposh.agency/${slugify(
       "Privanova – INTERPOL Cybercrime Knowledge Exchange Member"
     )}`,
-    text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque facere accusantium, perferendis aspernatur ipsa animi totam sed, esse, quam nisi possimus explicabo deleniti placeat temporibus corporis blanditiis quas delectus amet.",
+    description:
+      "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque facere accusantium, perferendis aspernatur ipsa animi totam sed, esse, quam nisi possimus explicabo deleniti placeat temporibus corporis blanditiis quas delectus amet.",
     author: "ThePosh team",
     date: new Date(2023, 1, 22).toLocaleDateString("en-gb"),
     category: "reports",

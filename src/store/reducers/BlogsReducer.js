@@ -3,12 +3,14 @@ import {
   TOGGLE_SELECT_ALL_BLOGS,
   TOGGLE_PINNED_BLOG,
   DESELECT_ALL_BLOGS,
+  EDIT_BLOG,
 } from "../actions/BlogsTypes";
 import { blogs } from "../../data/blogs";
 
 const initialState = {
   blogs,
   selectedBlogs: [],
+  selectedBlog: {},
 };
 
 export default function BlogsReducer(state = initialState, action) {
@@ -54,6 +56,17 @@ export default function BlogsReducer(state = initialState, action) {
 
   if (action.type === DESELECT_ALL_BLOGS) {
     return { ...state, selectedBlogs: [] };
+  }
+
+  if (action.type === EDIT_BLOG) {
+    const selectedBlog = state.blogs.find(
+      (blog) => blog.id === action.payload.id
+    );
+
+    return {
+      ...state,
+      selectedBlog,
+    };
   }
 
   return state;
