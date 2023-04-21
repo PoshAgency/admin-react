@@ -9,6 +9,7 @@ import {
   deselectAllEmailTemplates,
   toggleSelectAllEmailTemplates,
 } from "../../../../store/actions/EmailTemplatesActions";
+import TablePagination from "../../TablePagination";
 
 const EmailTemplatesTable = ({ emailTemplates, setEmailTemplates }) => {
   const { selectedTemplates } = useSelector((state) => state.emailTemplates);
@@ -148,6 +149,13 @@ const EmailTemplatesTable = ({ emailTemplates, setEmailTemplates }) => {
             })}
           </tbody>
         </Table>
+        <TablePagination
+          size={""}
+          gutter={true}
+          variant={"primary"}
+          bg={false}
+          circle={false}
+        />
       </Card.Body>
     </Card>
   );
