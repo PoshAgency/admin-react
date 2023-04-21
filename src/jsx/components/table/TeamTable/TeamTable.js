@@ -20,6 +20,7 @@ import {
   deselectAllTeamMembers,
   toggleSelectAllTeamMembers,
 } from "../../../../store/actions/TeamActions";
+import TablePagination from "../../TablePagination";
 
 const TeamTable = ({ team, setTeam }) => {
   const { selectedTeamMembers } = useSelector((state) => state.team);
@@ -199,6 +200,13 @@ const TeamTable = ({ team, setTeam }) => {
             </>
           </tbody>
         </Table>
+        <TablePagination
+          size={""}
+          gutter={true}
+          variant={"primary"}
+          bg={false}
+          circle={false}
+        />
       </Card.Body>
     </Card>
   );
