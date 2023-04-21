@@ -9,6 +9,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import {
   toggleCheckPage,
   togglePagePinned,
+  editPage,
 } from "../../../../store/actions/PagesActions";
 
 import "./PagesTableRow.css";
@@ -54,6 +55,10 @@ const PagesTableRow = ({ page }) => {
 
   const togglePinned = () => {
     dispatch(togglePagePinned(page.id));
+  };
+
+  const selectEditPage = () => {
+    dispatch(editPage(page.id));
   };
 
   return (
@@ -110,6 +115,7 @@ const PagesTableRow = ({ page }) => {
           <Link
             to={`/pages/${page.id}`}
             className="btn btn-primary shadow btn-xs sharp mr-1"
+            onClick={selectEditPage}
           >
             <i className="fa fa-pencil"></i>
           </Link>

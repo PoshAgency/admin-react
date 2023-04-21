@@ -15,10 +15,34 @@ import DateFnsUtils from "@date-io/date-fns";
 
 import "./NewPage.css";
 import SEOFields from "../components/SEOFields";
+import { useSelector } from "react-redux";
 
 const SinglePage = () => {
+  const values = useSelector((state) => state.pages.selectedPage);
+
   const [disabledSlutInput, setDisabledSlugInput] = useState(true);
-  const methods = useForm({});
+
+  const methods = useForm({
+    defaultValues: {
+      id: "",
+      title: "",
+      slug: "",
+      template: "",
+      pinned: false,
+      description: "",
+      published: Date.now(),
+      hero: "",
+      desktopImage: "",
+      mobileImage: "",
+      seoTitle: "",
+      seoDescription: "",
+      seoKeywords: "",
+      sections: [],
+      galleries: [],
+      pageContent: "",
+    },
+    values,
+  });
 
   const onSubmit = (data) => {
     console.log(data);
@@ -172,6 +196,8 @@ const SinglePage = () => {
                       <option value="careers">Carrers</option>
                       <option value="default-page">Default Page</option>
                       <option value="team">Team</option>
+                      <option value="legal">Legal</option>
+                      <option value="budgeting">Budgeting</option>
                     </select>
                   </div>
                 </div>
