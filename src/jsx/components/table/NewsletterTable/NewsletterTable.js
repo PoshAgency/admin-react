@@ -9,6 +9,7 @@ import {
   deselectAllContacts,
   toggleSelectAllContacts,
 } from "../../../../store/actions/NewsletterActions";
+import TablePagination from "../../TablePagination";
 
 const NewsletterTable = ({ emailList, setEmailList }) => {
   const { selectedContacts } = useSelector((state) => state.newsletter);
@@ -144,6 +145,13 @@ const NewsletterTable = ({ emailList, setEmailList }) => {
             ))}
           </tbody>
         </Table>
+        <TablePagination
+          size={""}
+          gutter={true}
+          variant={"primary"}
+          bg={false}
+          circle={false}
+        />
       </Card.Body>
     </Card>
   );
