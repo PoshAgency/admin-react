@@ -8,6 +8,7 @@ import {
   deselectAllMessages,
   toggleSelectAllMessages,
 } from "../../../../store/actions/MessagesActions";
+import TablePagination from "../../TablePagination";
 
 const MessagesTable = ({ messages }) => {
   const { selectedMessages } = useSelector((state) => state.messages);
@@ -122,6 +123,13 @@ const MessagesTable = ({ messages }) => {
             ))}
           </tbody>
         </Table>
+        <TablePagination
+          size={""}
+          gutter={true}
+          variant={"primary"}
+          bg={false}
+          circle={false}
+        />
       </Card.Body>
     </Card>
   );
