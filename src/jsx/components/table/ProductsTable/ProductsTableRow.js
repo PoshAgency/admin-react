@@ -7,6 +7,7 @@ import { Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import MenuIcon from "@mui/icons-material/Menu";
 import {
+  editProduct,
   toggleCheckProduct,
   toggleProductPinned,
 } from "../../../../store/actions/ProductsActions";
@@ -53,6 +54,10 @@ const ProductsTableRow = ({ product }) => {
 
   const togglePinned = () => {
     dispatch(toggleProductPinned(product.id));
+  };
+
+  const handleEditProduct = () => {
+    dispatch(editProduct(product.id));
   };
 
   return (
@@ -102,8 +107,9 @@ const ProductsTableRow = ({ product }) => {
       <td data-no-dnd="true">
         <div className="d-flex">
           <Link
-            to="/pages/single"
+            to={`/products/${product.id}`}
             className="btn btn-primary shadow btn-xs sharp mr-1"
+            onClick={handleEditProduct}
           >
             <i className="fa fa-pencil"></i>
           </Link>

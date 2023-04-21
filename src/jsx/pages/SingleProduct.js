@@ -16,12 +16,40 @@ import BlogTagsSelector from "../components/BlogTagsSelector";
 import BlogRelatedLinks from "../components/BlogRelatedLinks";
 
 import SEOFields from "../components/SEOFields";
+import { useSelector } from "react-redux";
 
 // import "./NewPage.css";
 
 const SingleProduct = () => {
+  const values = useSelector((state) => state.products.selectedProduct);
   const [disabledSlugInput, setDisabledSlugInput] = useState(true);
-  const methods = useForm({});
+  const methods = useForm({
+    defaultValues: {
+      id: "",
+      productId: "",
+      content: "",
+      active: false,
+      price: 0,
+      title: "",
+      slug: "",
+      salePrice: 0,
+      description: "",
+      stockQuantity: 0,
+      published: Date.now(),
+      category: "",
+      tags: [],
+      categories: [],
+      related: [],
+      galleries: [],
+      desktopImage: "",
+      mobileImage: "",
+      seoTitle: "",
+      seoDescription: "",
+      seoKeywords: "",
+      pinned: false,
+    },
+    values,
+  });
 
   const onSubmit = (data) => {
     console.log(data);
@@ -38,8 +66,8 @@ const SingleProduct = () => {
   return (
     <>
       <div className="d-flex justify-content-between align-items-center">
-        <h2>New Product</h2>
-        <Link to="/pages">
+        <h2>{!values.id ? "New Product" : "Edit Product"}</h2>
+        <Link to="/products">
           <Button variant="transparent">Cancel</Button>
         </Link>
       </div>
@@ -234,7 +262,7 @@ const SingleProduct = () => {
               <div className="col">
                 <h3 className="mb-3">Product content</h3>
                 <Controller
-                  name="productContent"
+                  name="content"
                   control={methods.control}
                   defaultValue=""
                   render={({ field: { onChange, onBlur, value, ref } }) => (

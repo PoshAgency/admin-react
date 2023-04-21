@@ -3,6 +3,7 @@ import {
   TOGGLE_PINNED_PRODUCT,
   DESELECT_ALL_PRODUCTS,
   TOGGLE_SELECT_ALL_PRODUCTS,
+  EDIT_PRODUCT,
 } from "../actions/ProductsTypes";
 
 export function toggleProductPinned(id) {
@@ -28,5 +29,12 @@ export function toggleSelectAllProducts() {
 export function deselectAllProducts() {
   return {
     type: DESELECT_ALL_PRODUCTS,
+  };
+}
+
+export function editProduct(id) {
+  return {
+    type: EDIT_PRODUCT,
+    payload: { id },
   };
 }

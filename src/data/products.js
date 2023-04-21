@@ -3,16 +3,21 @@ import slugify from "slugify";
 
 export const products = [
   {
-    title: "Shoes 1111",
-    slug: `https://theposh.agency/${slugify("Product 1")}`,
-    text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque facere accusantium, perferendis aspernatur ipsa animi totam sed, esse, quam nisi possimus explicabo deleniti placeat temporibus corporis blanditiis quas delectus amet.",
+    title: "Air Force 1",
+    slug: `https://theposh.agency/${slugify("Air Force 1")}`,
+    description:
+      "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque facere accusantium, perferendis aspernatur ipsa animi totam sed, esse, quam nisi possimus explicabo deleniti placeat temporibus corporis blanditiis quas delectus amet.",
     date: new Date(2023, 1, 22).toLocaleDateString("en-gb"),
     category: "shoes",
     tags: [],
     active: true,
+    price: 332,
+    salePrice: 0,
     id: uuid(),
+    productId: "1111",
+    stockQuantity: 15,
     pinned: true,
-    content: "<p>Privanova – INTERPOL Cybercrime Knowledge Exchange Member</p>",
+    content: "<p>Air Force 1 shoes.</p>",
     desktopImage:
       "https://images.unsplash.com/photo-1676579526746-acba9b0eef80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDEzfGlVSXNuVnRqQjBZfHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
     mobileImage:
@@ -64,7 +69,8 @@ export const products = [
   {
     title: "Bags 2124",
     slug: `https://theposh.agency/${slugify("Product 2")}`,
-    text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque facere accusantium, perferendis aspernatur ipsa animi totam sed, esse, quam nisi possimus explicabo deleniti placeat temporibus corporis blanditiis quas delectus amet.",
+    description:
+      "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque facere accusantium, perferendis aspernatur ipsa animi totam sed, esse, quam nisi possimus explicabo deleniti placeat temporibus corporis blanditiis quas delectus amet.",
     date: new Date(2023, 1, 22).toLocaleDateString("en-gb"),
     category: "bags",
     active: false,
@@ -123,7 +129,8 @@ export const products = [
   {
     title: "Shoes 32134",
     slug: `https://theposh.agency/${slugify("Product 3")}`,
-    text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque facere accusantium, perferendis aspernatur ipsa animi totam sed, esse, quam nisi possimus explicabo deleniti placeat temporibus corporis blanditiis quas delectus amet.",
+    description:
+      "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque facere accusantium, perferendis aspernatur ipsa animi totam sed, esse, quam nisi possimus explicabo deleniti placeat temporibus corporis blanditiis quas delectus amet.",
     date: new Date(2023, 1, 22).toLocaleDateString("en-gb"),
     category: "shoes",
     active: true,
@@ -182,7 +189,8 @@ export const products = [
   {
     title: "Accessories 1543",
     slug: `https://theposh.agency/${slugify("Product 4")}`,
-    text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque facere accusantium, perferendis aspernatur ipsa animi totam sed, esse, quam nisi possimus explicabo deleniti placeat temporibus corporis blanditiis quas delectus amet.",
+    description:
+      "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque facere accusantium, perferendis aspernatur ipsa animi totam sed, esse, quam nisi possimus explicabo deleniti placeat temporibus corporis blanditiis quas delectus amet.",
     date: new Date(2023, 1, 22).toLocaleDateString("en-gb"),
     category: "accessories",
     active: true,
@@ -241,7 +249,8 @@ export const products = [
   {
     title: "Accessories 54634",
     slug: `https://theposh.agency/${slugify("Product 5")}`,
-    text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque facere accusantium, perferendis aspernatur ipsa animi totam sed, esse, quam nisi possimus explicabo deleniti placeat temporibus corporis blanditiis quas delectus amet.",
+    description:
+      "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque facere accusantium, perferendis aspernatur ipsa animi totam sed, esse, quam nisi possimus explicabo deleniti placeat temporibus corporis blanditiis quas delectus amet.",
     date: new Date(2023, 1, 22).toLocaleDateString("en-gb"),
     category: "accessories",
     active: false,
@@ -300,7 +309,8 @@ export const products = [
   {
     title: "Shoes 6674",
     slug: `https://theposh.agency/${slugify("Product 6")}`,
-    text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque facere accusantium, perferendis aspernatur ipsa animi totam sed, esse, quam nisi possimus explicabo deleniti placeat temporibus corporis blanditiis quas delectus amet.",
+    description:
+      "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque facere accusantium, perferendis aspernatur ipsa animi totam sed, esse, quam nisi possimus explicabo deleniti placeat temporibus corporis blanditiis quas delectus amet.",
     date: new Date(2023, 1, 22).toLocaleDateString("en-gb"),
     category: "shoes",
     active: false,

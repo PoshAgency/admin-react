@@ -3,12 +3,14 @@ import {
   TOGGLE_CHECK_PRODUCT,
   DESELECT_ALL_PRODUCTS,
   TOGGLE_SELECT_ALL_PRODUCTS,
+  EDIT_PRODUCT,
 } from "../actions/ProductsTypes";
 import { products } from "../../data/products";
 
 const initialState = {
   products,
   selectedProducts: [],
+  selectedProduct: {},
 };
 
 export default function ProductsReducer(state = initialState, action) {
@@ -56,6 +58,14 @@ export default function ProductsReducer(state = initialState, action) {
 
   if (action.type === DESELECT_ALL_PRODUCTS) {
     return { ...state, selectedProducts: [] };
+  }
+
+  if (action.type === EDIT_PRODUCT) {
+    const selectedProduct = state.products.find(
+      (product) => product.id === action.payload.id
+    );
+
+    return { ...state, selectedProduct };
   }
 
   return state;
