@@ -14,6 +14,7 @@ import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 
 import "./NewPage.css";
+import SEOFields from "../components/SEOFields";
 
 const SinglePage = () => {
   const [disabledSlutInput, setDisabledSlugInput] = useState(true);
@@ -24,7 +25,7 @@ const SinglePage = () => {
   };
 
   const updatePageSlug = (value) => {
-    methods.setValue("pageSlug", `https://theposh.agency/${slugify(value)}`);
+    methods.setValue("slug", `${slugify(value)}`);
   };
 
   const updateSeoValues = (field, value) => {
@@ -66,7 +67,7 @@ const SinglePage = () => {
                     defaultValue={"https://theposh.agency/"}
                     className="form-control input-default px-2 mb-3 slug-field__input"
                     placeholder="Enter page title"
-                    {...methods.register("pageSlug")}
+                    {...methods.register("slug")}
                     disabled={disabledSlutInput}
                   />
                   <Button
@@ -103,6 +104,38 @@ const SinglePage = () => {
                     maxLength="300"
                   ></textarea>
                 </div>
+                <div className="row d-flex flex-column mt-5">
+                  <div className="col">
+                    <h3 className="mb-3">Page content</h3>
+                    <Controller
+                      name="pageContent"
+                      control={methods.control}
+                      defaultValue=""
+                      render={({ field: { onChange, onBlur, value, ref } }) => (
+                        <CKEditor
+                          editor={Editor}
+                          data={value}
+                          onReady={(editor) => {}}
+                          onChange={(event, editor) => {
+                            const data = editor.getData();
+                            onChange(data);
+                          }}
+                          onBlur={(event, editor) => {
+                            onBlur();
+                          }}
+                          onFocus={(event, editor) => {}}
+                        />
+                      )}
+                    />
+                  </div>
+                </div>
+                <div className="row mt-5">
+                  <NewPageGalleries />
+                </div>
+                <div className="row mt-5">
+                  <NewPageSections control={methods.control} />
+                </div>
+                <SEOFields methods={methods} />
               </div>
               <div className="col-4 w-100">
                 <div>
@@ -116,7 +149,7 @@ const SinglePage = () => {
                           autoOk
                           clearable
                           format="dd/MM/yyyy"
-                          disableFuture
+                          disableToolbar
                           value={value}
                           onChange={onChange}
                           onBlur={onBlur}
@@ -141,67 +174,6 @@ const SinglePage = () => {
                       <option value="team">Team</option>
                     </select>
                   </div>
-                </div>
-              </div>
-            </div>
-            <div className="row d-flex flex-column mt-5">
-              <div className="col">
-                <h3 className="mb-3">Page content </h3>
-                <Controller
-                  name="pageContent"
-                  control={methods.control}
-                  defaultValue=""
-                  render={({ field: { onChange, onBlur, value, ref } }) => (
-                    <CKEditor
-                      editor={Editor}
-                      data={value}
-                      onReady={(editor) => {
-                        // console.log("ready");
-                      }}
-                      onChange={(event, editor) => {
-                        const data = editor.getData();
-                        onChange(data);
-                      }}
-                      onBlur={(event, editor) => {
-                        // console.log("Blur.", editor);
-                        onBlur();
-                      }}
-                      onFocus={(event, editor) => {
-                        // console.log("Focus.", editor);
-                      }}
-                    />
-                  )}
-                />
-              </div>
-            </div>
-            <div className="row mt-5">
-              <NewPageGalleries />
-            </div>
-            <div className="row mt-5">
-              <NewPageSections control={methods.control} />
-            </div>
-            <div className="row mt-5">
-              <div className="col">
-                <h3>SEO</h3>
-                <div className="form-group mt-3 w-50 px-3">
-                  <h5>Title</h5>
-                  <input
-                    {...methods.register("seoTitle")}
-                    id="seo-title"
-                    type="text"
-                    className="form-control input-default px-3 mb-3"
-                    placeholder="SEO Title"
-                  />
-                </div>
-                <div className="form-group mt-3 w-75 px-3">
-                  <h5>Description</h5>
-                  <textarea
-                    id="seo-description"
-                    {...methods.register("seoDescription")}
-                    rows={4}
-                    className="form-control input-default px-3"
-                    placeholder="Max 160 characters"
-                  />
                 </div>
               </div>
             </div>

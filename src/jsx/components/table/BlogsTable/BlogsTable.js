@@ -19,6 +19,7 @@ import {
   toggleSelectAllBlogs,
 } from "../../../../store/actions/BlogsActions";
 import BlogsTableRow from "./BlogsTableRow";
+import TablePagination from "../../TablePagination";
 
 const PagesTable = ({ blogs, setBlogs }) => {
   const { selectedBlogs } = useSelector((state) => state.blogs);
@@ -198,6 +199,13 @@ const PagesTable = ({ blogs, setBlogs }) => {
             </>
           </tbody>
         </Table>
+        <TablePagination
+          size={""}
+          gutter={true}
+          variant={"primary"}
+          bg={false}
+          circle={false}
+        />
       </Card.Body>
     </Card>
   );

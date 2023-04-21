@@ -3,7 +3,7 @@ import slugify from "slugify";
 
 export const products = [
   {
-    title: "Product 1",
+    title: "Shoes 1111",
     slug: `https://theposh.agency/${slugify("Product 1")}`,
     text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque facere accusantium, perferendis aspernatur ipsa animi totam sed, esse, quam nisi possimus explicabo deleniti placeat temporibus corporis blanditiis quas delectus amet.",
     date: new Date(2023, 1, 22).toLocaleDateString("en-gb"),
@@ -62,7 +62,7 @@ export const products = [
     related: [],
   },
   {
-    title: "Product 2",
+    title: "Bags 2124",
     slug: `https://theposh.agency/${slugify("Product 2")}`,
     text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque facere accusantium, perferendis aspernatur ipsa animi totam sed, esse, quam nisi possimus explicabo deleniti placeat temporibus corporis blanditiis quas delectus amet.",
     date: new Date(2023, 1, 22).toLocaleDateString("en-gb"),
@@ -121,7 +121,7 @@ export const products = [
     related: [],
   },
   {
-    title: "Product 3",
+    title: "Shoes 32134",
     slug: `https://theposh.agency/${slugify("Product 3")}`,
     text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque facere accusantium, perferendis aspernatur ipsa animi totam sed, esse, quam nisi possimus explicabo deleniti placeat temporibus corporis blanditiis quas delectus amet.",
     date: new Date(2023, 1, 22).toLocaleDateString("en-gb"),
@@ -180,7 +180,7 @@ export const products = [
     related: [],
   },
   {
-    title: "Product 4",
+    title: "Accessories 1543",
     slug: `https://theposh.agency/${slugify("Product 4")}`,
     text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque facere accusantium, perferendis aspernatur ipsa animi totam sed, esse, quam nisi possimus explicabo deleniti placeat temporibus corporis blanditiis quas delectus amet.",
     date: new Date(2023, 1, 22).toLocaleDateString("en-gb"),
@@ -239,7 +239,7 @@ export const products = [
     related: [],
   },
   {
-    title: "Product 5",
+    title: "Accessories 54634",
     slug: `https://theposh.agency/${slugify("Product 5")}`,
     text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque facere accusantium, perferendis aspernatur ipsa animi totam sed, esse, quam nisi possimus explicabo deleniti placeat temporibus corporis blanditiis quas delectus amet.",
     date: new Date(2023, 1, 22).toLocaleDateString("en-gb"),
@@ -298,7 +298,7 @@ export const products = [
     related: [],
   },
   {
-    title: "Product 6",
+    title: "Shoes 6674",
     slug: `https://theposh.agency/${slugify("Product 6")}`,
     text: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque facere accusantium, perferendis aspernatur ipsa animi totam sed, esse, quam nisi possimus explicabo deleniti placeat temporibus corporis blanditiis quas delectus amet.",
     date: new Date(2023, 1, 22).toLocaleDateString("en-gb"),

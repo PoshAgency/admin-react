@@ -4,9 +4,7 @@ import swal from "sweetalert";
 import { Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import MenuIcon from "@mui/icons-material/Menu";
-import { toggleCheckProduct } from "../../../../store/actions/ProductsActions";
 import dayjs from "dayjs";
-import { coupons } from "../../../../data/coupons";
 import { toggleCheckCoupon } from "../../../../store/actions/CouponsActions";
 
 // import "./PagesTableRow.css";
@@ -65,8 +63,10 @@ const CouponsTableRow = ({ coupon }) => {
         <strong>{coupon.title}</strong>
       </td>
       <td>{coupon.code}</td>
-      <td>{dayjs(coupon.startDate).format("DD/MM/YYYY")} </td>
-      <td>{dayjs(coupon.endDate).format("DD/MM/YYYY")} </td>
+      <td>{coupon.typeOfDiscount}</td>
+      <td>{coupon.discountParameter}</td>
+      <td>{dayjs(coupon.startDate).format("DD/MM/YYYY")}</td>
+      <td>{dayjs(coupon.endDate).format("DD/MM/YYYY")}</td>
       <td data-no-dnd="true">
         <div className="d-flex">
           <Link

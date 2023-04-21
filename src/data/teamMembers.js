@@ -14,7 +14,7 @@ export const teamMembers = [
     youtube: "youtube",
     pinned: false,
     photo:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJaCUMva78kbQlp3iGl6vI3KAY_z6uuNkSnQ&usqp=CAU",
+      "https://sp-ao.shortpixel.ai/client/to_webp,q_lossless,ret_img,w_600,h_400/https://sarawilliamsesq.com/wp-content/uploads/2021/08/female-lawyer-5.jpg",
   },
   {
     id: uuid(),

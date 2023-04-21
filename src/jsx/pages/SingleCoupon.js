@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm, Controller, FormProvider } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
@@ -7,8 +7,11 @@ import { CKEditor } from "@ckeditor/ckeditor5-react";
 
 import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
+import ExcludedProductsSelector from "../components/ExcludedProductsSelector";
+import ProductSelector from "../components/ProductSelector";
 
 const SingleCoupon = () => {
+  const [displayCategoryMenu, setDisplayCategoryMenu] = useState(false);
   const methods = useForm({});
 
   const onSubmit = (data) => {
@@ -93,7 +96,7 @@ const SingleCoupon = () => {
                   </select>
                 </div>
                 <div className="form-group mt-3">
-                  <h3>Parametter (% or cash)</h3>
+                  <h3>Parameter (% or cash)</h3>
                   <input
                     type="text"
                     className="form-control input-default px-2"
@@ -113,7 +116,6 @@ const SingleCoupon = () => {
                           autoOk
                           clearable
                           format="dd/MM/yyyy"
-                          disablePast
                           disableToolbar
                           value={value}
                           onChange={onChange}
@@ -148,7 +150,7 @@ const SingleCoupon = () => {
                 <div className="custom-control custom-checkbox checkbox-success check-lg">
                   <input
                     type="checkbox"
-                    {...methods.register("usedWithExistingDiscounts")}
+                    {...methods.register("useWithExistingDiscounts")}
                     className="custom-control-input"
                     id={`menu-item-used-with-other-discounts`}
                   />
@@ -173,27 +175,55 @@ const SingleCoupon = () => {
                     <p className="ml-2">One time purchase only</p>
                   </label>
                 </div>
-                <div className="form-group mt-3">
-                  <h3 className="">Works for single category</h3>
+                <div className="custom-control custom-checkbox checkbox-success check-lg">
+                  <input
+                    type="checkbox"
+                    className="custom-control-input"
+                    id={`menu-item-category-menu`}
+                    onChange={() =>
+                      setDisplayCategoryMenu(!displayCategoryMenu)
+                    }
+                  />
+                  <label
+                    className="custom-control-label"
+                    htmlFor={`menu-item-category-menu`}
+                  >
+                    <p className="ml-2">Show category menu</p>
+                  </label>
+                </div>
+                <ProductSelector
+                  name={"couponProducts"}
+                  title={"Coupon products"}
+                />
+                <div
+                  className={`form-group mt-3 ${
+                    displayCategoryMenu ? "d-block" : "d-none"
+                  }`}
+                >
+                  <h3 className="">Apply to category</h3>
                   <select
-                    {...methods.register("onlyCategory")}
+                    {...methods.register("applyToCategory")}
                     className="form-control form-control-lg"
                     id="inlineFormCustomSelect"
                     defaultValue={""}
                   >
+                    <option value="">Select category</option>
                     <option value="shoes">Shoes</option>
                     <option value="bags">Bags</option>
                     <option value="accessories">Accessories</option>
                   </select>
+                  <div className="form-group mt-3">
+                    <ExcludedProductsSelector
+                      name={"excludedItems"}
+                      header={"Exclude Items"}
+                    />
+                  </div>
                 </div>
               </div>
             </div>
             <div className="row justify-content-center mt-5">
               <Button variant="primary" type="submit">
-                Publish
-              </Button>
-              <Button className="ml-3" variant="light">
-                Save as draft
+                Create coupon
               </Button>
             </div>
           </form>

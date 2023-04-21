@@ -152,7 +152,19 @@ class SideBar extends Component {
       ],
       //TODO: Organize menu
       // The Posh Menu
-      thePosh = ["pages"];
+      thePosh = [
+        // "pages",
+        // "blogs",
+        // "products",
+        // "team",
+        // "customers",
+        // "sales",
+        // "coupons",
+        // "email-templates",
+        // "messages",
+        // "newsletter",
+        // "settings",
+      ];
 
     return (
       <div className="deznav">
@@ -188,6 +200,43 @@ class SideBar extends Component {
                     Products
                   </Link>
                 </li>
+                <li className={`${email.includes(path) ? "mm-active" : ""}`}>
+                  <Link className="has-arrow" to="#">
+                    Orders
+                  </Link>
+                  <ul className={`${email.includes(path) ? "mm-show" : ""}`}>
+                    <li>
+                      <Link
+                        className={`${
+                          path === "orders/ative" ? "mm-active" : ""
+                        }`}
+                        to="/orders/active"
+                      >
+                        Active
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        className={`${
+                          path === "orders/unfulfilled" ? "mm-active" : ""
+                        }`}
+                        to="/orders/unfulfilled"
+                      >
+                        Unfulfilled
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        className={`${
+                          path === "orders/fulfilled" ? "mm-active" : ""
+                        }`}
+                        to="/orders/fulfilled"
+                      >
+                        Fulfilled
+                      </Link>
+                    </li>
+                  </ul>
+                </li>
                 <li>
                   <Link
                     className={`${path === "team" ? "mm-active" : ""}`}
@@ -206,10 +255,44 @@ class SideBar extends Component {
                 </li>
                 <li>
                   <Link
+                    className={`${path === "sales" ? "mm-active" : ""}`}
+                    to="/sales"
+                  >
+                    Sales
+                  </Link>
+                </li>
+                <li>
+                  <Link
                     className={`${path === "coupons" ? "mm-active" : ""}`}
                     to="/coupons"
                   >
                     Coupons
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    className={`${
+                      path === "email-templates" ? "mm-active" : ""
+                    }`}
+                    to="/email-templates"
+                  >
+                    Email Templates
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    className={`${path === "messages" ? "mm-active" : ""}`}
+                    to="/messages"
+                  >
+                    Messages
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    className={`${path === "newsletter" ? "mm-active" : ""}`}
+                    to="/newsletter"
+                  >
+                    Newsletter
                   </Link>
                 </li>
                 <li>

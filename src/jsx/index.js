@@ -118,6 +118,15 @@ import Settings from "./pages/Settings";
 import MenuEditor from "./pages/MenuEditor";
 import Coupons from "./pages/Coupons";
 import SingleCoupon from "./pages/SingleCoupon";
+import Sales from "./pages/Sales";
+import SingleSale from "./pages/SingleSale";
+import EmailTemplates from "./pages/EmailTemplates";
+import SingleEmailTemplate from "./pages/SingleEmailTemplate";
+import Newsletter from "./pages/Newsletter";
+import Orders from "./pages/Orders";
+import SingleOrder from "./pages/SingleOrder";
+import Messages from "./pages/Messages";
+import SingleMessage from "./pages/SingleMessage";
 
 const Markup = () => {
   let path = window.location.pathname;
@@ -237,6 +246,17 @@ const Markup = () => {
     { url: "settings/:menu", component: MenuEditor },
     { url: "coupons", component: Coupons },
     { url: "coupons/new", component: SingleCoupon },
+    { url: "sales", component: Sales },
+    { url: "sales/new", component: SingleSale },
+    { url: "email-templates", component: EmailTemplates },
+    { url: "email-templates/new", component: SingleEmailTemplate },
+    { url: "newsletter", component: Newsletter },
+    { url: "orders/active", component: Orders },
+    { url: "orders/fulfilled", component: Orders },
+    { url: "orders/unfulfilled", component: Orders },
+    { url: "orders/:id", component: SingleOrder },
+    { url: "messages", component: Messages },
+    { url: "messages/new", component: SingleMessage },
   ];
 
   return (
