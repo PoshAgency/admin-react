@@ -19,6 +19,7 @@ export const pages = [
     seoTitle: "About Us SEO",
     seoDescription:
       "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fuga, animi veniam minima vel dolore et alias sint esse, perferendis obcaecati ducimus rerum quasi quisquam vero autem! Eum perferendis ad, ducimus beatae alias at ex rem rerum maiores corporis. Corrupti, neque. SEO",
+    seoKeywords: "about, us",
     sections: [
       {
         buttonText: "Read more",
@@ -92,6 +93,7 @@ export const pages = [
     mobileImage:
       "https://images.unsplash.com/photo-1676579526746-acba9b0eef80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDEzfGlVSXNuVnRqQjBZfHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
     seoTitle: "About Us SEO",
+    seoKeywords: "compliance",
     seoDescription:
       "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fuga, animi veniam minima vel dolore et alias sint esse, perferendis obcaecati ducimus rerum quasi quisquam vero autem! Eum perferendis ad, ducimus beatae alias at ex rem rerum maiores corporis. Corrupti, neque. SEO",
     sections: [
@@ -156,6 +158,7 @@ export const pages = [
     title: "Legal",
     slug: "https://theposh.agency/legal",
     template: "legal",
+    seoKeywords: "legal",
     pinned: false,
     description:
       "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fuga, animi veniam minima vel dolore et alias sint esse, perferendis obcaecati ducimus rerum quasi quisquam vero autem! Eum perferendis ad, ducimus beatae alias at ex rem rerum maiores corporis. Corrupti, neque.",
@@ -232,6 +235,7 @@ export const pages = [
     slug: "https://theposh.agency/contact-us",
     template: "contact-us",
     pinned: false,
+    seoKeywords: "contact, us",
     description:
       "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fuga, animi veniam minima vel dolore et alias sint esse, perferendis obcaecati ducimus rerum quasi quisquam vero autem! Eum perferendis ad, ducimus beatae alias at ex rem rerum maiores corporis. Corrupti, neque.",
     published:
@@ -306,12 +310,13 @@ export const pages = [
     title: "Budgeting",
     slug: "https://theposh.agency/budgeting",
     template: "budgeting",
+    seoKeywords: "budgeting",
     pinned: true,
     description:
       "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fuga, animi veniam minima vel dolore et alias sint esse, perferendis obcaecati ducimus rerum quasi quisquam vero autem! Eum perferendis ad, ducimus beatae alias at ex rem rerum maiores corporis. Corrupti, neque.",
     published:
       "Wed Mar 01 2023 16:02:00 GMT+0100 (Central European Standard Time)",
-    hero: "About Us Hero Title",
+    hero: "Budgeting Hero Title",
     desktopImage:
       "https://images.unsplash.com/photo-1676579526746-acba9b0eef80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDEzfGlVSXNuVnRqQjBZfHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60",
     mobileImage:
@@ -374,13 +379,14 @@ export const pages = [
       },
     ],
     pageContent:
-      "<h2>About Us</h2><p>&nbsp;</p><h3>Heading 2<br>&nbsp;</h3><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed maxime, nisi, itaque quaerat neque officia ullam alias illo magni sit qui autem delectus. Deleniti vitae consequatur tempore repellat, ipsa debitis ad explicabo quia ipsum consectetur eum dignissimos. Quam eos ea voluptatum repellendus explicabo dolorum doloribus illum perspiciatis optio facilis natus porro ipsum iusto minima, libero ex odio soluta doloremque quidem accusamus nemo tenetur enim dolore? Accusantium dicta quaerat minima animi.</p><h3>Heading 2</h3><p>&nbsp;</p><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed maxime, nisi, itaque quaerat neque officia ullam alias illo magni sit qui autem delectus. Deleniti vitae consequatur tempore repellat, ipsa debitis ad explicabo quia ipsum consectetur eum dignissimos. Quam eos ea voluptatum repellendus explicabo dolorum doloribus illum perspiciatis optio facilis natus porro ipsum iusto minima, libero ex odio soluta doloremque quidem accusamus nemo tenetur enim dolore? Accusantium dicta quaerat minima animi.</p>",
+      "<h2>Budgeting</h2><p>&nbsp;</p><h3>Heading 2<br>&nbsp;</h3><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed maxime, nisi, itaque quaerat neque officia ullam alias illo magni sit qui autem delectus. Deleniti vitae consequatur tempore repellat, ipsa debitis ad explicabo quia ipsum consectetur eum dignissimos. Quam eos ea voluptatum repellendus explicabo dolorum doloribus illum perspiciatis optio facilis natus porro ipsum iusto minima, libero ex odio soluta doloremque quidem accusamus nemo tenetur enim dolore? Accusantium dicta quaerat minima animi.</p><h3>Heading 2</h3><p>&nbsp;</p><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed maxime, nisi, itaque quaerat neque officia ullam alias illo magni sit qui autem delectus. Deleniti vitae consequatur tempore repellat, ipsa debitis ad explicabo quia ipsum consectetur eum dignissimos. Quam eos ea voluptatum repellendus explicabo dolorum doloribus illum perspiciatis optio facilis natus porro ipsum iusto minima, libero ex odio soluta doloremque quidem accusamus nemo tenetur enim dolore? Accusantium dicta quaerat minima animi.</p>",
   },
   {
     title: "Network",
     slug: "https://theposh.agency/network",
     template: "network",
     pinned: false,
+    seoKeywords: "network",
     id: uuid(),
     description:
       "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fuga, animi veniam minima vel dolore et alias sint esse, perferendis obcaecati ducimus rerum quasi quisquam vero autem! Eum perferendis ad, ducimus beatae alias at ex rem rerum maiores corporis. Corrupti, neque.",

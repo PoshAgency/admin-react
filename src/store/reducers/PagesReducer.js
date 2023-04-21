@@ -3,12 +3,14 @@ import {
   TOGGLE_CHECK_PAGE,
   DESELECT_ALL_PAGES,
   TOGGLE_SELECT_ALL_PAGES,
+  EDIT_PAGE,
 } from "../actions/PagesTypes";
 import { pages } from "../../data/pages";
 
 const initialState = {
   pages,
   selectedPages: [],
+  selectedPage: {},
 };
 
 export default function PagesReducer(state = initialState, action) {
@@ -54,6 +56,14 @@ export default function PagesReducer(state = initialState, action) {
 
   if (action.type === DESELECT_ALL_PAGES) {
     return { ...state, selectedPages: [] };
+  }
+
+  if (action.type === EDIT_PAGE) {
+    const selectedPage = state.pages.find(
+      (page) => page.id === action.payload.id
+    );
+
+    return { ...state, selectedPage };
   }
 
   return state;
