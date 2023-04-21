@@ -19,6 +19,7 @@ import {
   deselectAllPages,
   toggleSelectAllPages,
 } from "../../../../store/actions/PagesActions";
+import TablePagination from "../../TablePagination";
 
 const PagesTable = ({ pages, setPages }) => {
   const { selectedPages } = useSelector((state) => state.pages);
@@ -195,6 +196,13 @@ const PagesTable = ({ pages, setPages }) => {
             </>
           </tbody>
         </Table>
+        <TablePagination
+          size={""}
+          gutter={true}
+          variant={"primary"}
+          bg={false}
+          circle={false}
+        />
       </Card.Body>
     </Card>
   );
