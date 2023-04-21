@@ -8,6 +8,7 @@ import {
   deselectAllOrders,
   toggleSelectAllOrders,
 } from "../../../../store/actions/OrdersActions";
+import TablePagination from "../../TablePagination";
 
 const OrdersTable = ({ orders, setModalOpen }) => {
   const { selectedOrders } = useSelector((state) => state.orders);
@@ -157,6 +158,13 @@ const OrdersTable = ({ orders, setModalOpen }) => {
             })}
           </tbody>
         </Table>
+        <TablePagination
+          size={""}
+          gutter={true}
+          variant={"primary"}
+          bg={false}
+          circle={false}
+        />
       </Card.Body>
     </Card>
   );
