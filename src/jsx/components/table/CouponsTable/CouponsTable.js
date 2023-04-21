@@ -9,6 +9,7 @@ import {
   deselectAllCoupons,
   toggleSelectAllCoupons,
 } from "../../../../store/actions/CouponsActions";
+import TablePagination from "../../TablePagination";
 
 const CouponsTable = ({ coupons, setCoupons }) => {
   const { selectedCoupons } = useSelector((state) => state.coupons);
@@ -155,6 +156,13 @@ const CouponsTable = ({ coupons, setCoupons }) => {
             })}
           </tbody>
         </Table>
+        <TablePagination
+          size={""}
+          gutter={true}
+          variant={"primary"}
+          bg={false}
+          circle={false}
+        />
       </Card.Body>
     </Card>
   );
