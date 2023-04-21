@@ -9,6 +9,7 @@ import {
   toggleSelectAllCustomers,
   deselectAllCustomers,
 } from "../../../../store/actions/CustomersActions";
+import TablePagination from "../../TablePagination";
 
 const CustomersTable = ({ customers, setCustomers }) => {
   const { selectedCustomers } = useSelector((state) => state.customers);
@@ -150,6 +151,13 @@ const CustomersTable = ({ customers, setCustomers }) => {
             ))}
           </tbody>
         </Table>
+        <TablePagination
+          size={""}
+          gutter={true}
+          variant={"primary"}
+          bg={false}
+          circle={false}
+        />
       </Card.Body>
     </Card>
   );
