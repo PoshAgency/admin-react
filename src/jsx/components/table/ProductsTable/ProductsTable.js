@@ -20,6 +20,7 @@ import {
   deselectAllProducts,
   toggleSelectAllProducts,
 } from "../../../../store/actions/ProductsActions";
+import TablePagination from "../../TablePagination";
 
 const ProductsTable = ({ products, setProducts }) => {
   const { selectedProducts } = useSelector((state) => state.products);
@@ -201,6 +202,13 @@ const ProductsTable = ({ products, setProducts }) => {
             </>
           </tbody>
         </Table>
+        <TablePagination
+          size={""}
+          gutter={true}
+          variant={"primary"}
+          bg={false}
+          circle={false}
+        />
       </Card.Body>
     </Card>
   );
