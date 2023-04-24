@@ -56,8 +56,8 @@ const SingleBlog = () => {
   return (
     <>
       <div className="d-flex justify-content-between align-items-center">
-        <h2>New Page</h2>
-        <Link to="/pages">
+        <h2>New Blog</h2>
+        <Link to="/blogs">
           <Button variant="transparent">Cancel</Button>
         </Link>
       </div>
@@ -149,7 +149,7 @@ const SingleBlog = () => {
                           defaultValue={null}
                           clearable
                           format="dd/MM/yyyy"
-                          disableFuture
+                          disableToolbar
                           value={value}
                           onChange={onChange}
                           onBlur={onBlur}
