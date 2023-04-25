@@ -1,3 +1,4 @@
+import { Kitesurfing } from "@mui/icons-material";
 import { teamMembers } from "../../data/teamMembers";
 
 import {
@@ -6,6 +7,8 @@ import {
   DESELECT_ALL_TEAM_MEMBERS,
   TOGGLE_SELECT_ALL_TEAM_MEMBERS,
   REMOVE_SELECTED_TEAM_MEMBER,
+  EDIT__TEAM_MEMBER,
+  EDIT_TEAM_MEMBER,
 } from "../actions/TeamTypes";
 
 const initialState = {
@@ -61,6 +64,17 @@ export default function TeamReducer(state = initialState, action) {
 
   if (action.type === DESELECT_ALL_TEAM_MEMBERS) {
     return { ...state, selectedTeamMembers: [] };
+  }
+
+  if (action.type === EDIT_TEAM_MEMBER) {
+    const selectedTeamMember = state.team.find(
+      (teamMember) => teamMember.id === action.payload.id
+    );
+
+    return {
+      ...state,
+      selectedTeamMember,
+    };
   }
 
   if (action.type === REMOVE_SELECTED_TEAM_MEMBER) {

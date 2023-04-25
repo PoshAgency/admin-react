@@ -6,11 +6,35 @@ import { Editor } from "ckeditor5-custom-build/build/ckeditor";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 
 import noImg from "../../images/no-image.jpg";
+import { useDispatch, useSelector } from "react-redux";
+import { removeSelectedTeamMember } from "../../store/actions/TeamActions";
 
 const TeamMember = () => {
+  const dispatch = useDispatch();
+  const values = useSelector((state) => state.team.selectedTeamMember);
   const [previewImage, setPreviewImage] = useState(noImg);
 
-  const methods = useForm({});
+  const methods = useForm({
+    defaultValues: {
+      firstName: "",
+      lastName: "",
+      fullName: "",
+      email: "",
+      photo: noImg,
+      instgram: "",
+      linkedin: "",
+      twitter: "",
+      facebook: "",
+      youtube: "",
+      bio: "",
+      pinned: false,
+    },
+    values,
+  });
+
+  useEffect(() => {
+    return () => dispatch(removeSelectedTeamMember());
+  }, [dispatch]);
 
   const onSubmit = (data) => {
     console.log(data);

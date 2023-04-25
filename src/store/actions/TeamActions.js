@@ -4,6 +4,7 @@ import {
   DESELECT_ALL_TEAM_MEMBERS,
   TOGGLE_SELECT_ALL_TEAM_MEMBERS,
   REMOVE_SELECTED_TEAM_MEMBER,
+  EDIT_TEAM_MEMBER,
 } from "./TeamTypes";
 
 export function toggleTeamMemberPinned(id) {
@@ -29,6 +30,13 @@ export function toggleSelectAllTeamMembers() {
 export function deselectAllTeamMembers() {
   return {
     type: DESELECT_ALL_TEAM_MEMBERS,
+  };
+}
+
+export function editTeamMember(id) {
+  return {
+    type: EDIT_TEAM_MEMBER,
+    payload: { id },
   };
 }
 

@@ -7,6 +7,7 @@ import { Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import MenuIcon from "@mui/icons-material/Menu";
 import {
+  editTeamMember,
   toggleCheckTeamMember,
   toggleTeamMemberPinned,
 } from "../../../../store/actions/TeamActions";
@@ -53,6 +54,10 @@ const TeamTableRow = ({ teamMember }) => {
 
   const togglePinned = () => {
     dispatch(toggleTeamMemberPinned(teamMember.id));
+  };
+
+  const handleEditTeamMember = () => {
+    dispatch(editTeamMember(teamMember.id));
   };
 
   return (
@@ -108,6 +113,7 @@ const TeamTableRow = ({ teamMember }) => {
           <Link
             to={`/team/${teamMember.id}`}
             className="btn btn-primary shadow btn-xs sharp mr-1"
+            onClick={handleEditTeamMember}
           >
             <i className="fa fa-pencil"></i>
           </Link>
