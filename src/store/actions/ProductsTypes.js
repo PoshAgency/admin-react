@@ -4,3 +4,5 @@ export const DESELECT_ALL_PRODUCTS = "[Products Action] Deselect All Products";
 export const TOGGLE_SELECT_ALL_PRODUCTS =
   "[Products Action] Toggle Select All Products";
 export const EDIT_PRODUCT = "[Products Action] Edit Product";
+export const REMOVE_SELECTED_PRODUCT =
+  "[Products Action] Remove Selected Product";

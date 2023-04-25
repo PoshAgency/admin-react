@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import slugify from "slugify";
 import { useForm, Controller, FormProvider } from "react-hook-form";
 import { Link } from "react-router-dom";
@@ -16,11 +16,13 @@ import BlogTagsSelector from "../components/BlogTagsSelector";
 import BlogRelatedLinks from "../components/BlogRelatedLinks";
 
 import SEOFields from "../components/SEOFields";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { removeSelectedProduct } from "../../store/actions/ProductsActions";
 
 // import "./NewPage.css";
 
 const SingleProduct = () => {
+  const dispatch = useDispatch();
   const values = useSelector((state) => state.products.selectedProduct);
   const [disabledSlugInput, setDisabledSlugInput] = useState(true);
   const methods = useForm({
@@ -50,6 +52,11 @@ const SingleProduct = () => {
     },
     values,
   });
+
+  // Remove selected product with cleanup useefcet
+  useEffect(() => {
+    return () => dispatch(removeSelectedProduct());
+  }, [dispatch]);
 
   const onSubmit = (data) => {
     console.log(data);

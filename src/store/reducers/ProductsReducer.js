@@ -4,6 +4,7 @@ import {
   DESELECT_ALL_PRODUCTS,
   TOGGLE_SELECT_ALL_PRODUCTS,
   EDIT_PRODUCT,
+  REMOVE_SELECTED_PRODUCT,
 } from "../actions/ProductsTypes";
 import { products } from "../../data/products";
 
@@ -66,6 +67,10 @@ export default function ProductsReducer(state = initialState, action) {
     );
 
     return { ...state, selectedProduct };
+  }
+
+  if (action.type === REMOVE_SELECTED_PRODUCT) {
+    return { ...state, selectedProduct: {} };
   }
 
   return state;
