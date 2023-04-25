@@ -2,10 +2,9 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { Button } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import BlogsTable from "../components/table/BlogsTable/BlogsTable";
-import { removeSelectedBlog } from "../../store/actions/BlogsActions";
 
 const Blogs = () => {
   const { blogs } = useSelector((state) => state.blogs);

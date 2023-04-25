@@ -1,4 +1,3 @@
-import { Kitesurfing } from "@mui/icons-material";
 import { teamMembers } from "../../data/teamMembers";
 
 import {
@@ -7,7 +6,6 @@ import {
   DESELECT_ALL_TEAM_MEMBERS,
   TOGGLE_SELECT_ALL_TEAM_MEMBERS,
   REMOVE_SELECTED_TEAM_MEMBER,
-  EDIT__TEAM_MEMBER,
   EDIT_TEAM_MEMBER,
 } from "../actions/TeamTypes";
 
