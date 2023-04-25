@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import slugify from "slugify";
 import { useForm, Controller, FormProvider } from "react-hook-form";
 import { Link } from "react-router-dom";
@@ -15,13 +15,18 @@ import DateFnsUtils from "@date-io/date-fns";
 import BlogTagsSelector from "../components/BlogTagsSelector";
 import BlogRelatedLinks from "../components/BlogRelatedLinks";
 import SEOFields from "../components/SEOFields";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { removeSelectedBlog } from "../../store/actions/BlogsActions";
 
 // import "./NewPage.css";
 
 const SingleBlog = () => {
+  const dispatch = useDispatch();
+
   const values = useSelector((state) => state.blogs.selectedBlog);
+
   const [disabledSlugInput, setDisabledSlugInput] = useState(true);
+
   const methods = useForm({
     defaultValues: {
       id: "",
@@ -40,6 +45,11 @@ const SingleBlog = () => {
     },
     values,
   });
+
+  // Cleanup effcet to remove selected blog from the store
+  useEffect(() => {
+    return () => dispatch(removeSelectedBlog());
+  }, [dispatch]);
 
   const onSubmit = (data) => {
     console.log(data);
