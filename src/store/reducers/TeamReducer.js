@@ -5,11 +5,13 @@ import {
   TOGGLE_CHECK_TEAM_MEMBER,
   DESELECT_ALL_TEAM_MEMBERS,
   TOGGLE_SELECT_ALL_TEAM_MEMBERS,
+  REMOVE_SELECTED_TEAM_MEMBER,
 } from "../actions/TeamTypes";
 
 const initialState = {
   team: teamMembers,
   selectedTeamMembers: [],
+  selectedTeamMember: {},
 };
 
 export default function TeamReducer(state = initialState, action) {
@@ -59,6 +61,10 @@ export default function TeamReducer(state = initialState, action) {
 
   if (action.type === DESELECT_ALL_TEAM_MEMBERS) {
     return { ...state, selectedTeamMembers: [] };
+  }
+
+  if (action.type === REMOVE_SELECTED_TEAM_MEMBER) {
+    return { ...state, selectedTeamMember: {} };
   }
 
   return state;

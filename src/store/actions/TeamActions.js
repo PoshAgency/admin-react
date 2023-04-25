@@ -3,6 +3,7 @@ import {
   TOGGLE_CHECK_TEAM_MEMBER,
   DESELECT_ALL_TEAM_MEMBERS,
   TOGGLE_SELECT_ALL_TEAM_MEMBERS,
+  REMOVE_SELECTED_TEAM_MEMBER,
 } from "./TeamTypes";
 
 export function toggleTeamMemberPinned(id) {
@@ -28,5 +29,11 @@ export function toggleSelectAllTeamMembers() {
 export function deselectAllTeamMembers() {
   return {
     type: DESELECT_ALL_TEAM_MEMBERS,
+  };
+}
+
+export function removeSelectedTeamMember() {
+  return {
+    type: REMOVE_SELECTED_TEAM_MEMBER,
   };
 }
