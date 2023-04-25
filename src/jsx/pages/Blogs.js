@@ -2,14 +2,21 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { Button } from "react-bootstrap";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import BlogsTable from "../components/table/BlogsTable/BlogsTable";
+import { removeSelectedBlog } from "../../store/actions/BlogsActions";
 
 const Blogs = () => {
+  const dispatch = useDispatch();
   const { blogs } = useSelector((state) => state.blogs);
 
   const [sortedBlogs, setSortedBlogs] = useState(sortBlogs(blogs));
+
+  // Clear selected blog on component load
+  useEffect(() => {
+    dispatch(removeSelectedBlog());
+  });
 
   useEffect(() => {
     setSortedBlogs(sortBlogs(blogs));

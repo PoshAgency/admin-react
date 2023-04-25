@@ -4,6 +4,7 @@ import {
   TOGGLE_PINNED_BLOG,
   DESELECT_ALL_BLOGS,
   EDIT_BLOG,
+  REMOVE_SELECTED_BLOG,
 } from "../actions/BlogsTypes";
 import { blogs } from "../../data/blogs";
 
@@ -66,6 +67,13 @@ export default function BlogsReducer(state = initialState, action) {
     return {
       ...state,
       selectedBlog,
+    };
+  }
+
+  if (action.type === REMOVE_SELECTED_BLOG) {
+    return {
+      ...state,
+      selectedBlog: {},
     };
   }
 
