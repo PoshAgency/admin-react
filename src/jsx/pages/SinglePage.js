@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import slugify from "slugify";
 import { useForm, Controller, FormProvider } from "react-hook-form";
 import { Link } from "react-router-dom";
@@ -15,9 +15,11 @@ import DateFnsUtils from "@date-io/date-fns";
 
 import "./NewPage.css";
 import SEOFields from "../components/SEOFields";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { removeSelectedPage } from "../../store/actions/PagesActions";
 
 const SinglePage = () => {
+  const dispatch = useDispatch();
   const values = useSelector((state) => state.pages.selectedPage);
 
   const [disabledSlutInput, setDisabledSlugInput] = useState(true);
@@ -43,6 +45,12 @@ const SinglePage = () => {
     },
     values,
   });
+
+  useEffect(() => {
+    return () => {
+      dispatch(removeSelectedPage());
+    };
+  }, [dispatch]);
 
   const onSubmit = (data) => {
     console.log(data);

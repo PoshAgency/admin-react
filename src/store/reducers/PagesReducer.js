@@ -4,6 +4,7 @@ import {
   DESELECT_ALL_PAGES,
   TOGGLE_SELECT_ALL_PAGES,
   EDIT_PAGE,
+  REMOVE_SELECTED_PAGE,
 } from "../actions/PagesTypes";
 import { pages } from "../../data/pages";
 
@@ -64,6 +65,10 @@ export default function PagesReducer(state = initialState, action) {
     );
 
     return { ...state, selectedPage };
+  }
+
+  if (action.type === REMOVE_SELECTED_PAGE) {
+    return { ...state, selectedPage: {} };
   }
 
   return state;

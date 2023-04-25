@@ -4,6 +4,7 @@ import {
   DESELECT_ALL_PAGES,
   TOGGLE_SELECT_ALL_PAGES,
   EDIT_PAGE,
+  REMOVE_SELECTED_PAGE,
 } from "../actions/PagesTypes";
 
 export function togglePagePinned(id) {
@@ -36,5 +37,11 @@ export function editPage(id) {
   return {
     type: EDIT_PAGE,
     payload: { id },
+  };
+}
+
+export function removeSelectedPage() {
+  return {
+    type: REMOVE_SELECTED_PAGE,
   };
 }
