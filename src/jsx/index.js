@@ -245,6 +245,7 @@ const Markup = () => {
     { url: "team/:id", component: TeamMember },
     { url: "customers", component: Customers },
     { url: "customers/new", component: SingleCustomer },
+    { url: "customers/:id", component: SingleCustomer },
     { url: "settings", component: Settings },
     { url: "settings/:menu", component: MenuEditor },
     { url: "coupons", component: Coupons },

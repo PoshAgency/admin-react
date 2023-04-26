@@ -1,14 +1,39 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm, FormProvider } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
+import { removeSelectedCustomer } from "../../store/actions/CustomersActions";
+import { useDispatch, useSelector } from "react-redux";
 
 const SingleCustomer = () => {
-  const methods = useForm({});
+  const dispatch = useDispatch();
+  const values = useSelector((state) => state.customers.selectedCustomer);
+  const methods = useForm({
+    defaultValues: {
+      firstName: "",
+      lastName: "",
+      email: "",
+      phone: "",
+      address: "",
+      fullName: "",
+      city: "",
+      zipCode: "",
+      country: "",
+      taxID: "",
+      company: "",
+    },
+    values,
+  });
 
   const onSubmit = (data) => {
     console.log(data);
   };
+
+  useEffect(() => {
+    return () => {
+      dispatch(removeSelectedCustomer());
+    };
+  }, [dispatch]);
 
   return (
     <>

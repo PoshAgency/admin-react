@@ -3,7 +3,10 @@ import { Link } from "react-router-dom";
 import swal from "sweetalert";
 import { Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleCheckCustomer } from "../../../../store/actions/CustomersActions";
+import {
+  editCustomer,
+  toggleCheckCustomer,
+} from "../../../../store/actions/CustomersActions";
 
 // import "./PagesTableRow.css";
 
@@ -38,6 +41,10 @@ const CustomerTableRow = ({ customer }) => {
     return selectedCustomers.includes(id);
   };
 
+  const handleEditCustomer = () => {
+    dispatch(editCustomer(customer.id));
+  };
+
   return (
     <tr>
       <td>
@@ -64,8 +71,9 @@ const CustomerTableRow = ({ customer }) => {
       <td data-no-dnd="true">
         <div className="d-flex">
           <Link
-            to="/customers/single"
+            to={`/customers/${customer.id}`}
             className="btn btn-primary shadow btn-xs sharp mr-1"
+            onClick={handleEditCustomer}
           >
             <i className="fa fa-pencil"></i>
           </Link>

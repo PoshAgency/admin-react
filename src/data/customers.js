@@ -13,7 +13,7 @@ export const customers = [
     address: "123 Main St",
     postalCode: "10001",
     company: "ABC Company",
-    pib: "123456789",
+    taxID: "123456789",
   },
   {
     id: uuid(),
@@ -27,6 +27,6 @@ export const customers = [
     address: "2nd Street",
     postalCode: "20031",
     company: "AAB Company",
-    pib: "123456788",
+    taxID: "123456788",
   },
 ];
