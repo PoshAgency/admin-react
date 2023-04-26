@@ -2,11 +2,17 @@ import {
   TOGGLE_CHECK_EMAIL_TEMPLATE,
   DESELECT_ALL_EMAIL_TEMPLATES,
   TOGGLE_SELECT_ALL_EMAIL_TEMPLATES,
+  EDIT_EMAIL_TEMPLATE,
+  REMOVE_SELECTED_EMAIL_TEMPLATE,
 } from "../actions/EmailTemplatesTypes";
 
 import { emailTemplates } from "../../data/emailTemplates";
 
-const initialState = { emailTemplates: emailTemplates, selectedTemplates: [] };
+const initialState = {
+  emailTemplates: emailTemplates,
+  selectedTemplates: [],
+  selectedEmailTemplate: null,
+};
 
 export default function EmailTemplatesReducers(state = initialState, action) {
   if (action.type === TOGGLE_CHECK_EMAIL_TEMPLATE) {
@@ -44,6 +50,21 @@ export default function EmailTemplatesReducers(state = initialState, action) {
 
   if (action.type === DESELECT_ALL_EMAIL_TEMPLATES) {
     return { ...state, selectedTemplates: [] };
+  }
+
+  if (action.type === EDIT_EMAIL_TEMPLATE) {
+    const selectedEmailTemplate = state.emailTemplates.find(
+      (template) => template.id === action.payload.id
+    );
+
+    return { ...state, selectedEmailTemplate };
+  }
+
+  if (action.type === REMOVE_SELECTED_EMAIL_TEMPLATE) {
+    return {
+      ...state,
+      selectedEmailTemplate: null,
+    };
   }
 
   return state;
