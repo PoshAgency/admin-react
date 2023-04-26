@@ -2,11 +2,13 @@ import {
   TOGGLE_CHECK_SALE,
   TOGGLE_SELECT_ALL_SALES,
   DESELECT_ALL_SALES,
+  EDIT_SALE,
+  REMOVE_SELECTED_SALE,
 } from "../actions/SalesTypes";
 
 import { sales } from "../../data/sales";
 
-const initialState = { sales, selectedSales: [] };
+const initialState = { sales, selectedSales: [], selectedSale: null };
 
 export default function SalesReducer(state = initialState, action) {
   if (action.type === TOGGLE_CHECK_SALE) {
@@ -42,6 +44,18 @@ export default function SalesReducer(state = initialState, action) {
 
   if (action.type === DESELECT_ALL_SALES) {
     return { ...state, selectedSales: [] };
+  }
+
+  if (action.type === EDIT_SALE) {
+    const selectedSale = state.sales.find(
+      (sale) => sale.id === action.payload.id
+    );
+
+    return { ...state, selectedSale };
+  }
+
+  if (action.type === REMOVE_SELECTED_SALE) {
+    return { ...state, selectedSale: null };
   }
 
   return state;

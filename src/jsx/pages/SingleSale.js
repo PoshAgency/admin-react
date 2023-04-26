@@ -11,11 +11,27 @@ import ProductSelector from "../components/ProductSelector";
 
 import noImg from "../../images/no-image.jpg";
 import slugify from "slugify";
+import { useSelector } from "react-redux";
 
 const SingleSale = () => {
+  const values = useSelector((state) => state.sales.selectedSale);
   const [previewImage, setPreviewImage] = useState("");
   const [disabledSlugInput, setDisabledSlugInput] = useState(true);
-  const methods = useForm({});
+  const methods = useForm({
+    defaultValues: {
+      title: "",
+      description: "",
+      type: "precentage",
+      saleParameter: 0,
+      startDate: Date.now(),
+      endDate: Date.now(),
+      saleSlug: "",
+      banner: "",
+      visible: false,
+      slug: "",
+    },
+    values,
+  });
 
   const onSubmit = (data) => {
     console.log(data);
@@ -79,7 +95,7 @@ const SingleSale = () => {
                     defaultValue={"https://theposh.agency/"}
                     className="form-control input-default px-2 mb-3 slug-field__input"
                     placeholder="Enter sale slug"
-                    {...methods.register("saleSlug")}
+                    {...methods.register("slug")}
                     disabled={disabledSlugInput}
                   />
                   <Button
@@ -92,7 +108,7 @@ const SingleSale = () => {
                 <div className="mt-3 form-group">
                   <h3 className="mb-3">Coupon info</h3>
                   <Controller
-                    name="info"
+                    name="description"
                     control={methods.control}
                     defaultValue=""
                     render={({ field: { onChange, onBlur, value, ref } }) => (
@@ -117,10 +133,7 @@ const SingleSale = () => {
                     )}
                   />
                 </div>
-                <ProductSelector
-                  name={"saleProducts"}
-                  title={"Sale products"}
-                />
+                <ProductSelector name={"products"} title={"Sale products"} />
               </div>
               <div className="col-4 w-100">
                 <div className="form-group mt-3">
@@ -129,7 +142,6 @@ const SingleSale = () => {
                     {...methods.register("type")}
                     className="form-control form-control-lg"
                     id="inlineFormCustomSelect"
-                    defaultValue={"precentage"}
                   >
                     <option value="precentage">Precentage</option>
                     <option value="cash">Cash</option>
@@ -143,7 +155,7 @@ const SingleSale = () => {
                     className="form-control input-default px-2"
                     placeholder="Enter first name"
                     defaultValue=""
-                    {...methods.register("parameter")}
+                    {...methods.register("saleParameter")}
                   />
                 </div>
                 <div className="form-group mt-3">
@@ -191,7 +203,7 @@ const SingleSale = () => {
                 <div className="custom-control custom-checkbox checkbox-success check-lg">
                   <input
                     type="checkbox"
-                    {...methods.register("visibleOnFrontEnd")}
+                    {...methods.register("visible")}
                     className="custom-control-input"
                     id={`menu-item-used-with-other-discounts`}
                   />

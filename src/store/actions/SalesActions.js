@@ -2,6 +2,8 @@ import {
   TOGGLE_CHECK_SALE,
   TOGGLE_SELECT_ALL_SALES,
   DESELECT_ALL_SALES,
+  EDIT_SALE,
+  REMOVE_SELECTED_SALE,
 } from "../actions/SalesTypes";
 
 export function toggleCheckSale(id) {
@@ -20,5 +22,18 @@ export function toggleSelectAllSales() {
 export function deselectAllSales() {
   return {
     type: DESELECT_ALL_SALES,
+  };
+}
+
+export function editSale(id) {
+  return {
+    type: EDIT_SALE,
+    payload: { id },
+  };
+}
+
+export function removeSelectedSale() {
+  return {
+    type: REMOVE_SELECTED_SALE,
   };
 }

@@ -5,14 +5,14 @@ export const sales = [
   {
     id: uuid(),
     title: "Sale 10%",
-    description: "<h2>Coupon 1</h2><p>This is a coupon 1.</p>",
-    type: "fixed",
+    description: "<h2>Sale 10%</h2><p>This is a 10% sale offer.</p>",
+    type: "cash",
     saleParameter: 25,
     startDate: new Date("April 1, 2023"),
     endDate: new Date("April 30, 2023"),
-    url: "https://theposh.agency/sales/single/",
+    slug: "https://theposh.agency/sales/single/",
     visible: true,
-    banner:
+    bannerImg:
       "https://marketplace.canva.com/EAE6uxzge6c/1/0/1600w/canva-yellow-and-white-minimalist-big-sale-banner-BjBIq-T_6j4.jpg",
     products: [
       {
@@ -139,15 +139,15 @@ export const sales = [
   },
   {
     id: uuid(),
-    title: "Sale Two for One",
-    description: "<h2>Coupon 1</h2><p>This is a coupon 2.</p>",
-    type: "twoForOne",
+    title: "Free delivery",
+    description: "<h2>Free delivery</h2><p>This is a free delivery sale.</p>",
+    type: "delivery",
     saleParameter: "",
     startDate: new Date("April 1, 2023"),
     endDate: new Date("April 30, 2023"),
-    url: "https://theposh.agency/sales/single/",
+    slug: "https://theposh.agency/sales/single/",
     visible: false,
-    banner:
+    bannerImg:
       "https://thumbs.dreamstime.com/b/sales-banner-colorful-price-tags-sale-sign-40114844.jpg",
     products: [
       {

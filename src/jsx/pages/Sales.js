@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { Button } from "react-bootstrap";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import SalesTable from "../components/table/SalesTable/SalesTable";
+import { removeSelectedSale } from "../../store/actions/SalesActions";
 
 const Sales = () => {
+  const dispatch = useDispatch();
   const { sales } = useSelector((state) => state.sales);
   const [filteredSales, setFilteredSales] = useState(sales);
 
@@ -22,6 +24,10 @@ const Sales = () => {
       );
     }
   };
+
+  useEffect(() => {
+    return () => dispatch(removeSelectedSale());
+  }, [dispatch]);
 
   return (
     <>

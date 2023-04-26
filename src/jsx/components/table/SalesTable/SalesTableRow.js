@@ -5,7 +5,10 @@ import { Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import MenuIcon from "@mui/icons-material/Menu";
 import dayjs from "dayjs";
-import { toggleCheckSale } from "../../../../store/actions/SalesActions";
+import {
+  editSale,
+  toggleCheckSale,
+} from "../../../../store/actions/SalesActions";
 
 // import "./PagesTableRow.css";
 
@@ -40,6 +43,10 @@ const SalesTableRow = ({ sale }) => {
     return selectedSales.includes(id);
   };
 
+  const handleEditSale = () => {
+    dispatch(editSale(sale.id));
+  };
+
   return (
     <tr key={sale.id}>
       <td>
@@ -69,8 +76,9 @@ const SalesTableRow = ({ sale }) => {
       <td data-no-dnd="true">
         <div className="d-flex">
           <Link
-            to="/pages/single"
+            to={`/sales/${sale.id}`}
             className="btn btn-primary shadow btn-xs sharp mr-1"
+            onClick={handleEditSale}
           >
             <i className="fa fa-pencil"></i>
           </Link>

@@ -252,6 +252,7 @@ const Markup = () => {
     { url: "coupons/new", component: SingleCoupon },
     { url: "sales", component: Sales },
     { url: "sales/new", component: SingleSale },
+    { url: "sales/:id", component: SingleSale },
     { url: "email-templates", component: EmailTemplates },
     { url: "email-templates/new", component: SingleEmailTemplate },
     { url: "newsletter", component: Newsletter },
