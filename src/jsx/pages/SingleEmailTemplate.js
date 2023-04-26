@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   useForm,
   Controller,
@@ -11,18 +11,32 @@ import { Editor } from "ckeditor5-custom-build/build/ckeditor";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import slugify from "slugify";
 import TemplateVariable from "../components/TemplateVariable";
+import { useDispatch, useSelector } from "react-redux";
+import { removeSelectedEmailTemplate } from "../../store/actions/EmailTemplatesActions";
 
 const SingleEmailTemplate = () => {
+  const values = useSelector(
+    (state) => state.emailTemplates.selectedEmailTemplate
+  );
+  const dispatch = useDispatch();
   const [disabledSlugInput, setDisabledSlugInput] = useState(true);
   const [variableFields, setVariableFields] = useState({
     title: "",
     variable: "",
   });
-  const methods = useForm({});
+  const methods = useForm({
+    defaultValues: { title: "", slug: "", message: "", variables: [] },
+    values,
+  });
+
   const { fields, append, remove } = useFieldArray({
     control: methods.control,
     name: "variables",
   });
+
+  useEffect(() => {
+    return () => dispatch(removeSelectedEmailTemplate());
+  }, [dispatch]);
 
   const onSubmit = (data) => {
     console.log(data);
@@ -94,7 +108,7 @@ const SingleEmailTemplate = () => {
                 <div className="mt-3 form-group">
                   <h3 className="mb-3">Message</h3>
                   <Controller
-                    name="info"
+                    name="message"
                     control={methods.control}
                     defaultValue=""
                     render={({ field: { onChange, onBlur, value, ref } }) => (

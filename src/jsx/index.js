@@ -256,6 +256,7 @@ const Markup = () => {
     { url: "sales/:id", component: SingleSale },
     { url: "email-templates", component: EmailTemplates },
     { url: "email-templates/new", component: SingleEmailTemplate },
+    { url: "email-templates/:id", component: SingleEmailTemplate },
     { url: "newsletter", component: Newsletter },
     { url: "orders/active", component: Orders },
     { url: "orders/fulfilled", component: Orders },

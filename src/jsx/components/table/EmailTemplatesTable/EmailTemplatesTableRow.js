@@ -4,7 +4,10 @@ import swal from "sweetalert";
 import { Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import MenuIcon from "@mui/icons-material/Menu";
-import { toggleCheckEmailTemplate } from "../../../../store/actions/EmailTemplatesActions";
+import {
+  editEmailTemplate,
+  toggleCheckEmailTemplate,
+} from "../../../../store/actions/EmailTemplatesActions";
 
 // import "./PagesTableRow.css";
 
@@ -39,6 +42,10 @@ const EmailTemplatesTableRow = ({ emailTemplate }) => {
     return selectedTemplates.includes(id);
   };
 
+  const handleEditEmailTemplate = () => {
+    dispatch(editEmailTemplate(emailTemplate.id));
+  };
+
   return (
     <tr>
       <td>
@@ -65,8 +72,9 @@ const EmailTemplatesTableRow = ({ emailTemplate }) => {
       <td data-no-dnd="true">
         <div className="d-flex">
           <Link
-            to="/pages/single"
+            to={`/email-templates/${emailTemplate.id}`}
             className="btn btn-primary shadow btn-xs sharp mr-1"
+            onClick={handleEditEmailTemplate}
           >
             <i className="fa fa-pencil"></i>
           </Link>

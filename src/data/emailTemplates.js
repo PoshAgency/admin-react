@@ -7,10 +7,10 @@ export const emailTemplates = [
     slug: "confirm-email",
     message:
       "<h2>Email Confirmation</h2><p>Click on <i>link</i> to confirm your email.</p>",
-    existingFields: [
-      { fieldVariable: "name", fieldName: "Name" },
-      { fieldVariable: "lastName", fieldName: "Last Name" },
-      { fieldVariable: "validationLink", fieldName: "Validation Link" },
+    variables: [
+      { variable: "name", name: "Name" },
+      { variable: "lastName", name: "Last Name" },
+      { variable: "validationLink", name: "Validation Link" },
     ],
   },
   {
@@ -19,9 +19,9 @@ export const emailTemplates = [
     slug: "order-received",
     message:
       "<h2>Order received</h2><p>Your order have been received successfully.</p>",
-    existingFields: [
-      { fieldVariable: "name", fieldName: "Name" },
-      { fieldVariable: "email", fieldName: "Email" },
+    variables: [
+      { variable: "name", name: "Name" },
+      { variable: "email", name: "Email" },
     ],
   },
 ];
