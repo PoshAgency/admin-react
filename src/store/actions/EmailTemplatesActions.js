@@ -32,7 +32,7 @@ export function editEmailTemplate(id) {
   };
 }
 
-export function removeSelectedEmailTemplate {
+export function removeSelectedEmailTemplate() {
   return {
     type: REMOVE_SELECTED_EMAIL_TEMPLATE,
   };
