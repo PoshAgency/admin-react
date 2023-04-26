@@ -13,7 +13,9 @@ import { useSelector } from "react-redux";
 
 const SingleCoupon = () => {
   const values = useSelector((state) => state.coupons.selectedCoupon);
-  const [displayCategoryMenu, setDisplayCategoryMenu] = useState(false);
+  const [displayCategoryMenu, setDisplayCategoryMenu] = useState(
+    values?.excludedProducts.length ? true : false
+  );
   const methods = useForm({
     defaultValues: {
       title: "",
@@ -23,7 +25,7 @@ const SingleCoupon = () => {
       discountParameter: "",
       start_date: "",
       end_date: "",
-      applyToCurrentDiscounts: false,
+      apllyToCurrentDiscounts: false,
       singleUse: false,
       onlySelectedProducts: false,
       selectedProducts: [],
@@ -168,7 +170,7 @@ const SingleCoupon = () => {
                 <div className="custom-control custom-checkbox checkbox-success check-lg">
                   <input
                     type="checkbox"
-                    {...methods.register("applyToCurrentDiscounts")}
+                    {...methods.register("apllyToCurrentDiscounts")}
                     className="custom-control-input"
                     id={`menu-item-used-with-other-discounts`}
                   />
@@ -198,6 +200,7 @@ const SingleCoupon = () => {
                     type="checkbox"
                     className="custom-control-input"
                     id={`menu-item-category-menu`}
+                    checked={displayCategoryMenu}
                     onChange={() =>
                       setDisplayCategoryMenu(!displayCategoryMenu)
                     }

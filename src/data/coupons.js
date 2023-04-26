@@ -27,7 +27,7 @@ export const coupons = [
     startDate: new Date("April 1, 2023"),
     endDate: new Date("April 30, 2023"),
     apllyToCurrentDiscounts: true,
-    singleUse: false,
+    singleUse: true,
     onlySelectedProducts: false,
     selectedProducts: [],
     applyToCategory: "shoes",
