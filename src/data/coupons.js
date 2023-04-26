@@ -15,7 +15,7 @@ export const coupons = [
     onlySelectedProducts: false,
     selectedProducts: [],
     applyToCategory: "shoes",
-    excludedArticles: [{ id: uuid() }, { id: uuid() }, { id: uuid() }],
+    excludedProducts: [{ id: uuid() }, { id: uuid() }, { id: uuid() }],
   },
   {
     id: uuid(),
@@ -31,7 +31,7 @@ export const coupons = [
     onlySelectedProducts: false,
     selectedProducts: [],
     applyToCategory: "shoes",
-    excludedArticles: [{ id: uuid() }, { id: uuid() }, { id: uuid() }],
+    excludedProducts: [{ id: uuid() }, { id: uuid() }, { id: uuid() }],
   },
   {
     id: uuid(),
@@ -47,6 +47,6 @@ export const coupons = [
     onlySelectedProducts: false,
     selectedProducts: [],
     applyToCategory: "shoes",
-    excludedArticles: [{ id: uuid() }, { id: uuid() }, { id: uuid() }],
+    excludedProducts: [{ id: uuid() }, { id: uuid() }, { id: uuid() }],
   },
 ];

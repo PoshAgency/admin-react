@@ -5,7 +5,10 @@ import { Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import MenuIcon from "@mui/icons-material/Menu";
 import dayjs from "dayjs";
-import { toggleCheckCoupon } from "../../../../store/actions/CouponsActions";
+import {
+  editCoupon,
+  toggleCheckCoupon,
+} from "../../../../store/actions/CouponsActions";
 
 // import "./PagesTableRow.css";
 
@@ -40,6 +43,10 @@ const CouponsTableRow = ({ coupon }) => {
     return selectedCoupons.includes(id);
   };
 
+  const handleEditCoupon = () => {
+    dispatch(editCoupon(coupon.id));
+  };
+
   return (
     <tr key={coupon.id}>
       <td>
@@ -70,8 +77,9 @@ const CouponsTableRow = ({ coupon }) => {
       <td data-no-dnd="true">
         <div className="d-flex">
           <Link
-            to="/pages/single"
+            to={`/coupons/${coupon.id}`}
             className="btn btn-primary shadow btn-xs sharp mr-1"
+            onClick={handleEditCoupon}
           >
             <i className="fa fa-pencil"></i>
           </Link>

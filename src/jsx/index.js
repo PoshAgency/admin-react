@@ -250,6 +250,7 @@ const Markup = () => {
     { url: "settings/:menu", component: MenuEditor },
     { url: "coupons", component: Coupons },
     { url: "coupons/new", component: SingleCoupon },
+    { url: "coupons/:id", component: SingleCoupon },
     { url: "sales", component: Sales },
     { url: "sales/new", component: SingleSale },
     { url: "sales/:id", component: SingleSale },

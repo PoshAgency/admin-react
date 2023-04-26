@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { Button } from "react-bootstrap";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import CouponsTable from "../components/table/CouponsTable/CouponsTable";
+import { removeSelectedCoupon } from "../../store/actions/CouponsActions";
 
 const Coupons = () => {
+  const dispatch = useDispatch();
   const { coupons } = useSelector((state) => state.coupons);
   const [filteredCoupons, setFilteredCoupons] = useState(coupons);
 
@@ -22,6 +24,10 @@ const Coupons = () => {
       );
     }
   };
+
+  useEffect(() => {
+    dispatch(removeSelectedCoupon());
+  }, [dispatch]);
 
   return (
     <>

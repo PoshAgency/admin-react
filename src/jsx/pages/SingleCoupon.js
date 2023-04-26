@@ -9,10 +9,29 @@ import { DatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 import ExcludedProductsSelector from "../components/ExcludedProductsSelector";
 import ProductSelector from "../components/ProductSelector";
+import { useSelector } from "react-redux";
 
 const SingleCoupon = () => {
+  const values = useSelector((state) => state.coupons.selectedCoupon);
   const [displayCategoryMenu, setDisplayCategoryMenu] = useState(false);
-  const methods = useForm({});
+  const methods = useForm({
+    defaultValues: {
+      title: "",
+      code: "",
+      description: "",
+      type: "precentage",
+      discountParameter: "",
+      start_date: "",
+      end_date: "",
+      applyToCurrentDiscounts: false,
+      singleUse: false,
+      onlySelectedProducts: false,
+      selectedProducts: [],
+      applyToCategory: "",
+      excludedProducts: [],
+    },
+    values,
+  });
 
   const onSubmit = (data) => {
     console.log(data);
@@ -55,7 +74,7 @@ const SingleCoupon = () => {
                 <div className="mt-3 form-group">
                   <h3 className="mb-3">Coupon info</h3>
                   <Controller
-                    name="info"
+                    name="description"
                     control={methods.control}
                     defaultValue=""
                     render={({ field: { onChange, onBlur, value, ref } }) => (
@@ -100,9 +119,8 @@ const SingleCoupon = () => {
                   <input
                     type="text"
                     className="form-control input-default px-2"
-                    placeholder="Enter first name"
-                    defaultValue=""
-                    {...methods.register("parametter")}
+                    placeholder="Enter parameter"
+                    {...methods.register("discountParameter")}
                   />
                 </div>
                 <div className="form-group mt-3">
@@ -150,7 +168,7 @@ const SingleCoupon = () => {
                 <div className="custom-control custom-checkbox checkbox-success check-lg">
                   <input
                     type="checkbox"
-                    {...methods.register("useWithExistingDiscounts")}
+                    {...methods.register("applyToCurrentDiscounts")}
                     className="custom-control-input"
                     id={`menu-item-used-with-other-discounts`}
                   />
@@ -164,7 +182,7 @@ const SingleCoupon = () => {
                 <div className="custom-control custom-checkbox checkbox-success check-lg">
                   <input
                     type="checkbox"
-                    {...methods.register("oneTimePurchaseOnly")}
+                    {...methods.register("singleUse")}
                     className="custom-control-input"
                     id={`menu-item-one-time-purchase`}
                   />
