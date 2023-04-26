@@ -2,11 +2,13 @@ import {
   TOGGLE_CHECK_COUPON,
   TOGGLE_SELECT_ALL_COUPONS,
   DESELECT_ALL_COUPONS,
+  EDIT_COUPON,
+  REMOVE_SELECTED_COUPON,
 } from "../actions/CouponsTypes";
 
 import { coupons } from "../../data/coupons";
 
-const initialState = { coupons, selectedCoupons: [] };
+const initialState = { coupons, selectedCoupons: [], selectedCoupon: null };
 
 export default function CouponsReducer(state = initialState, action) {
   if (action.type === TOGGLE_CHECK_COUPON) {
@@ -43,5 +45,18 @@ export default function CouponsReducer(state = initialState, action) {
   if (action.type === DESELECT_ALL_COUPONS) {
     return { ...state, selectedCoupons: [] };
   }
+
+  if (action.type === EDIT_COUPON) {
+    const selectedCoupon = state.coupons.find(
+      (coupon) => coupon.id === action.payload.id
+    );
+
+    return { ...state, selectedCoupon };
+  }
+
+  if (action.type === REMOVE_SELECTED_COUPON) {
+    return { ...state, selectedCoupon: null };
+  }
+
   return state;
 }
