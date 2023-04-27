@@ -5,7 +5,7 @@ const TemplateVariable = ({ field, removeTemplateVariable, index }) => {
   return (
     <div className="d-flex align-items-center mt-2">
       <p className="mb-0">
-        {field.variable} - {field.name}
+        {field.value} - {field.name}
       </p>
       <Button
         className="btn btn-danger shadow btn-xs sharp ml-3"

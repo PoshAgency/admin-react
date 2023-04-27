@@ -21,15 +21,15 @@ const SingleEmailTemplate = () => {
   const dispatch = useDispatch();
   const [disabledSlugInput, setDisabledSlugInput] = useState(true);
   const [variableFields, setVariableFields] = useState({
-    title: "",
-    variable: "",
+    value: "",
+    name: "",
   });
   const methods = useForm({
     defaultValues: { title: "", slug: "", message: "", variables: [] },
     values,
   });
 
-  const { fields, append, remove } = useFieldArray({
+  const { append, remove } = useFieldArray({
     control: methods.control,
     name: "variables",
   });
@@ -55,14 +55,17 @@ const SingleEmailTemplate = () => {
 
   const createTemplateVariable = () => {
     append({
-      variable: `{${variableFields.variable}}`,
-      title: variableFields.title,
+      value: `{${variableFields.value}}`,
+      name: variableFields.name,
     });
   };
 
   const removeTemplateVariable = (index) => {
     remove(index);
   };
+
+  // Watch for changes in the email template variables array and rerender on change
+  const populatedFields = methods.watch("variables");
 
   return (
     <>
@@ -83,7 +86,6 @@ const SingleEmailTemplate = () => {
                     type="text"
                     className="form-control input-default px-2"
                     placeholder="Enter first name"
-                    defaultValue=""
                     {...methods.register("title")}
                     onChange={(e) => updateEmailTemplateSlug(e.target.value)}
                   />
@@ -92,7 +94,6 @@ const SingleEmailTemplate = () => {
                 <div className="form-group mt-3 slug-field">
                   <input
                     type="text"
-                    defaultValue={""}
                     className="form-control input-default px-2 mb-3 slug-field__input"
                     placeholder="Enter sale slug"
                     {...methods.register("slug")}
@@ -110,7 +111,6 @@ const SingleEmailTemplate = () => {
                   <Controller
                     name="message"
                     control={methods.control}
-                    defaultValue=""
                     render={({ field: { onChange, onBlur, value, ref } }) => (
                       <CKEditor
                         editor={Editor}
@@ -141,8 +141,8 @@ const SingleEmailTemplate = () => {
                     type="text"
                     className="form-control input-default px-2"
                     placeholder="Enter variable name"
-                    name="variable"
-                    value={variableFields.variable}
+                    name="value"
+                    value={variableFields.value}
                     onChange={handleInputChange}
                   />
                 </div>
@@ -152,8 +152,8 @@ const SingleEmailTemplate = () => {
                     type="text"
                     className="form-control input-default px-2"
                     placeholder="Enter variable title"
-                    name="title"
-                    value={variableFields.title}
+                    name="name"
+                    value={variableFields.name}
                     onChange={handleInputChange}
                   />
                 </div>
@@ -162,7 +162,7 @@ const SingleEmailTemplate = () => {
                 </Button>
                 <div className="mt-3">
                   <h3>Template variables</h3>
-                  {fields.map((field, index) => (
+                  {populatedFields.map((field, index) => (
                     <TemplateVariable
                       field={field}
                       removeTemplateVariable={removeTemplateVariable}
