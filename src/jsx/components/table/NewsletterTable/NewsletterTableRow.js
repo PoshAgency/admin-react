@@ -3,11 +3,14 @@ import { Link } from "react-router-dom";
 import swal from "sweetalert";
 import { Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleCheckContact } from "../../../../store/actions/NewsletterActions";
+import {
+  editContact,
+  toggleCheckContact,
+} from "../../../../store/actions/NewsletterActions";
 
 // import "./PagesTableRow.css";
 
-const NewsletterTableRow = ({ contact }) => {
+const NewsletterTableRow = ({ contact, setOpenModal }) => {
   const { selectedContacts } = useSelector((state) => state.newsletter);
 
   const dispatch = useDispatch();
@@ -38,6 +41,10 @@ const NewsletterTableRow = ({ contact }) => {
     return selectedContacts.includes(id);
   };
 
+  const handleEditContact = () => {
+    dispatch(editContact(contact.id));
+  };
+
   return (
     <tr>
       <td>
@@ -61,12 +68,15 @@ const NewsletterTableRow = ({ contact }) => {
       <td>{contact.email}</td>
       <td data-no-dnd="true">
         <div className="d-flex">
-          <Link
-            to="/customers/single"
+          <Button
             className="btn btn-primary shadow btn-xs sharp mr-1"
+            onClick={() => {
+              setOpenModal(true);
+              handleEditContact();
+            }}
           >
             <i className="fa fa-pencil"></i>
-          </Link>
+          </Button>
           {/*  to add touch-action css */}
           <Button
             onClick={handleCustomerDelete}

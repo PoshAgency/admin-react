@@ -1,6 +1,8 @@
 import { newsletterContacts } from "../../data/newsletterContacts";
 import {
   DESELECT_ALL_CONTACTS,
+  EDIT_CONTACT,
+  REMOVE_SELECTED_CONTACT,
   TOGGLE_CHECK_CONTACT,
   TOGGLE_SELECT_ALL_CONTACTS,
 } from "../actions/NewsletterTypes";
@@ -8,6 +10,7 @@ import {
 const initialState = {
   emailList: newsletterContacts,
   selectedContacts: [],
+  selectedContact: null,
 };
 
 export default function NewsletterReducer(state = initialState, action) {
@@ -44,6 +47,24 @@ export default function NewsletterReducer(state = initialState, action) {
 
   if (action.type === DESELECT_ALL_CONTACTS) {
     return { ...state, selectedContacts: [] };
+  }
+
+  if (action.type === EDIT_CONTACT) {
+    const selectedContact = state.emailList.find(
+      (contact) => contact.id === action.payload.id
+    );
+
+    return {
+      ...state,
+      selectedContact,
+    };
+  }
+
+  if (action.type === REMOVE_SELECTED_CONTACT) {
+    return {
+      ...state,
+      selectedContact: null,
+    };
   }
 
   return state;

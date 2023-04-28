@@ -11,7 +11,7 @@ import {
 } from "../../../../store/actions/NewsletterActions";
 import TablePagination from "../../TablePagination";
 
-const NewsletterTable = ({ emailList, setEmailList }) => {
+const NewsletterTable = ({ emailList, setOpenModal }) => {
   const { selectedContacts } = useSelector((state) => state.newsletter);
 
   const dispatch = useDispatch();
@@ -141,7 +141,11 @@ const NewsletterTable = ({ emailList, setEmailList }) => {
           </thead>
           <tbody>
             {emailList.map((contact) => (
-              <NewsletterTableRow contact={contact} key={contact.id} />
+              <NewsletterTableRow
+                contact={contact}
+                key={contact.id}
+                setOpenModal={setOpenModal}
+              />
             ))}
           </tbody>
         </Table>

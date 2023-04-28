@@ -7,6 +7,7 @@ import NewsletterTable from "../components/table/NewsletterTable/NewsletterTable
 import NewsletterModal from "../components/NewsletterModal";
 
 const Newsletter = () => {
+  const { selectedContact } = useSelector((state) => state.newsletter);
   const [openModal, setOpenModal] = useState(false);
   const { emailList } = useSelector((state) => state.newsletter);
 
@@ -91,9 +92,14 @@ const Newsletter = () => {
         <NewsletterTable
           emailList={sortedEmailList}
           setEmailList={setSortedEmailList}
+          setOpenModal={setOpenModal}
         />
       </div>
-      <NewsletterModal openModal={openModal} setOpenModal={setOpenModal} />
+      <NewsletterModal
+        openModal={openModal}
+        setOpenModal={setOpenModal}
+        selectedContact={selectedContact}
+      />
     </>
   );
 };

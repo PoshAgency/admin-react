@@ -1,16 +1,44 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Button, Modal } from "react-bootstrap";
 import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { removeSelectedContact } from "../../store/actions/NewsletterActions";
 
 const NewsletterModal = ({ openModal, setOpenModal }) => {
-  const { register, handleSubmit } = useForm({});
+  const dispatch = useDispatch();
+  let { selectedContact } = useSelector((state) => {
+    return state.newsletter;
+  });
+
+  const { register, handleSubmit, reset } = useForm({
+    defaultValues: { firstName: "", lastName: "", email: "" },
+    values: selectedContact,
+  });
 
   const onSubmit = (data) => {
+    // clear form on submit
+    // reset({ firstName: "", lastName: "", email: "" });
     console.log(data);
   };
 
+  const handleRemoveSelectedContact = () => {
+    dispatch(removeSelectedContact());
+  };
+
+  useEffect(() => {
+    return () => {
+      reset({ firstName: "", lastName: "", email: "" });
+    };
+  }, [openModal, dispatch, reset]);
+
   return (
-    <Modal className="fade" show={openModal} onHide={() => setOpenModal(false)}>
+    <Modal
+      className="fade"
+      show={openModal}
+      onHide={() => {
+        setOpenModal(false);
+      }}
+    >
       <Modal.Header>
         <Modal.Title>Newsletter contact</Modal.Title>
         <Button
@@ -31,7 +59,6 @@ const NewsletterModal = ({ openModal, setOpenModal }) => {
                   type="text"
                   className="form-control input-default px-2"
                   placeholder="Enter first name"
-                  defaultValue=""
                   {...register("firstName")}
                 />
               </div>
@@ -41,7 +68,6 @@ const NewsletterModal = ({ openModal, setOpenModal }) => {
                 <h3>Last Name</h3>
                 <input
                   type="text"
-                  defaultValue={""}
                   className="form-control input-default px-2"
                   placeholder="Enter last name"
                   {...register("lastName")}
@@ -61,7 +87,13 @@ const NewsletterModal = ({ openModal, setOpenModal }) => {
         </form>
       </Modal.Body>
       <Modal.Footer>
-        <Button onClick={() => setOpenModal(false)} variant="danger light">
+        <Button
+          onClick={() => {
+            setOpenModal(false);
+            handleRemoveSelectedContact();
+          }}
+          variant="danger light"
+        >
           Close
         </Button>
         <Button
