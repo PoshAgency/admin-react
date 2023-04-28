@@ -2,7 +2,10 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import MenuIcon from "@mui/icons-material/Menu";
 import swal from "sweetalert";
-import { toggleCheckMessage } from "../../../../store/actions/MessagesActions";
+import {
+  editMessage,
+  toggleCheckMessage,
+} from "../../../../store/actions/MessagesActions";
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
 
@@ -37,6 +40,10 @@ const MessagesTableRow = ({ message }) => {
     return selectedMessages.includes(id);
   };
 
+  const handleEditMessage = () => {
+    dispatch(editMessage(message.id));
+  };
+
   return (
     <tr>
       <td>
@@ -63,8 +70,9 @@ const MessagesTableRow = ({ message }) => {
       <td data-no-dnd="true">
         <div className="d-flex">
           <Link
-            to="/pages/single"
+            to={`/messages/${message.id}`}
             className="btn btn-primary shadow btn-xs sharp mr-1"
+            onClick={handleEditMessage}
           >
             <i className="fa fa-pencil"></i>
           </Link>

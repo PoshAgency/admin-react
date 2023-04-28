@@ -8,6 +8,7 @@ export const messages = [
     message: "<h2>404</h2>",
     buttonLink: "https://google.com",
     buttonText: "Google",
+    template: "error",
   },
   {
     id: uuid(),
@@ -16,6 +17,7 @@ export const messages = [
     message: "<h2>403</h2>",
     buttonLink: "https://yahoo.com",
     buttonText: "Yahoo",
+    template: "error",
   },
   {
     id: uuid(),
@@ -24,6 +26,7 @@ export const messages = [
     message: "<p>You will be contacted shortly.</p>",
     buttonLink: "",
     buttonText: "Go to homepage",
+    template: "thank-you",
   },
   {
     id: uuid(),
@@ -33,6 +36,7 @@ export const messages = [
       "<p>Vasa korpa je prazna</p><p>Pogledajte proizvode iz nase ponude.</p>",
     buttonLink: "/",
     buttonText: "Naslovna",
+    template: "warning",
   },
   {
     id: uuid(),
@@ -41,5 +45,6 @@ export const messages = [
     message: "Potvrda porudzbine je poslata na vasu email adresu.",
     buttonLink: "",
     buttonText: "Pocetna stranica",
+    template: "success",
   },
 ];

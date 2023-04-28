@@ -257,6 +257,7 @@ const Markup = () => {
     { url: "orders/:id", component: SingleOrder },
     { url: "messages", component: Messages },
     { url: "messages/new", component: SingleMessage },
+    { url: "messages/:id", component: SingleMessage },
   ];
 
   return (
