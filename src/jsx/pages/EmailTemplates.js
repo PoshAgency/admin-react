@@ -48,7 +48,7 @@ const EmailTemplates = () => {
             <input
               type="text"
               className="form-control"
-              placeholder="Search coupons members"
+              placeholder="Search coupons"
               onChange={searchEmailTemplates}
             />
             <div className="input-group-append">

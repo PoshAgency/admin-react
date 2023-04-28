@@ -33,9 +33,9 @@ const Settings = () => {
     <>
       <div className="d-flex justify-content-between align-items-center">
         <h2>Settings</h2>
-        <Link to="/team">
+        {/* <Link to="/team">
           <Button variant="transparent">Cancel</Button>
-        </Link>
+        </Link> */}
       </div>
       <div className="w-100 mt-5 card">
         <FormProvider {...methods}>
@@ -48,7 +48,7 @@ const Settings = () => {
                     {...methods.register("siteName")}
                     type="text"
                     className="form-control input-default px-2"
-                    placeholder="Enter team member's position"
+                    placeholder="Enter site name"
                   />
                 </div>
                 <div className="form-group mt-3">
@@ -57,7 +57,7 @@ const Settings = () => {
                     {...methods.register("globalEmail")}
                     type="text"
                     className="form-control input-default px-2"
-                    placeholder="Enter team member's position"
+                    placeholder="Enter global email"
                   />
                 </div>
                 <div className="socials mt-4">
@@ -69,10 +69,9 @@ const Settings = () => {
                         <input
                           type="text"
                           className="form-control input-default px-2"
-                          placeholder="Enter first name"
+                          placeholder="Global linkedin"
                           defaultValue=""
                           {...methods.register("linkedin")}
-                          onChange={(e) => {}}
                         />
                       </div>
                     </div>
@@ -82,10 +81,9 @@ const Settings = () => {
                         <input
                           type="text"
                           className="form-control input-default px-2"
-                          placeholder="Enter first name"
+                          placeholder="Global instagram"
                           defaultValue=""
                           {...methods.register("instagram")}
-                          onChange={(e) => {}}
                         />
                       </div>
                     </div>
@@ -97,10 +95,9 @@ const Settings = () => {
                         <input
                           type="text"
                           className="form-control input-default px-2"
-                          placeholder="YouTube link"
+                          placeholder="Global Youtube"
                           defaultValue=""
                           {...methods.register("youtube")}
-                          onChange={(e) => {}}
                         />
                       </div>
                     </div>
@@ -110,10 +107,9 @@ const Settings = () => {
                         <input
                           type="text"
                           className="form-control input-default px-2"
-                          placeholder="Facebook link"
+                          placeholder="Global facebook"
                           defaultValue=""
                           {...methods.register("facebook")}
-                          onChange={(e) => {}}
                         />
                       </div>
                     </div>
@@ -125,10 +121,9 @@ const Settings = () => {
                         <input
                           type="text"
                           className="form-control input-default px-2"
-                          placeholder="Twitter link"
+                          placeholder="Global twitter"
                           defaultValue=""
                           {...methods.register("twitter")}
-                          onChange={(e) => {}}
                         />
                       </div>
                     </div>

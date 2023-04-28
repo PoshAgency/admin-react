@@ -61,7 +61,7 @@ const Customers = () => {
             <input
               type="text"
               className="form-control"
-              placeholder="Search products"
+              placeholder="Search customers"
               onChange={searchCustomers}
             />
             <div className="input-group-append">

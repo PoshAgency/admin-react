@@ -49,7 +49,7 @@ const Coupons = () => {
             <input
               type="text"
               className="form-control"
-              placeholder="Search coupons members"
+              placeholder="Search coupons"
               onChange={searchCoupons}
             />
             <div className="input-group-append">

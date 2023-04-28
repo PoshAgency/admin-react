@@ -41,7 +41,7 @@ const Messages = () => {
             <input
               type="text"
               className="form-control"
-              placeholder="Search coupons members"
+              placeholder="Search coupons"
               onChange={searchMessages}
             />
             <div className="input-group-append">
