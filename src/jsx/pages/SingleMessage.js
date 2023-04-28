@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm, Controller, FormProvider } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
@@ -6,11 +6,25 @@ import { Editor } from "ckeditor5-custom-build/build/ckeditor";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import slugify from "slugify";
 import SEOFields from "../components/SEOFields";
+import { useDispatch, useSelector } from "react-redux";
+import { removeSelectedMessage } from "../../store/actions/MessagesActions";
 
 const SingleMessage = () => {
+  const dispatch = useDispatch();
+  const values = useSelector((state) => state.messages.selectedMessage);
   const [disabledSlugInput, setDisabledSlugInput] = useState(true);
 
-  const methods = useForm({});
+  const methods = useForm({
+    defaultValues: {
+      title: "",
+      slug: "",
+      message: "",
+      buttonLink: "",
+      buttonText: "",
+      template: "thank-you",
+    },
+    values,
+  });
 
   const onSubmit = (data) => {
     console.log(data);
@@ -19,6 +33,10 @@ const SingleMessage = () => {
   const updateMessageSlug = (value) => {
     methods.setValue("slug", `${slugify(value).toLocaleLowerCase()}`);
   };
+
+  useEffect(() => {
+    return () => dispatch(removeSelectedMessage());
+  }, [dispatch]);
 
   return (
     <>
@@ -39,7 +57,6 @@ const SingleMessage = () => {
                     type="text"
                     className="form-control input-default px-2"
                     placeholder="Enter message title"
-                    defaultValue=""
                     {...methods.register("title")}
                     onChange={(e) => updateMessageSlug(e.target.value)}
                   />
@@ -48,7 +65,6 @@ const SingleMessage = () => {
                 <div className="form-group mt-3 slug-field">
                   <input
                     type="text"
-                    defaultValue={""}
                     className="form-control input-default px-2 mb-3 slug-field__input"
                     placeholder="Message slug"
                     {...methods.register("slug")}
@@ -67,7 +83,6 @@ const SingleMessage = () => {
                     type="text"
                     className="form-control input-default px-2"
                     placeholder="Enter button text"
-                    defaultValue=""
                     {...methods.register("buttonText")}
                   />
                 </div>
@@ -77,16 +92,14 @@ const SingleMessage = () => {
                     type="text"
                     className="form-control input-default px-2"
                     placeholder="Enter button link"
-                    defaultValue=""
                     {...methods.register("buttonLink")}
                   />
                 </div>
                 <div className="mt-3 form-group">
                   <h3 className="mb-3">Message</h3>
                   <Controller
-                    name="info"
+                    name="message"
                     control={methods.control}
-                    defaultValue=""
                     render={({ field: { onChange, onBlur, value, ref } }) => (
                       <CKEditor
                         editor={Editor}
@@ -109,7 +122,6 @@ const SingleMessage = () => {
                     )}
                   />
                 </div>
-                <SEOFields methods={methods} />
               </div>
               <div className="col-4 w-100 h-auto">
                 <div className="form-group mt-3">
@@ -118,11 +130,11 @@ const SingleMessage = () => {
                     {...methods.register("template")}
                     className="form-control form-control-lg"
                     id="inlineFormCustomSelect"
-                    defaultValue={"thank-you"}
                   >
                     <option value="thank-you">Thank you</option>
-                    <option value="404">404</option>
+                    <option value="error">Error</option>
                     <option value="warning">Warning</option>
+                    <option value="success">Success</option>
                   </select>
                 </div>
               </div>
