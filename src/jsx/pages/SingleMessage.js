@@ -5,7 +5,6 @@ import { Button } from "react-bootstrap";
 import { Editor } from "ckeditor5-custom-build/build/ckeditor";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import slugify from "slugify";
-import SEOFields from "../components/SEOFields";
 import { useDispatch, useSelector } from "react-redux";
 import { removeSelectedMessage } from "../../store/actions/MessagesActions";
 
