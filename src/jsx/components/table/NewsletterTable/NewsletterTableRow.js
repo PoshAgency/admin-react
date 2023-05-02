@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import swal from "sweetalert";
 import { Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";

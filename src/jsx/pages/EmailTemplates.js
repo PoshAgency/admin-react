@@ -1,13 +1,11 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useState } from "react";
 import { Button } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import EmailTemplatesTable from "../components/table/EmailTemplatesTable/EmailTemplatesTable";
-import { removeSelectedEmailTemplate } from "../../store/actions/EmailTemplatesActions";
 
 const EmailTemplates = () => {
-  const dispatch = useDispatch();
   const { emailTemplates } = useSelector((state) => state.emailTemplates);
   const [filteredEmailTemplates, setFilteredEmailTmeplates] =
     useState(emailTemplates);
