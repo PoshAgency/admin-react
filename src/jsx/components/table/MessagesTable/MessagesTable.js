@@ -26,7 +26,7 @@ const MessagesTable = ({ messages }) => {
     <Card className="w-100">
       <Card.Header className="d-flex justify-content-between">
         <div className="d-flex align-items-center">
-          <Card.Title>Coupons</Card.Title>
+          <Card.Title>Messages</Card.Title>
           <div
             className={`${
               selectedMessages.length ? "visible" : "invisible"
